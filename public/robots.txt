@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /$
+Disallow: /authority
+
+# The authority console must never be indexed, but it IS reachable by URL —
+# auth is enforced in the app, not by robots.txt.

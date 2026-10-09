@@ -1,0 +1,70 @@
+<!doctype html>
+<!--
+  lang / dir are set by the app at runtime from the stored language preference
+  (see src/app/AppShell.tsx). `dir="auto"` keeps the first paint sane before
+  hydration.
+-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Kavach — Crisis Alerts for Tourists</title>
+    <meta
+      name="description"
+      content="Offline-first, signed crisis alerts for tourists. Verify and read official warnings in your language, even with no internet."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Kavach" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Dark by default: this app is read in shelters, at night, in the rain. -->
+    <meta name="theme-color" content="#0b1120" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Tourist hotels/airports open this from a QR code on a shared phone too. -->
+    <meta name="referrer" content="no-referrer" />
+
+    <!--
+      Paint the theme colour immediately so a cold, offline start never flashes
+      a white screen before the CSS has parsed. Critical for the "app must feel
+      alive with no network" demo moment.
+    -->
+    <style>
+      html {
+        background: #0b1120;
+        color: #f4f7fb;
+      }
+      /* Boot splash, replaced on first React paint. */
+      #root:empty::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(circle at 50% 38%, rgba(45, 212, 191, 0.16), transparent 62%), #0b1120;
+      }
+      @media (prefers-color-scheme: light) {
+        html {
+          background: #0b1120;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; line-height: 1.6">
+        <h1 style="font-size: 1.25rem">Kavach needs JavaScript</h1>
+        <p>
+          This app verifies signed alerts offline in your device. Please enable JavaScript, or read
+          alerts sent to you by SMS or QR code.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

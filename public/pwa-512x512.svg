@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kavach">
+  <title>Kavach</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2027" />
+      <stop offset="1" stop-color="#16324f" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <!-- Shield: protection you can verify. -->
+  <path d="M256 84 400 136v116c0 84-58 150-144 176-86-26-144-92-144-176V136Z"
+        fill="none" stroke="#5eead4" stroke-width="22" stroke-linejoin="round" />
+  <!-- Broadcast arcs: the alert signal. -->
+  <path d="M256 196v128" stroke="#5eead4" stroke-width="22" stroke-linecap="round" />
+  <path d="M300 244a62 62 0 0 1 0 40" fill="none" stroke="#5eead4" stroke-width="20" stroke-linecap="round" />
+  <circle cx="256" cy="324" r="16" fill="#5eead4" />
+</svg>

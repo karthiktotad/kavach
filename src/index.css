@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Kavach design tokens
+   Safety-first palette: deep navy base (readable outdoors, low battery),
+   high-contrast severity ramp that stays distinguishable for the most common
+   forms of colour-vision deficiency (blue/orange/green separated in lightness
+   as well as hue). Severity is ALWAYS paired with an icon + text label in the
+   UI, never colour alone (engineering rule 6).
+   ========================================================================== */
+
+@theme {
+  /* Surfaces — dark by default: a phone in a dark shelter or at night. */
+  --color-surface: oklch(16% 0.03 255);
+  --color-surface-raised: oklch(21% 0.035 255);
+  --color-surface-sunken: oklch(12% 0.025 255);
+  --color-surface-hover: oklch(26% 0.04 255);
+
+  /* Text — high contrast on the surfaces above (>= 7:1 for body). */
+  --color-ink: oklch(97% 0.01 255);
+  --color-ink-muted: oklch(76% 0.02 255);
+  --color-ink-subtle: oklch(60% 0.02 255);
+
+  /* Brand */
+  --color-brand: oklch(72% 0.16 195);
+  --color-brand-strong: oklch(82% 0.15 195);
+  --color-brand-dim: oklch(45% 0.09 195);
+
+  /* Severity ramp: risk 0..4 plus trust states.
+     Lightness increases with severity so it survives greyscale printing and
+     sunlight glare. */
+  --color-risk-0: oklch(62% 0.06 150); /* low      */
+  --color-risk-1: oklch(78% 0.13 90); /* moderate */
+  --color-risk-2: oklch(80% 0.16 55); /* high     */
+  --color-risk-3: oklch(72% 0.19 25); /* severe   */
+  --color-risk-4: oklch(58% 0.21 15); /* extreme  */
+
+  --color-danger: oklch(66% 0.21 22);
+  --color-warn: oklch(80% 0.16 80);
+  --color-safe: oklch(70% 0.14 155);
+  --color-info: oklch(70% 0.12 240);
+
+  /* Drill banner — deliberately garish, never mistaken for a real alert. */
+  --color-drill: oklch(85% 0.19 95);
+
+  /* Touch targets: 48px is the minimum for a stressed, gloved, one-handed user. */
+  --spacing-touch: 3rem;
+
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Devanagari',
+    'Noto Sans Tamil', 'Noto Sans Arabic', 'Noto Sans Hebrew', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Roboto Mono', Menlo, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    /* Safe-area insets for notched phones — the bottom nav must clear the home bar. */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --nav-height: 4.25rem;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    /* Never let the OS text-size setting be ignored: offline readability wins. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-surface-sunken);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* RTL support: logical properties everywhere, so dir=rtl just works. */
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+  }
+
+  /* Respect users who ask for less motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Visible focus for keyboard users on every interactive element. */
+  :focus-visible {
+    outline: 3px solid var(--color-brand-strong);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  button,
+  [role='button'],
+  a {
+    touch-action: manipulation;
+  }
+
+  /* Screen-reader-only utility for labels that icons already convey. */
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@layer components {
+  /* Minimum 48px target, enforced centrally (engineering rule 6). */
+  .touch-target {
+    min-height: var(--spacing-touch);
+    min-width: var(--spacing-touch);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}

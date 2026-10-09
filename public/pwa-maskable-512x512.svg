@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kavach">
+  <title>Kavach (maskable)</title>
+  <!-- Maskable icons must keep their content inside the safe zone: the centre
+       80% circle. Artwork is scaled to ~62% and fully opaque to the edges so
+       Android can crop to any mask shape. -->
+  <rect width="512" height="512" fill="#0f2027" />
+  <g transform="translate(256 256) scale(0.62) translate(-256 -256)">
+    <path d="M256 84 400 136v116c0 84-58 150-144 176-86-26-144-92-144-176V136Z"
+          fill="#16324f" stroke="#5eead4" stroke-width="22" stroke-linejoin="round" />
+    <path d="M256 196v128" stroke="#5eead4" stroke-width="22" stroke-linecap="round" />
+    <circle cx="256" cy="324" r="16" fill="#5eead4" />
+  </g>
+</svg>

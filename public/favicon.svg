@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Kavach">
+  <title>Kavach</title>
+  <rect width="180" height="180" rx="38" fill="#0f2027" />
+  <path d="M90 30 141 47v40c0 29-21 52-51 62-30-10-51-33-51-62V47Z"
+        fill="none" stroke="#5eead4" stroke-width="8" stroke-linejoin="round" />
+  <path d="M90 68v45" stroke="#5eead4" stroke-width="8" stroke-linecap="round" />
+  <circle cx="90" cy="117" r="6" fill="#5eead4" />
+</svg>

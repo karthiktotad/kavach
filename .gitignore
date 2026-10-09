@@ -1,0 +1,74 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# build output
+dist/
+dist-ssr/
+build/
+*.local
+
+# env / secrets — NEVER commit real values (engineering rule 2)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+supabase/.branches
+supabase/.temp
+
+# testing
+coverage/
+.vitest/
+test-results/
+playwright-report/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# editors / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+
+# local envs used by hosting CLIs
+.netlify/
+.vercel/
+.wrangler/
+.cloudflare/
+
+# generated / large content-pack artifacts (rebuild with scripts/build-pack.mjs)
+public/pack/*.pmtiles
+public/pack/*.pbf
+public/pack/*.mbtiles
+public/pack/manifest.lock.json
+
+# demo artefacts that are generated, not authored
+/tmp/
+scratch/
+*.har
+
+# misc
+.cache/
+.eslintcache
