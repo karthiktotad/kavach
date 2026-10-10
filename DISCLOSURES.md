@@ -74,7 +74,7 @@ degrading to fake data.
 
 | Model | Provider | Plan | Where called | Status |
 | --- | --- | --- | --- | --- |
-| [Gemini](https://ai.google.dev/) (`gemini-2.0-flash`) | Google AI Studio | Free tier, subject to Google AI Studio Terms | **Build-time only**, from `scripts/translate-pack.ts`. Machine-translates the content pack and UI strings. Not shipped in the app and never called at runtime. | ✅ |
+| [Gemini](https://ai.google.dev/) (`gemini-3.8-flash`, overridable via `GEMINI_MODEL`) | Google AI Studio | Free tier, subject to Google AI Studio Terms | **Build-time only**, from `scripts/translate-pack.ts`. Machine-translates the content pack and UI strings. Not shipped in the app and never called at runtime. | ✅ |
 
 **Guardrail:** the model is only ever used for *translation at build time*. It never supplies
 runtime facts. Safety-critical values — phone numbers, shelter coordinates, medical instructions —

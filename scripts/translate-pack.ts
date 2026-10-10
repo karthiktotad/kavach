@@ -27,21 +27,45 @@ import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from '../src/config/re
 import { extractPlaceholders } from '../src/lib/packTypes.ts'
 import { PACK_DIR, fail, info, loadLocalEnv, step, warn } from './_lib.ts'
 
-const MODEL = 'gemini-2.0-flash'
+const loadLocalEnvFiles = loadLocalEnv()
+
+/**
+ * Model used for build-time translation.
+ *
+ * Configurable because Google retires model names: `gemini-2.0-flash` was
+ * removed and every call failed with a 404 until this became overridable.
+ * Override with GEMINI_MODEL in .env. Run `--list-models` to see what your key
+ * can actually reach.
+ */
+const MODEL = process.env['GEMINI_MODEL']?.trim() || 'gemini-3.8-flash'
 const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models'
 /** Strings per request. Large enough to be efficient, small enough to retry. */
 const BATCH_SIZE = 20
 /** Max retries per batch before the run is declared failed. */
-const MAX_BATCH_RETRIES = 3
+const MAX_BATCH_RETRIES = 5
+/**
+ * Pause between batches.
+ *
+ * The free tier allows ~15 requests per minute. kb/en.json is ~360 strings,
+ * so firing 18 batches back-to-back trips the quota. 4 s keeps us under it.
+ */
+const BATCH_DELAY_MS = 4000
+/** Backoff for a 429, escalating per attempt. */
+const RATE_LIMIT_BACKOFF_MS = [15_000, 30_000, 45_000, 60_000] as const
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 const args = process.argv.slice(2)
 const force = args.includes('--force')
 const dryRun = args.includes('--dry-run')
+const listModels = args.includes('--list-models')
 const onlyLocale = args.find((a) => a.startsWith('--locale='))?.split('=')[1]
 
 // Vite loads .env for the app bundle, but plain Node does not. Load it here so
 // a key placed in .env is actually found. Real env vars still take precedence.
-const envFiles = loadLocalEnv()
+const envFiles = loadLocalEnvFiles
 const GEMINI_API_KEY = process.env['GEMINI_API_KEY']
 
 // ---------------------------------------------------------------------------
@@ -56,6 +80,21 @@ interface Unit {
 
 type Json = Record<string, unknown>
 
+/**
+ * Keys whose values are identifiers, not prose.
+ *
+ * These must never be sent to the model or written back from it. `next` is the
+ * important one: it is a decision-tree pointer between nodes, and translating
+ * it would silently break a first-aid flow at exactly the moment it is used.
+ */
+const NON_TRANSLATABLE_KEYS: ReadonlySet<string> = new Set([
+  'id',
+  'next',
+  'severity',
+  'category',
+  'scope',
+])
+
 function collectUnits(node: unknown, path: string, out: Unit[]): void {
   if (typeof node === 'string') {
     out.push({ id: path, text: node })
@@ -67,6 +106,9 @@ function collectUnits(node: unknown, path: string, out: Unit[]): void {
   }
   if (node && typeof node === 'object') {
     for (const [key, value] of Object.entries(node as Json)) {
+      // Identifiers are skipped entirely: sending them wastes quota and
+      // invites the model to "helpfully" translate a pointer value.
+      if (NON_TRANSLATABLE_KEYS.has(key)) continue
       collectUnits(value, path ? `${path}.${key}` : key, out)
     }
   }
@@ -82,7 +124,9 @@ function applyUnits(source: unknown, translations: Map<string, string>, path = '
     const out: Json = {}
     for (const [key, value] of Object.entries(source as Json)) {
       const childPath = path ? `${path}.${key}` : key
-      out[key] = key === 'id' ? value : applyUnits(value, translations, childPath)
+      out[key] = NON_TRANSLATABLE_KEYS.has(key)
+        ? value
+        : applyUnits(value, translations, childPath)
     }
     return out
   }
@@ -103,12 +147,29 @@ function applyUnits(source: unknown, translations: Map<string, string>, path = '
  */
 class GeminiError extends Error {
   readonly hint: string
+  /** Rate limits are worth waiting out; auth errors are not. */
+  readonly retryable: boolean
 
-  constructor(message: string, hint = '') {
+  constructor(message: string, hint = '', retryable = false) {
     super(message)
     this.name = 'GeminiError'
     this.hint = hint
+    this.retryable = retryable
   }
+}
+
+/**
+ * Models the current key can actually reach.
+ * Used by --list-models and by the 404 handler, so a retired model name
+ * produces an actionable message instead of a raw NOT_FOUND.
+ */
+async function listAvailableModels(): Promise<string[]> {
+  const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', {
+    headers: GEMINI_API_KEY ? { 'x-goog-api-key': GEMINI_API_KEY } : {},
+  })
+  if (!response.ok) throw new GeminiError(`Could not list models (HTTP ${response.status}).`)
+  const body = (await response.json()) as { models?: Array<{ name: string }> }
+  return (body.models ?? []).map((m) => m.name.replace(/^models\//, ''))
 }
 
 async function callGemini(prompt: string, count: number): Promise<string[]> {
@@ -123,6 +184,22 @@ async function callGemini(prompt: string, count: number): Promise<string[]> {
 
   if (!response.ok) {
     const detail = (await response.text()).slice(0, 400)
+
+    if (response.status === 404) {
+      // Google retires model names; this is the most likely cause by far.
+      const suggestions = (await listAvailableModels().catch(() => [] as string[]))
+        .filter((m) => /flash/i.test(m) && !/tts|image|live|audio|omni|preview/i.test(m))
+        .slice(0, 6)
+      throw new GeminiError(
+        `Model "${MODEL}" was not found (HTTP 404).`,
+        suggestions.length > 0
+          ? `Google likely retired that model. Set GEMINI_MODEL in .env to one of:\n` +
+              suggestions.map((m) => `      ${m}`).join('\n') +
+              `\n\n    …or run: npm run pack:translate -- --list-models`
+          : `Set GEMINI_MODEL in .env to a model your key can reach (npm run pack:translate -- --list-models).`,
+      )
+    }
+
     if (response.status === 400 || response.status === 401 || response.status === 403) {
       const reason = detail.includes('API_KEY_INVALID')
         ? 'API_KEY_INVALID'
@@ -141,7 +218,9 @@ async function callGemini(prompt: string, count: number): Promise<string[]> {
     if (response.status === 429) {
       throw new GeminiError(
         'Gemini rate limit hit (429).',
-        'Free tier is quota-limited. Wait a minute and re-run — completed locales are skipped, so you will not lose work.',
+        'The free tier allows only a few requests per minute. This is a pace problem, not a wrong key.',
+        // Retried with backoff rather than failing the run.
+        true,
       )
     }
     throw new GeminiError(`Gemini HTTP ${response.status}.`, detail)
@@ -209,12 +288,22 @@ async function translateBatch(units: Unit[], locale: Locale, attempt = 0): Promi
     }
     return out
   } catch (error) {
-    // Auth/quota failures will not fix themselves on a retry.
+    // A retired model name or a rejected key cannot be fixed by waiting.
     const fatal =
-      error instanceof GeminiError &&
-      (error.message.includes('rejected the request') || error.message.includes('rate limit'))
-    if (fatal || attempt + 1 >= MAX_BATCH_RETRIES) throw error
-    warn(`batch retry ${attempt + 1}: ${String(error)}`)
+      error instanceof GeminiError && !error.retryable && error.message.includes('not found')
+    const rejected = error instanceof GeminiError && error.message.includes('rejected the request')
+    if (fatal || rejected || attempt + 1 >= MAX_BATCH_RETRIES) throw error
+
+    const waitMs =
+      error instanceof GeminiError && error.message.includes('rate limit')
+        ? (RATE_LIMIT_BACKOFF_MS[Math.min(attempt, RATE_LIMIT_BACKOFF_MS.length - 1)] ?? 60_000)
+        : 2000
+
+    warn(
+      `retry ${attempt + 1}/${MAX_BATCH_RETRIES - 1} in ${Math.round(waitMs / 1000)}s: ` +
+        `${error instanceof Error ? error.message : String(error)}`,
+    )
+    await sleep(waitMs)
     return translateBatch(units, locale, attempt + 1)
   }
 }
@@ -272,6 +361,10 @@ async function translateFile(
     out.forEach((text, bi) => translations.set(batch[bi]!.id, text))
     done += batch.length
     info(`  ${targetRelPath}: ${done}/${units.length}`)
+
+    // Pace requests so the free tier's per-minute quota is not blown.
+    const remaining = units.length - done
+    if (remaining > 0) await sleep(BATCH_DELAY_MS)
   }
 
   const merged = applyUnits(translatable, translations) as Json
@@ -322,6 +415,24 @@ async function main(): Promise<void> {
   }
 
   const requested = onlyLocale?.split('=')[1]
+  if (listModels) {
+    step('translate-pack — models reachable with this key')
+    const names = await listAvailableModels()
+    // Narrow to the text models that suit batch translation.
+    const useful = names.filter(
+      (n) => /flash/i.test(n) && !/tts|image|live|audio|omni|preview/i.test(n),
+    )
+    info(`total models available: ${names.length}`)
+    info('')
+    info('suitable for translation (flash, non-preview):')
+    for (const n of useful) info(`  ${n}${n === MODEL ? '   ← currently configured' : ''}`)
+    info('')
+    info(`currently using: ${MODEL}`)
+    info('Change it with GEMINI_MODEL in .env, or per run:')
+    info(`  GEMINI_MODEL=${useful[0] ?? 'gemini-3.8-flash'} npm run pack:translate`)
+    return
+  }
+
   const locales: Locale[] =
     requested && (SUPPORTED_LOCALES as readonly string[]).includes(requested)
       ? [requested as Locale]
