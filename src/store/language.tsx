@@ -21,7 +21,12 @@ export interface LanguageContextValue {
   readonly t: (key: string, vars?: Record<string, string | number>) => string
 }
 
-export const LanguageContext = createContext<LanguageContextValue | null>(null)
+export const LanguageContext = createContext<LanguageContextValue>({
+  locale: DEFAULT_LOCALE,
+  dir: 'ltr',
+  setLocale: () => undefined,
+  t: makeTranslate(DEFAULT_LOCALE),
+})
 
 /**
  * Read the stored preference.

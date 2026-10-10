@@ -8,6 +8,13 @@ import { applyLocaleToDocument } from '../store/language'
 import { getSetting, SETTING } from '../lib/db'
 import { getServiceWorkerState, onServiceWorkerUpdate } from './pwa'
 import { packManager } from '../lib/pack'
+// Device A routes (rule 3: exactly one import line). DEV-gated AND dynamic:
+// a static import would put a.routes in the main graph, so the gallery's module
+// name would survive into the sourcemap even with the guard inside it. Proof
+// the leak is gone: npm run verify:dev-route-absent.
+const ARoutes = import.meta.env.DEV
+  ? lazy(() => import('../routes/a.routes'))
+  : () => null
 
 import HomePage from '../pages/HomePage'
 
@@ -23,6 +30,8 @@ const ReportsPage = lazy(() => import('../pages/ReportsPage'))
 const AuthorityPage = lazy(() => import('../pages/AuthorityPage'))
 const PacketPage = lazy(() => import('../pages/PacketPage'))
 const ReadyPage = lazy(() => import('../pages/ReadyPage'))
+const ScanPage = lazy(() => import('../pages/ScanPage'))
+const CheckPage = lazy(() => import('../pages/CheckPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 /** Scroll to top on navigation — hash routing does not do it for us. */
@@ -85,9 +94,12 @@ function OnboardingGate({ children }: { children: ReactNode }) {
   // Render nothing until we know the flag for THIS path.
   if (!read || read.path !== location.pathname) return null
 
-  // `/a/<packet>` is always exempt: a signed packet handed over by SMS must render
-  // even for someone who never completed onboarding.
-  const exempt = location.pathname === '/ready' || location.pathname.startsWith('/a/')
+  // `/a/<packet>` and `/check` are always exempt: a signed packet or a shared
+  // message review must render even for someone who never completed onboarding.
+  const exempt =
+    location.pathname === '/ready' ||
+    location.pathname.startsWith('/a/') ||
+    location.pathname === '/check'
   if (!read.value && !exempt) return <Navigate to="/ready" replace />
 
   return <>{children}</>
@@ -158,6 +170,8 @@ export function AppRoutes() {
             <Route path="/me" element={<MePage />} />
             <Route path="/report" element={<ReportsPage />} />
             <Route path="/ready" element={<ReadyPage />} />
+            <Route path="/scan" element={<ScanPage />} />
+            <Route path="/check" element={<CheckPage />} />
             <Route path="/authority" element={<AuthorityPage />} />
             {/* Signed-packet deep link: /#/a/<packet> — must work fully offline. */}
             <Route path="/a/:packet" element={<PacketPage />} />
@@ -165,6 +179,19 @@ export function AppRoutes() {
           </Routes>
         </OnboardingGate>
       </Suspense>
+
+      {/* Device A routes — dev-only gallery, mounted OUTSIDE the app's
+          Suspense/OnboardingGate. Two reasons it cannot go inside <Routes>:
+          React Router only reads <Route> elements that are its direct children,
+          and suspending on the gallery chunk would blank the whole shell for
+          everyone, judges included. `fallback={null}` because the gallery is the
+          only thing in this boundary and it has nothing to show while loading.
+          In production ARoutes() returns null and fetches nothing. */}
+      {import.meta.env.DEV ? (
+        <Suspense fallback={null}>
+          <ARoutes />
+        </Suspense>
+      ) : null}
 
       <BottomNav />
     </div>
