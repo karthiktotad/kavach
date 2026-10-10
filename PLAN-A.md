@@ -56,46 +56,46 @@ Device A owns:
 
 ## FE-2 — Home Page
 
-- [ ] Build Home page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/home.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Home page using design system components
+- [x] Add i18n keys (home risk/alert promise strings and supporting locale content)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-3 — Ready Page
 
-- [ ] Build Ready page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/ready.json - merged into core.json per rules)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Ready page using design system components
+- [x] Add i18n keys (ready strings in the shared locale bundle per rules)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-4 — Alerts Page
 
-- [ ] Build Alerts page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/alert.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Alerts page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/alert.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-5 — Alert Detail Page
 
-- [ ] Build Alert Detail page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/alert.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Alert Detail page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/alert.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-6 — Scan Page
 
-- [ ] Build Scan page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/check.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Scan page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/check.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
@@ -110,9 +110,9 @@ Device A owns:
 
 ## FE-8 — Permissions Module
 
-- [ ] Build src/lib/permissions.ts
-- [ ] Write tests
-- [ ] Verify
+- [x] Build src/lib/permissions.ts
+- [x] Write tests
+- [x] Verify
 
 ---
 

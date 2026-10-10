@@ -30,6 +30,7 @@ const ReportsPage = lazy(() => import('../pages/ReportsPage'))
 const AuthorityPage = lazy(() => import('../pages/AuthorityPage'))
 const PacketPage = lazy(() => import('../pages/PacketPage'))
 const ReadyPage = lazy(() => import('../pages/ReadyPage'))
+const ScanPage = lazy(() => import('../pages/ScanPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 /** Scroll to top on navigation — hash routing does not do it for us. */
@@ -166,6 +167,7 @@ export function AppRoutes() {
             <Route path="/me" element={<MePage />} />
             <Route path="/report" element={<ReportsPage />} />
             <Route path="/ready" element={<ReadyPage />} />
+            <Route path="/scan" element={<ScanPage />} />
             <Route path="/authority" element={<AuthorityPage />} />
             {/* Signed-packet deep link: /#/a/<packet> — must work fully offline. */}
             <Route path="/a/:packet" element={<PacketPage />} />

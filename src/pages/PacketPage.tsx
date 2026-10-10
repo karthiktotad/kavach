@@ -1,276 +1,258 @@
-/**
- * PacketPage — offline deep-link viewer for signed alert packets (`/#/a/<packet>`).
- *
- * Core guarantee (AGENTS.md §2.1):
- *  - Verifies ECDSA P-256 signatures OFFLINE via WebCrypto.
- *  - Renders pre-translated hazard action cards in tourist's language.
- *  - Prominently distinguishes DRILL mode vs. LIVE alerts.
- *  - Flags clock skew without dropping critical alerts.
- */
-
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { Button, Card, DrillBanner, Sheet, StepList, VerifiedBadge } from '../components/ui'
 import { Page, PageHeader } from '../components/Page'
-import { IconAid, IconAlerts, IconCheck, IconClose, IconMap, IconShield } from '../components/icons'
-import { useLanguage } from '../store/language'
+import { getDb } from '../lib/db'
+import { formatClock } from '../lib/freshness'
 import { verifyAndStore, type RenderedAlert } from '../lib/packetClient'
-import { type VerifyResult } from '@shared/packet'
-import { formatClock, formatAge } from '../lib/freshness'
+import { useLanguage } from '../store/language'
+import type { VerifyResult } from '@shared/packet'
+
+function getPacketSourceLabel(source: string | null | undefined, t: (key: string, vars?: Record<string, string | number>) => string) {
+  switch (source) {
+    case 'sync':
+      return t('packet.source.server')
+    case 'sms':
+      return t('packet.source.sms')
+    case 'qr':
+      return t('packet.source.qr')
+    case 'share':
+      return t('packet.source.share')
+    case 'manual':
+    default:
+      return t('packet.source.manual')
+  }
+}
 
 export default function PacketPage() {
   const { t, locale } = useLanguage()
   const params = useParams<{ packet: string }>()
   const rawPacket = params.packet ?? ''
 
-  const [loading, setLoading] = useState(() => Boolean(rawPacket))
-  const [result, setResult] = useState<VerifyResult | null>(() =>
-    !rawPacket ? { ok: false, reason: 'format', error: 'No packet data in URL' } : null,
+  const [loading, setLoading] = useState(Boolean(rawPacket))
+  const [result, setResult] = useState<VerifyResult | null>(
+    rawPacket ? null : { ok: false, reason: 'format', error: 'No packet in URL' },
   )
   const [rendered, setRendered] = useState<RenderedAlert | null>(null)
+  const [source, setSource] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [showQr, setShowQr] = useState(false)
+  const [voiceNotice, setVoiceNotice] = useState<string | null>(null)
 
   useEffect(() => {
     if (!rawPacket) return
+
     let alive = true
 
-    void verifyAndStore(rawPacket, 'sms-link', {}, locale).then(
-      ({ result: res, rendered: rnd }) => {
-        if (alive) {
-          setResult(res)
-          setRendered(rnd ?? null)
-          setLoading(false)
-        }
-      },
-    )
+    void verifyAndStore(rawPacket, 'sms-link', {}, locale).then(async ({ result: nextResult, rendered: nextRendered }) => {
+      if (!alive) return
+      setResult(nextResult)
+      setRendered(nextRendered ?? null)
+
+      if (nextResult.ok) {
+        const saved = await getDb().packets.get(rawPacket)
+        setSource(saved?.source ?? 'share')
+      } else {
+        setSource('share')
+      }
+      setLoading(false)
+    })
 
     return () => {
       alive = false
     }
-  }, [rawPacket, locale])
+  }, [locale, rawPacket])
 
-  const handleShare = async () => {
-    const url = window.location.href
+  const shareLink = typeof window !== 'undefined' ? window.location.href : ''
+
+  const handleShareNearby = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: rendered?.headline ?? t('app.name'),
-          text: rendered?.headline ?? 'Emergency Alert',
-          url,
-        })
+        await navigator.share({ title: 'Kavach alert', text: rendered?.headline ?? 'Alert', url: shareLink })
         return
       } catch {
-        // User cancelled or unsupported
+        // User cancelled share.
       }
     }
+
     try {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(shareLink)
       setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
+      window.setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Clipboard write failed
+      // Clipboard fallback is best effort.
     }
+  }
+
+  const handleReadAloud = () => {
+    if (!('speechSynthesis' in window)) {
+      setVoiceNotice(t('packet.voiceUnavailable'))
+      return
+    }
+
+    const spoken = rendered?.headline ?? [
+      'Official alert',
+      'Follow local guidance',
+    ].join('. ')
+
+    const utterance = new SpeechSynthesisUtterance(spoken)
+    const voices = window.speechSynthesis.getVoices()
+    const preferred = voices.find((voice) => voice.lang.startsWith(locale)) ?? voices[0]
+    if (preferred) utterance.voice = preferred
+    utterance.lang = locale
+    window.speechSynthesis.cancel()
+    window.speechSynthesis.speak(utterance)
+    setVoiceNotice(null)
   }
 
   if (loading) {
     return (
       <Page>
-        <div
-          className="flex flex-col items-center justify-center gap-4 py-16 text-center"
-          role="status"
-        >
-          <div className="border-brand h-10 w-10 animate-spin rounded-full border-4 border-t-transparent" />
-          <p className="text-ink-muted text-sm">{t('ui.loading')}…</p>
+        <div className="flex min-h-[30vh] flex-col items-center justify-center gap-3" role="status" aria-live="polite">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-verified border-t-transparent" />
+          <p className="text-sm text-muted">{t('ui.loading')}…</p>
         </div>
       </Page>
     )
   }
 
   if (!result || !result.ok) {
-    const failureReason = result?.reason ?? 'format'
+    const reason = result?.reason ?? 'format'
+    const message =
+      reason === 'format'
+        ? t('packet.reason.format')
+        : reason === 'signature'
+          ? t('packet.reason.signature')
+          : reason === 'unknown-kid'
+            ? t('packet.reason.unknownKid', { kid: 'unknown' })
+            : reason === 'expired'
+              ? t('packet.reason.expired', { expires: 'past' })
+              : t('packet.reason.notYetValid', { issued: 'future' })
+
     return (
       <Page>
-        <div className="flex flex-col gap-6">
-          <PageHeader title={t('page.packet.title')} intro={t('page.packet.intro')} />
-          <header className="bg-risk-4/15 ring-risk-4/40 flex flex-col gap-3 rounded-2xl p-5 ring-1">
-            <div className="text-risk-3 flex items-center gap-2.5">
-              <IconClose className="size-6 shrink-0" />
-              <h1 className="text-lg font-bold">{t('packet.unverified')}</h1>
-            </div>
-            <p className="text-ink text-sm font-semibold">
-              {failureReason === 'signature' && t('packet.reason.signature')}
-              {failureReason === 'unknown-kid' && t('packet.reason.unknownKid', { kid: 'unknown' })}
-              {failureReason === 'expired' && t('packet.reason.expired', { expires: 'past' })}
-              {failureReason === 'not-yet-valid' &&
-                t('packet.reason.notYetValid', { issued: 'future' })}
-              {failureReason === 'format' && t('packet.reason.format')}
-            </p>
-            <p className="text-ink-muted text-xs leading-relaxed">{t('packet.unverifiedNotice')}</p>
-          </header>
+        <div className="mx-auto flex max-w-[420px] flex-col gap-4">
+          <PageHeader title={t('packet.alert.title')} intro={t('page.packet.intro')} />
 
-          {rawPacket ? (
-            <section className="bg-surface ring-ink-subtle/25 flex flex-col gap-2 rounded-2xl p-4 ring-1">
-              <h2 className="text-ink-muted text-xs font-semibold tracking-wider uppercase">
-                {t('packet.rawPayload')}
-              </h2>
-              <code className="bg-surface-sunken text-ink-subtle block max-h-32 overflow-y-auto rounded-lg p-3 font-mono text-xs break-all">
-                {rawPacket}
-              </code>
-            </section>
+          <Card className="border-2 border-danger bg-danger/5 p-4">
+            <div className="flex items-center gap-2 text-danger">
+              <span aria-hidden="true">!</span>
+              <h2 className="text-lg font-bold">{t('packet.unverified')}</h2>
+            </div>
+            <p className="mt-2 text-sm font-medium text-ink">{message}</p>
+            <p className="mt-3 text-sm text-muted">{t('packet.officialNotice')}</p>
+          </Card>
+
+          {reason === 'expired' ? (
+            <Card className="border border-line bg-surface p-4">
+              <p className="text-sm font-semibold text-muted">{t('packet.expiredMessage')}</p>
+            </Card>
           ) : null}
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              to="/aid"
-              className="touch-target bg-risk-3 text-surface-sunken flex-1 rounded-xl font-semibold"
-            >
-              <IconAid className="size-5" />
-              <span>{t('packet.viewAid')}</span>
-            </Link>
-            <Link
-              to="/alerts"
-              className="touch-target bg-surface-raised text-ink ring-ink-subtle/30 flex-1 rounded-xl font-semibold ring-1"
-            >
-              <IconAlerts className="size-5" />
-              <span>{t('nav.alerts')}</span>
-            </Link>
-          </div>
+          {rawPacket ? (
+            <Card className="p-4">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t('packet.rawPayload')}</p>
+              <code className="mt-2 block max-h-40 overflow-auto break-all rounded-xl bg-ground p-3 text-[11px] text-ink">{rawPacket}</code>
+            </Card>
+          ) : null}
+
+          <Button href="/alerts" variant="secondary" size="lg" className="w-full">
+            {t('nav.alerts')}
+          </Button>
         </div>
       </Page>
     )
   }
 
-  const { fields, isDrill, issuedAt, expiresAt, clockSkewWarning } = result
+  const valid = result
+  const totalZones = valid.fields.zones.length
+  const areaText = totalZones > 0 ? t('packet.zoneMatch') : t('packet.zoneMismatch')
 
   return (
     <Page>
-      <div className="flex flex-col gap-6">
-        <PageHeader title={t('page.packet.title')} intro={t('page.packet.intro')} />
-        {/* Verification & Drill Header */}
-        <section
-          className={`flex flex-col gap-3 rounded-2xl p-5 ring-1 ${
-            isDrill
-              ? 'bg-amber-950/20 text-amber-200 ring-amber-500/40'
-              : 'bg-emerald-950/25 text-emerald-200 ring-emerald-500/40'
-          }`}
-        >
-          <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="mx-auto flex max-w-[420px] flex-col gap-4">
+        <PageHeader title={t('packet.alert.title')} intro={t('page.packet.intro')} />
+
+        <Card className="border-2 border-verified bg-verified-tint p-4">
+          <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <IconShield className="size-6 shrink-0 text-emerald-400" />
-              <span className="text-sm font-bold tracking-wide uppercase">
-                {t('packet.verified')}
-              </span>
+              <VerifiedBadge />
+              <span className="text-base font-bold text-verified">{t('packet.verified.byAuthority')}</span>
             </div>
-            <span
-              className={`rounded-full px-3 py-1 text-xs font-extrabold tracking-wider uppercase ${
-                isDrill
-                  ? 'bg-amber-500 text-slate-950 shadow-sm'
-                  : 'bg-risk-3 text-slate-950 shadow-sm'
-              }`}
-            >
-              {isDrill ? t('packet.drill') : t('packet.live')}
-            </span>
+            {valid.isDrill ? <DrillBanner /> : null}
           </div>
 
-          {isDrill ? (
-            <p className="rounded-lg bg-amber-500/10 p-2.5 text-xs font-semibold text-amber-300">
-              ⚠️ {t('packet.drillNotice')}
-            </p>
-          ) : null}
+          <p className="mt-3 text-sm font-medium text-ink">{t('packet.verified.summary')}</p>
 
-          {clockSkewWarning ? (
-            <p className="rounded-lg bg-yellow-500/15 p-2.5 text-xs font-semibold text-yellow-300">
-              ⏱️ {t('packet.clockWarning')}
-            </p>
-          ) : null}
+          <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+            <div className="rounded-xl border border-verified/30 bg-surface p-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{t('packet.issued')}</p>
+              <p className="mt-1 text-ink">{formatClock(valid.issuedAt, locale)}</p>
+            </div>
+            <div className="rounded-xl border border-verified/30 bg-surface p-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{t('packet.expires')}</p>
+              <p className="mt-1 text-ink">{formatClock(valid.expiresAt, locale)}</p>
+            </div>
+            <div className="col-span-2 rounded-xl border border-verified/30 bg-surface p-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{t('packet.receivedBy')}</p>
+              <p className="mt-1 text-ink">{getPacketSourceLabel(source, t)}</p>
+            </div>
+          </div>
+        </Card>
 
-          {/* Rendered Action Card Headline */}
-          <h1 className="text-ink text-2xl font-extrabold tracking-tight">{rendered?.headline}</h1>
-
-          {/* Metadata Grid */}
-          <dl className="mt-2 grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
-            <div className="bg-surface/80 ring-ink-subtle/20 rounded-xl p-2.5 ring-1">
-              <dt className="text-ink-subtle">{t('packet.hazard')}</dt>
-              <dd className="text-ink mt-0.5 font-bold">{rendered?.hazardName}</dd>
-            </div>
-            <div className="bg-surface/80 ring-ink-subtle/20 rounded-xl p-2.5 ring-1">
-              <dt className="text-ink-subtle">{t('packet.level')}</dt>
-              <dd className="text-ink mt-0.5 font-bold">{rendered?.levelName}</dd>
-            </div>
-            <div className="bg-surface/80 ring-ink-subtle/20 rounded-xl p-2.5 ring-1">
-              <dt className="text-ink-subtle">{t('packet.zones')}</dt>
-              <dd className="text-ink mt-0.5 font-bold">{fields.zones.join(', ')}</dd>
-            </div>
-            <div className="bg-surface/80 ring-ink-subtle/20 rounded-xl p-2.5 ring-1">
-              <dt className="text-ink-subtle">{t('packet.expires')}</dt>
-              <dd className="text-ink mt-0.5 font-bold" title={new Date(expiresAt).toISOString()}>
-                {formatAge(expiresAt, locale)}
-              </dd>
-            </div>
-          </dl>
-        </section>
-
-        {/* Action Steps */}
-        {rendered?.steps && rendered.steps.length > 0 ? (
-          <section className="bg-surface ring-ink-subtle/25 flex flex-col gap-3 rounded-2xl p-5 ring-1">
-            <h2 className="text-ink text-base font-bold">{t('packet.actionSteps')}</h2>
-            <ol className="flex flex-col gap-2.5">
-              {rendered.steps.map((step, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-sm leading-relaxed">
-                  <span className="bg-brand text-surface-sunken flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold">
-                    {idx + 1}
-                  </span>
-                  <span className="text-ink-muted">{step}</span>
-                </li>
-              ))}
-            </ol>
-          </section>
+        {valid.clockSkewWarning ? (
+          <Card className="border-2 border-warning bg-warning/10 p-3">
+            <p className="text-sm font-semibold text-warning">{t('packet.dateTimeCheck')}</p>
+          </Card>
         ) : null}
 
-        {/* Primary Action Buttons */}
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Link
-            to="/map"
-            className="touch-target bg-brand text-surface-sunken flex-1 rounded-xl font-semibold"
-          >
-            <IconMap className="size-5" />
-            <span>{t('packet.viewMap')}</span>
-          </Link>
-          <button
-            type="button"
-            onClick={() => void handleShare()}
-            className="touch-target bg-surface-raised text-ink ring-ink-subtle/30 flex-1 rounded-xl font-semibold ring-1"
-          >
-            <IconCheck className="size-5" />
-            <span>{copied ? t('ui.copied') : t('ui.share')}</span>
-          </button>
+        {rendered ? (
+          <Card className="p-4">
+            <div className="flex items-center justify-between gap-2">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">{rendered.hazardName}</p>
+                <h3 className="mt-1 text-xl font-bold text-ink">{rendered.headline}</h3>
+              </div>
+              <span className="rounded-full bg-surface px-2 py-1 text-sm font-bold text-ink">Level {valid.fields.level}</span>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-2 rounded-xl bg-ground p-3 text-sm text-muted">
+              <span>{valid.fields.zones.join(', ') || 'No zone listed'}</span>
+              <span className="font-semibold text-ink">{areaText}</span>
+            </div>
+
+            <div className="mt-4">
+              <StepList steps={rendered.steps} />
+            </div>
+          </Card>
+        ) : null}
+
+        <Button href="/map?route=nearest" size="lg" className="w-full">
+          {t('packet.routeToShelter')}
+        </Button>
+
+        <div className="grid grid-cols-3 gap-2">
+          <Button variant="secondary" size="md" onClick={() => handleReadAloud()} className="w-full">
+            {t('packet.readAloud')}
+          </Button>
+          <Button variant="secondary" size="md" onClick={() => { void handleShareNearby() }} className="w-full">
+            {copied ? t('ui.copied') : t('packet.shareNearby')}
+          </Button>
+          <Button variant="secondary" size="md" onClick={() => setShowQr(true)} className="w-full">
+            {t('packet.showQr')}
+          </Button>
         </div>
 
-        {/* Cryptographic Proof & Signature Details */}
-        <details className="bg-surface-raised ring-ink-subtle/20 rounded-2xl p-4 ring-1">
-          <summary className="text-ink-muted cursor-pointer text-xs font-semibold">
-            {t('packet.rawPayload')} &amp; ECDSA P-256 Proof
-          </summary>
-          <div className="mt-3 flex flex-col gap-2 text-xs">
-            <div className="flex justify-between">
-              <span className="text-ink-subtle">Key ID:</span>
-              <span className="text-ink font-mono">{fields.kid}</span>
+        {voiceNotice ? <p className="text-sm text-muted">{voiceNotice}</p> : null}
+
+        <Sheet open={showQr} onClose={() => setShowQr(false)} title={t('packet.showQr')} closeLabel={t('ui.close')}>
+          <div className="rounded-xl border-2 border-dashed border-line bg-ground p-6 text-center">
+            <div className="mx-auto grid h-36 w-36 place-items-center rounded-12 bg-surface text-[10px] font-bold uppercase tracking-[0.2em] text-muted">
+              QR
             </div>
-            <div className="flex justify-between">
-              <span className="text-ink-subtle">Sequence:</span>
-              <span className="text-ink font-mono">{fields.seq}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-ink-subtle">Issued At:</span>
-              <span className="text-ink font-mono">{formatClock(issuedAt, locale)}</span>
-            </div>
-            <div className="mt-2">
-              <span className="text-ink-subtle block">Raw Packet:</span>
-              <code className="bg-surface-sunken text-ink-subtle mt-1 block rounded-lg p-2 font-mono break-all">
-                {rawPacket}
-              </code>
-            </div>
+            <p className="mt-3 break-all text-[11px] text-muted">{shareLink}</p>
           </div>
-        </details>
+        </Sheet>
       </div>
     </Page>
   )
