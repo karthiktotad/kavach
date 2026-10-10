@@ -35,6 +35,27 @@ describe('FE-8: Authority Console UI (/authority)', () => {
     expect(screen.getByTestId('step-hazard-level')).toBeInTheDocument()
   })
 
+  it('allows sign-in via email and password form button', async () => {
+    render(
+      <LanguageProvider>
+        <AuthorityPage />
+      </LanguageProvider>,
+    )
+
+    // Type email & password
+    const emailInput = screen.getByLabelText(/Authority Email/i)
+    fireEvent.change(emailInput, { target: { value: 'cs24i1049@iiitdm.ac.in' } })
+    const passInput = screen.getByLabelText(/Password/i)
+    fireEvent.change(passInput, { target: { value: 'secretpass' } })
+
+    // Click Sign In button
+    fireEvent.click(screen.getByTestId('authority-login-btn'))
+
+    await waitFor(() => {
+      expect(screen.getByTestId('authority-nav-create')).toBeInTheDocument()
+    })
+  })
+
   it('completes the 4-step wizard to issue a signed Drill alert for two zones and displays success QR and poster', async () => {
     render(
       <LanguageProvider>

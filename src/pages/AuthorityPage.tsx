@@ -450,11 +450,13 @@ export default function AuthorityPage() {
             )}
 
             <Button
+              type="submit"
               variant="primary"
               size="md"
               loading={isAuthLoading}
               className="w-full font-bold text-xs"
               data-testid="authority-login-btn"
+              onClick={(e) => void handleRealSignIn(e)}
             >
               Sign In to Authority Console
             </Button>
