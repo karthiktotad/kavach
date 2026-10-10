@@ -31,6 +31,7 @@ const AuthorityPage = lazy(() => import('../pages/AuthorityPage'))
 const PacketPage = lazy(() => import('../pages/PacketPage'))
 const ReadyPage = lazy(() => import('../pages/ReadyPage'))
 const ScanPage = lazy(() => import('../pages/ScanPage'))
+const CheckPage = lazy(() => import('../pages/CheckPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 /** Scroll to top on navigation — hash routing does not do it for us. */
@@ -93,9 +94,12 @@ function OnboardingGate({ children }: { children: ReactNode }) {
   // Render nothing until we know the flag for THIS path.
   if (!read || read.path !== location.pathname) return null
 
-  // `/a/<packet>` is always exempt: a signed packet handed over by SMS must render
-  // even for someone who never completed onboarding.
-  const exempt = location.pathname === '/ready' || location.pathname.startsWith('/a/')
+  // `/a/<packet>` and `/check` are always exempt: a signed packet or a shared
+  // message review must render even for someone who never completed onboarding.
+  const exempt =
+    location.pathname === '/ready' ||
+    location.pathname.startsWith('/a/') ||
+    location.pathname === '/check'
   if (!read.value && !exempt) return <Navigate to="/ready" replace />
 
   return <>{children}</>
@@ -167,6 +171,7 @@ export function AppRoutes() {
             <Route path="/report" element={<ReportsPage />} />
             <Route path="/ready" element={<ReadyPage />} />
             <Route path="/scan" element={<ScanPage />} />
+            <Route path="/check" element={<CheckPage />} />
             <Route path="/authority" element={<AuthorityPage />} />
             {/* Signed-packet deep link: /#/a/<packet> — must work fully offline. */}
             <Route path="/a/:packet" element={<PacketPage />} />

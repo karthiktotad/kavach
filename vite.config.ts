@@ -110,6 +110,15 @@ export default defineConfig({
           { name: 'Map', short_name: 'Map', url: '/#/map' },
           { name: 'SOS', short_name: 'SOS', url: '/#/aid' },
         ],
+        share_target: {
+          action: '/check',
+          method: 'GET',
+          params: {
+            title: 'title',
+            text: 'text',
+            url: 'url',
+          },
+        },
       },
       devOptions: { enabled: false },
     }),

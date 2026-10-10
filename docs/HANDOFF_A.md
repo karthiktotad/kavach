@@ -108,3 +108,15 @@ whole app renders is a product-level call, not a refactor to slip into a
 component PR.
 
 **Owner:** integrator, at merge time.
+
+---
+
+## 4. `Check a message` translation is intentionally stubbed
+
+**Status** — intentional for this Device A branch.
+
+The FE-4 rumor checker is offline-first and must work with no internet. During a relay/offline state it shows a deterministic keyword-only summary and the UI text is `Offline: key words only` rather than claiming a machine translation was generated.
+
+This is the correct safe fallback until the assistant translation path is merged into the product flow. The user prompt is still translated locally only in the keyword-extraction sense; no safety-critical information is fabricated, and the result is never presented as an authoritative claim.
+
+**Owner:** Device A, for this branch; the online LLM translation path remains a future integration without a product promise yet.

@@ -101,10 +101,10 @@ Device A owns:
 
 ## FE-7 — Check Page
 
-- [ ] Build Check page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/check.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Check page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/check.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
@@ -118,5 +118,5 @@ Device A owns:
 
 ## FE-9 — Manifest Updates
 
-- [ ] Update manifest with share_target
-- [ ] Verify
+- [x] Update manifest with share_target
+- [x] Verify
