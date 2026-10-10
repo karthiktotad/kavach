@@ -74,28 +74,28 @@ Device A owns:
 
 ## FE-4 — Alerts Page
 
-- [ ] Build Alerts page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/alert.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Alerts page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/alert.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-5 — Alert Detail Page
 
-- [ ] Build Alert Detail page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/alert.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Alert Detail page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/alert.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-6 — Scan Page
 
-- [ ] Build Scan page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/check.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Scan page using design system components
+- [x] Add i18n keys (src/i18n/<lang>/check.json)
+- [x] Write tests
+- [x] Verify
 
 ---
 
