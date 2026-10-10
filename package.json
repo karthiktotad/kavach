@@ -23,6 +23,8 @@
     "keys:gen": "node scripts/gen-keys.ts",
     "gen-keys": "node scripts/gen-keys.ts",
     "verify": "npm run typecheck && npm run lint && npm test && npm run build",
+    "typecheck:fn": "bash scripts/typecheck-functions.sh",
+    "seed:pack": "node scripts/seed-from-pack.ts",
     "e2e": "playwright test"
   },
   "dependencies": {

@@ -30,5 +30,10 @@
       "@shared/*": ["./shared/*"]
     }
   },
-  "include": ["tests", "shared", "src", "scripts", "supabase/functions"]
+  "include": ["tests", "shared", "src", "scripts"]
+  // NOTE: supabase/functions/ is deliberately NOT included. Those files run on
+  // Deno, not Node, and are type-checked by Deno itself — see
+  // `npm run typecheck:fn` and docs/BACKEND.md. Type-checking them with the
+  // Node config produced false errors from a hand-written supabase-js stub that
+  // asserted more than it actually knew.
 }

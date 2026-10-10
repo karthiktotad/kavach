@@ -7,7 +7,19 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
-  { ignores: ['dist', 'coverage', 'dev-dist', 'node_modules', 'supabase/functions/_shared'] },
+  {
+    ignores: [
+      'dist',
+      'coverage',
+      'dev-dist',
+      'node_modules',
+      'supabase/functions/_shared',
+      // Supabase Edge Functions are Deno code: typed by Deno, linted by
+      // `deno lint`. Running them through the Node ESLint project only produces
+      // false "not found by the project service" errors.
+      'supabase/functions/**',
+    ],
+  },
 
   {
     files: ['**/*.{ts,tsx}'],

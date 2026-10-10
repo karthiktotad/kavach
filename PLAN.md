@@ -161,17 +161,45 @@ Example packet      → KV1.k1.FL.3.Z1-Z2-Z3.16z5d4g.16z5df4.1.L.<86-char base64
 > content pack, all `verified = false`). **`supabase/migrations/` is still empty**,
 > so the tables `zones` and `shelters` do not exist yet and the seed will fail
 > until the schema lands. Build the schema first.
-- [ ] `supabase/migrations/` — zones (PostGIS), alerts, packets, reports, checkins, drills, authority_keys (**must exist before `seed.sql` can run**)
-- [ ] Seed run: `supabase/seed.sql` populates `zones` (Z1–Z9, PostGIS geometry, `flood_prone`) and `shelters` from the content pack, all `verified = false`
-- [ ] RLS policies: reports/checksins public-read; writes authenticated; alerts read-only for anon
-- [ ] Anonymous auth sign-in (device-scoped) + anonymous UID persisted offline
-- [ ] Edge Function `issue-alert` — **signs** packets; private key from **Supabase secrets only**
-- [ ] Edge Function `ingest-live` — Open-Meteo forecast + flood, GDACS, NDMA SACHET / IMD CAP → per-zone risk **0–4 + plain-language reason**
-- [ ] Edge Function `snapshot` — clients fetch the **computed** snapshot, never raw feeds
-- [ ] Edge Function `ai-proxy` — **only** place Gemini is called; grounded prompt + citation enforcement
-- [ ] Outbox sync endpoint + idempotency keys
-- [ ] Realtime channel for new alerts
-- [ ] Local dev fallback so the app is fully demoable **without** Supabase configured
+- [x] `supabase/migrations/0001_init.sql` — `zones`, `shelters`, `alerts`, `reports`,
+      `confirmations`, `checkins`, `risk_snapshots`, `devices`, `profiles`. **No PostGIS**:
+      plain lat/lon + geohash, because nothing runs a spatial SQL query and the
+      extension breaks `supabase db reset` on machines without the bundle
+- [x] RLS (`0002_rls.sql`) — public read on zones/shelters/alerts/risk_snapshots;
+      **no INSERT/UPDATE/DELETE policy on `alerts` at all**; sanitised
+      `reports_public` / `checkins_public` views drop `device_id`
+- [x] No UPDATE policy on `profiles` — a signed-in user cannot self-promote to
+      `role = 'authority'`; only the SQL in `seed.sql` can
+- [x] Rate limits enforced **in SQL** (triggers): 10 reports/hour/device,
+      6 check-ins/10 min/device. A client-side limit is advisory; this one cannot
+      be bypassed without the service role key
+- [x] `next_alert_seq(hazard)` — atomic, advisory-locked, so two authorities
+      issuing simultaneously cannot mint the same `seq` and reorder alerts
+- [x] Realtime on `alerts` + `reports` (`0003_realtime.sql`), `replica identity full`
+- [x] `supabase/functions/sign-alert` — authority-only; validates hazard/level/
+      **zones exist**/sane expiry; allocates `seq` atomically; signs with the
+      private JWK from secrets; returns packet + share link + length
+- [x] `supabase/functions/ingest-risk` — Open-Meteo forecast + flood, GDACS parsed
+      defensively, **per-source failure tolerated**; official alert raises the floor
+- [x] `supabase/functions/get-snapshot` — serves the computed snapshot **with its
+      age**, and lazily triggers ingestion when older than 10 min, so **no cron is
+      required** for the demo
+- [x] `supabase/functions/assistant` — returns `501` with `details.planned = "M10"`
+- [x] `shared/riskEngine.ts` — pure, deterministic, table-driven; 45 unit tests
+- [x] CORS restricted to known origins (not `*`), one typed JSON error shape,
+      request validation via a small `v` schema helper
+- [x] `scripts/seed-from-pack.ts` — regenerates `supabase/seed.sql` from the pack
+      (9 zones, 63 shelters), all `verified = false`
+- [x] `docs/BACKEND.md` — schema, endpoints, secrets table, exact CLI commands
+- [x] `src/lib/api.ts` — typed client; every fetch has a timeout, caches into
+      IndexedDB on success, and on failure returns **cached data with its age**;
+      realtime falls back to 30 s polling
+- [ ] `npm run typecheck:fn` (`deno check`) — **NOT RUN: Deno is not installed in
+      this environment.** The functions are unverified against the Deno runtime
+- [ ] Apply migrations + seed to a live project, deploy functions, create an
+      authority user, and run `scripts/smoke-test.ts` (written after confirmation)
+
+---
 
 ---
 
