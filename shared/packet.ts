@@ -25,11 +25,7 @@ export interface PacketFields {
 }
 
 export type PacketVerifyFailureReason =
-  | 'format'
-  | 'unknown-kid'
-  | 'signature'
-  | 'expired'
-  | 'not-yet-valid'
+  'format' | 'unknown-kid' | 'signature' | 'expired' | 'not-yet-valid'
 
 export interface VerifySuccess {
   readonly ok: true
@@ -228,10 +224,7 @@ export function base64urlDecode(str: string): Uint8Array | null {
 }
 
 /** Sign a packet payload with an ECDSA P-256 private key JWK. */
-export async function signPacket(
-  privateKeyJwk: JsonWebKey,
-  fields: PacketFields,
-): Promise<string> {
+export async function signPacket(privateKeyJwk: JsonWebKey, fields: PacketFields): Promise<string> {
   const payload = encodePayload(fields)
   const crypto = globalThis.crypto
 
@@ -267,7 +260,11 @@ export async function verifyPacket(
   const trimmed = packetString.trim()
   const lastDotIndex = trimmed.lastIndexOf('.')
   if (lastDotIndex <= 0 || lastDotIndex === trimmed.length - 1) {
-    return { ok: false, reason: 'format', error: 'Packet must contain payload and signature separated by dot' }
+    return {
+      ok: false,
+      reason: 'format',
+      error: 'Packet must contain payload and signature separated by dot',
+    }
   }
 
   const payload = trimmed.slice(0, lastDotIndex)
@@ -280,9 +277,7 @@ export async function verifyPacket(
 
   const { fields } = parsed
   const keysMap: Record<string, JsonWebKey> =
-    'kty' in publicKeys
-      ? { [fields.kid]: publicKeys }
-      : (publicKeys as Record<string, JsonWebKey>)
+    'kty' in publicKeys ? { [fields.kid]: publicKeys } : (publicKeys as Record<string, JsonWebKey>)
 
   const keyJwk = keysMap[fields.kid]
   if (!keyJwk) {
@@ -323,7 +318,12 @@ export async function verifyPacket(
     )
 
     if (!valid) {
-      return { ok: false, reason: 'signature', error: 'Cryptographic signature mismatch', raw: trimmed }
+      return {
+        ok: false,
+        reason: 'signature',
+        error: 'Cryptographic signature mismatch',
+        raw: trimmed,
+      }
     }
   } catch (err) {
     return {

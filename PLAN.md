@@ -118,8 +118,30 @@ testing offline there would prove nothing.
 - [x] Deep link `/#/a/:packet` renders + verifies a packet fully offline
 - [x] Packet detail: who signed, when, expiry, hazard, zone, plain-language render, **DRILL badge**
 - [x] `docs/PACKET_SPEC.md` — comprehensive specification of packet protocol and constraints
-- [x] Tamper tests: flipped byte, wrong key, expired, unknown key id, truncated, malformed base64
-- [x] Unit tests: codec round-trip, size budget (< 160 chars), verification matrix, 500-string fuzz test
+- [x] Tamper tests: per-field tampering, wrong key → `signature`, unknown kid → `unknown-kid`, expired, not-yet-valid, clock skew, drill isolation
+- [x] Fuzz test: 500 random garbage strings must return `ok: false` and never throw (this is what covers truncated packets and malformed base64 — they are not separate named cases)
+
+### M4 audit (independent re-check before marking done)
+
+- **No private key in the repo.** `src/config/authorityKeys.json` is a public
+  JWK (`key_ops: ["verify"]`, `x`/`y`, **no `d`**). `scripts/gen-keys.ts` writes
+  only the public registry to disk and prints the private JWK to the console
+  with a `supabase secrets set` instruction. `.gitignore` has `*.private*`.
+- **Packet detail really shows who signed.** `packet.authority` renders
+  `fields.kid`, alongside `packet.issued`, `packet.expires`, `packet.zones`,
+  `packet.hazard`, `packet.drill`, and all five failure reasons
+  (format / signature / unknown-kid / expired / not-yet-valid).
+- **Offline deep link survives.** `npx playwright test` still passes after the
+  M4 `PacketPage.tsx` rewrite.
+
+### ⚠️ M4 caveat — the demo key is public
+
+`authorityKeys.json` is committed, so **anyone can sign a packet that verifies
+against it**. That is fine for a hackathon demo and wrong for production: the
+trust guarantee is only as strong as the secrecy of the private key. If the repo
+goes public, say this out loud in the demo — "the private half lives in Supabase
+secrets, the public half ships in the app" — rather than implying the key is
+secret.
 
 ### M4 verification record (real output)
 
@@ -135,7 +157,12 @@ Example packet      → KV1.k1.FL.3.Z1-Z2-Z3.16z5d4g.16z5df4.1.L.<86-char base64
 ---
 
 ## M5 — Backend (Supabase)
-- [ ] `supabase/migrations/` — zones (PostGIS), alerts, packets, reports, checkins, drills, authority_keys
+> Landed early with M4: `supabase/seed.sql` (zones Z1–Z9 + shelters from the
+> content pack, all `verified = false`). **`supabase/migrations/` is still empty**,
+> so the tables `zones` and `shelters` do not exist yet and the seed will fail
+> until the schema lands. Build the schema first.
+- [ ] `supabase/migrations/` — zones (PostGIS), alerts, packets, reports, checkins, drills, authority_keys (**must exist before `seed.sql` can run**)
+- [ ] Seed run: `supabase/seed.sql` populates `zones` (Z1–Z9, PostGIS geometry, `flood_prone`) and `shelters` from the content pack, all `verified = false`
 - [ ] RLS policies: reports/checksins public-read; writes authenticated; alerts read-only for anon
 - [ ] Anonymous auth sign-in (device-scoped) + anonymous UID persisted offline
 - [ ] Edge Function `issue-alert` — **signs** packets; private key from **Supabase secrets only**
@@ -150,16 +177,17 @@ Example packet      → KV1.k1.FL.3.Z1-Z2-Z3.16z5d4g.16z5df4.1.L.<86-char base64
 
 ## M6 — Authority console
 - [ ] Auth-gated console (`/authority`), emergency-access break-glass flow
-- [ ] Compose alert: hazard, level, zones (map multi-select), expiry, language targets
+- [ ] Compose alert: hazard, level, zones, expiry, language targets
 - [ ] Live preview of the encoded packet: **length + SMS/QR budget meter**
-- [ ] Issue → signs → publishes → shows the shareable link + QR payload
-- [ ] **DRILL mode**: hard toggle, triple-confirm, watermark in every emitted packet
+- [ ] Issue → signs via the M4 `shared/packet.ts` → publishes → shows the shareable link + QR payload
+- [ ] **DRILL mode**: hard toggle, triple-confirm, watermark in every emitted packet (M4 already carries a `L`/`D` mode flag through the packet and isolates drill from live state)
 - [ ] Issued-alert history, revoke, audit log
 - [ ] Zone risk dashboard showing the ingested snapshot with reasons
 
 ---
 
 ## M7 — Tourist alerts + relay
+- [~] Packet inbox: verified vs unverified with plain reasons — *M4 already persists verified packets to IndexedDB (`packets` + `alerts`) and renders `packet.reason.*`; the list UI is what remains*
 - [ ] Alerts list: official alerts, sorted, grouped by severity, **filtered by zone**
 - [ ] Alert detail with per-language render, countdown to expiry, share sheet (Web Share API + copy)
 - [ ] **Relay mode**: add a packet by SMS link, QR, paste, or Bluetooth/USB file

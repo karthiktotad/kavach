@@ -23,13 +23,16 @@ async function createTestKeypair(kid = 'test-k1'): Promise<{
   privateJwk: JsonWebKey
 }> {
   const crypto = globalThis.crypto
-  const pair = await crypto.subtle.generateKey(
-    { name: 'ECDSA', namedCurve: 'P-256' },
-    true,
-    ['sign', 'verify'],
-  )
-  const publicJwk = (await crypto.subtle.exportKey('jwk', pair.publicKey)) as JsonWebKey & { kid: string }
-  const privateJwk = (await crypto.subtle.exportKey('jwk', pair.privateKey)) as JsonWebKey & { kid: string }
+  const pair = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, [
+    'sign',
+    'verify',
+  ])
+  const publicJwk = (await crypto.subtle.exportKey('jwk', pair.publicKey)) as JsonWebKey & {
+    kid: string
+  }
+  const privateJwk = (await crypto.subtle.exportKey('jwk', pair.privateKey)) as JsonWebKey & {
+    kid: string
+  }
   publicJwk.kid = kid
   privateJwk.kid = kid
   return { publicJwk, privateJwk }
@@ -335,7 +338,8 @@ describe('Supersede & Alert State Consolidation', () => {
 
 describe('Fuzz & Robustness Testing', () => {
   it('fuzzing with 500 random garbage strings never throws unhandled exceptions', async () => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.-_~!@#$%^&*()=+[]{}|;:,<>?/'
+    const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.-_~!@#$%^&*()=+[]{}|;:,<>?/'
 
     for (let i = 0; i < 500; i++) {
       const len = Math.floor(Math.random() * 200)

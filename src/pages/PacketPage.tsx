@@ -11,14 +11,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Page, PageHeader } from '../components/Page'
-import {
-  IconAid,
-  IconAlerts,
-  IconCheck,
-  IconClose,
-  IconMap,
-  IconShield,
-} from '../components/icons'
+import { IconAid, IconAlerts, IconCheck, IconClose, IconMap, IconShield } from '../components/icons'
 import { useLanguage } from '../store/language'
 import { verifyAndStore, type RenderedAlert } from '../lib/packetClient'
 import { type VerifyResult } from '@shared/packet'
@@ -40,13 +33,15 @@ export default function PacketPage() {
     if (!rawPacket) return
     let alive = true
 
-    void verifyAndStore(rawPacket, 'sms-link', {}, locale).then(({ result: res, rendered: rnd }) => {
-      if (alive) {
-        setResult(res)
-        setRendered(rnd ?? null)
-        setLoading(false)
-      }
-    })
+    void verifyAndStore(rawPacket, 'sms-link', {}, locale).then(
+      ({ result: res, rendered: rnd }) => {
+        if (alive) {
+          setResult(res)
+          setRendered(rnd ?? null)
+          setLoading(false)
+        }
+      },
+    )
 
     return () => {
       alive = false
@@ -79,7 +74,10 @@ export default function PacketPage() {
   if (loading) {
     return (
       <Page>
-        <div className="flex flex-col items-center justify-center gap-4 py-16 text-center" role="status">
+        <div
+          className="flex flex-col items-center justify-center gap-4 py-16 text-center"
+          role="status"
+        >
           <div className="border-brand h-10 w-10 animate-spin rounded-full border-4 border-t-transparent" />
           <p className="text-ink-muted text-sm">{t('ui.loading')}…</p>
         </div>
@@ -94,7 +92,7 @@ export default function PacketPage() {
         <div className="flex flex-col gap-6">
           <PageHeader title={t('page.packet.title')} intro={t('page.packet.intro')} />
           <header className="bg-risk-4/15 ring-risk-4/40 flex flex-col gap-3 rounded-2xl p-5 ring-1">
-            <div className="flex items-center gap-2.5 text-risk-3">
+            <div className="text-risk-3 flex items-center gap-2.5">
               <IconClose className="size-6 shrink-0" />
               <h1 className="text-lg font-bold">{t('packet.unverified')}</h1>
             </div>
@@ -102,17 +100,16 @@ export default function PacketPage() {
               {failureReason === 'signature' && t('packet.reason.signature')}
               {failureReason === 'unknown-kid' && t('packet.reason.unknownKid', { kid: 'unknown' })}
               {failureReason === 'expired' && t('packet.reason.expired', { expires: 'past' })}
-              {failureReason === 'not-yet-valid' && t('packet.reason.notYetValid', { issued: 'future' })}
+              {failureReason === 'not-yet-valid' &&
+                t('packet.reason.notYetValid', { issued: 'future' })}
               {failureReason === 'format' && t('packet.reason.format')}
             </p>
-            <p className="text-ink-muted text-xs leading-relaxed">
-              {t('packet.unverifiedNotice')}
-            </p>
+            <p className="text-ink-muted text-xs leading-relaxed">{t('packet.unverifiedNotice')}</p>
           </header>
 
           {rawPacket ? (
             <section className="bg-surface ring-ink-subtle/25 flex flex-col gap-2 rounded-2xl p-4 ring-1">
-              <h2 className="text-ink-muted text-xs font-semibold uppercase tracking-wider">
+              <h2 className="text-ink-muted text-xs font-semibold tracking-wider uppercase">
                 {t('packet.rawPayload')}
               </h2>
               <code className="bg-surface-sunken text-ink-subtle block max-h-32 overflow-y-auto rounded-lg p-3 font-mono text-xs break-all">
@@ -187,9 +184,7 @@ export default function PacketPage() {
           ) : null}
 
           {/* Rendered Action Card Headline */}
-          <h1 className="text-ink text-2xl font-extrabold tracking-tight">
-            {rendered?.headline}
-          </h1>
+          <h1 className="text-ink text-2xl font-extrabold tracking-tight">{rendered?.headline}</h1>
 
           {/* Metadata Grid */}
           <dl className="mt-2 grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">

@@ -100,7 +100,11 @@ export function computeEffectiveAlerts(
       // Handle All-Clear ('AC') hazard
       if (hazard === 'AC') {
         const existingAc = allClearState.get(zoneKey)
-        if (!existingAc || seq > existingAc.seq || (seq === existingAc.seq && issuedMin >= existingAc.issuedMin)) {
+        if (
+          !existingAc ||
+          seq > existingAc.seq ||
+          (seq === existingAc.seq && issuedMin >= existingAc.issuedMin)
+        ) {
           allClearState.set(zoneKey, { seq, issuedMin })
         }
         continue
@@ -109,7 +113,11 @@ export function computeEffectiveAlerts(
       const hazardKey = `${mode}:${zoneId}:${hazard}`
       const existing = perHazardState.get(hazardKey)
 
-      if (!existing || seq > existing.fields.seq || (seq === existing.fields.seq && issuedMin >= existing.fields.issuedMin)) {
+      if (
+        !existing ||
+        seq > existing.fields.seq ||
+        (seq === existing.fields.seq && issuedMin >= existing.fields.issuedMin)
+      ) {
         perHazardState.set(hazardKey, { fields, packet, zoneId })
       }
     }
@@ -168,10 +176,7 @@ export function filterAlertsForZone(
 }
 
 /** Maximum active level for a zone across all hazards. */
-export function getMaxZoneRisk(
-  alerts: readonly EffectiveAlert[],
-  zoneId: string,
-): AlertLevel {
+export function getMaxZoneRisk(alerts: readonly EffectiveAlert[], zoneId: string): AlertLevel {
   const zoneAlerts = filterAlertsForZone(alerts, zoneId)
   if (!zoneAlerts.length) return 0
   return Math.max(...zoneAlerts.map((a) => a.level)) as AlertLevel

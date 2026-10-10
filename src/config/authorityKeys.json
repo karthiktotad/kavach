@@ -1,8 +1,6 @@
 {
   "k1": {
-    "key_ops": [
-      "verify"
-    ],
+    "key_ops": ["verify"],
     "ext": true,
     "kty": "EC",
     "x": "0QErlD-6ZJnJJYxCBpV7R8hGG08bVsA9t_85rNU5Nz4",
