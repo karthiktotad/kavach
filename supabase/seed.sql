@@ -79,379 +79,379 @@ on conflict (id) do update set
 
 -- ------------------------------------------------------------- shelters
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-13526307845', null, 'clinic', 12.62058, 80.1965, false, 'healthcare:speciality=general'::jsonb)
+values ('clinic-node-13526307845', null, 'clinic', 12.62058, 80.1965, false, '{"source":"osm","verified":false,"notes":"healthcare:speciality=general"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820652177', 'Moorthi Poly Clinic', 'clinic', 12.72015, 80.18702, false, ''::jsonb)
+values ('clinic-node-7820652177', 'Moorthi Poly Clinic', 'clinic', 12.72015, 80.18702, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820652180', 'Ananthi Clinic', 'clinic', 12.62037, 80.19301, false, ''::jsonb)
+values ('clinic-node-7820652180', 'Ananthi Clinic', 'clinic', 12.62037, 80.19301, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820652181', 'Sri Sakthi Clinic', 'clinic', 12.71926, 80.18761, false, ''::jsonb)
+values ('clinic-node-7820652181', 'Sri Sakthi Clinic', 'clinic', 12.71926, 80.18761, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820874215', 'Vinayaga Homeo Clinic', 'clinic', 12.84846, 80.14288, false, ''::jsonb)
+values ('clinic-node-7820874215', 'Vinayaga Homeo Clinic', 'clinic', 12.84846, 80.14288, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820874244', 'Dr. Mohammad Sajeed', 'clinic', 12.82675, 80.16477, false, ''::jsonb)
+values ('clinic-node-7820874244', 'Dr. Mohammad Sajeed', 'clinic', 12.82675, 80.16477, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820874279', 'Sri Sai Clinic', 'clinic', 12.8271, 80.16604, false, ''::jsonb)
+values ('clinic-node-7820874279', 'Sri Sai Clinic', 'clinic', 12.8271, 80.16604, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820874282', 'Thulasi Clinic Centre', 'clinic', 12.80544, 80.2247, false, ''::jsonb)
+values ('clinic-node-7820874282', 'Thulasi Clinic Centre', 'clinic', 12.80544, 80.2247, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820874283', 'Padur Clinic', 'clinic', 12.80547, 80.22473, false, ''::jsonb)
+values ('clinic-node-7820874283', 'Padur Clinic', 'clinic', 12.80547, 80.22473, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('clinic-node-7820874293', 'AKM ENT Clinic', 'clinic', 12.80658, 80.22443, false, ''::jsonb)
+values ('clinic-node-7820874293', 'AKM ENT Clinic', 'clinic', 12.80658, 80.22443, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('fire_station-node-5304198425', null, 'fire_station', 12.83102, 80.22243, false, ''::jsonb)
+values ('fire_station-node-5304198425', null, 'fire_station', 12.83102, 80.22243, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-2125931950', 'Chettinadu Hospital & Research Institute', 'hospital', 12.79608, 80.21552, false, ''::jsonb)
+values ('hospital-node-2125931950', 'Chettinadu Hospital & Research Institute', 'hospital', 12.79608, 80.21552, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-2334799039', 'Suradeep Hospital', 'hospital', 12.61782, 80.19502, false, ''::jsonb)
+values ('hospital-node-2334799039', 'Suradeep Hospital', 'hospital', 12.61782, 80.19502, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-5321368440', 'Marhura hospital', 'hospital', 12.83693, 80.22757, false, ''::jsonb)
+values ('hospital-node-5321368440', 'Marhura hospital', 'hospital', 12.83693, 80.22757, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-6930405963', 'Chettinad Hospital', 'hospital', 12.79716, 80.2176, false, ''::jsonb)
+values ('hospital-node-6930405963', 'Chettinad Hospital', 'hospital', 12.79716, 80.2176, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7257289090', 'Shri Isari Velan Hospital', 'hospital', 12.84669, 80.19726, false, ''::jsonb)
+values ('hospital-node-7257289090', 'Shri Isari Velan Hospital', 'hospital', 12.84669, 80.19726, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7257518761', 'Government Hospital, Mahabalipuram', 'hospital', 12.61773, 80.18097, false, ''::jsonb)
+values ('hospital-node-7257518761', 'Government Hospital, Mahabalipuram', 'hospital', 12.61773, 80.18097, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7257518775', 'Thiruporur Government Hospital', 'hospital', 12.72842, 80.18815, false, ''::jsonb)
+values ('hospital-node-7257518775', 'Thiruporur Government Hospital', 'hospital', 12.72842, 80.18815, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820652130', 'Rakshith Hospital', 'hospital', 12.71974, 80.18746, false, ''::jsonb)
+values ('hospital-node-7820652130', 'Rakshith Hospital', 'hospital', 12.71974, 80.18746, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820652132', 'Raja Hospital', 'hospital', 12.73046, 80.18781, false, ''::jsonb)
+values ('hospital-node-7820652132', 'Raja Hospital', 'hospital', 12.73046, 80.18781, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820652158', 'Varam Health Care', 'hospital', 12.63325, 80.19617, false, ''::jsonb)
+values ('hospital-node-7820652158', 'Varam Health Care', 'hospital', 12.63325, 80.19617, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820652205', 'Moorthy Hospital', 'hospital', 12.62071, 80.19203, false, ''::jsonb)
+values ('hospital-node-7820652205', 'Moorthy Hospital', 'hospital', 12.62071, 80.19203, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820874234', 'Sugam Hospital', 'hospital', 12.82684, 80.16631, false, ''::jsonb)
+values ('hospital-node-7820874234', 'Sugam Hospital', 'hospital', 12.82684, 80.16631, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820874273', 'Kathir Memorial Hospital', 'hospital', 12.84935, 80.14174, false, ''::jsonb)
+values ('hospital-node-7820874273', 'Kathir Memorial Hospital', 'hospital', 12.84935, 80.14174, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820874276', 'Punarjeevan Hospital', 'hospital', 12.81787, 80.22217, false, ''::jsonb)
+values ('hospital-node-7820874276', 'Punarjeevan Hospital', 'hospital', 12.81787, 80.22217, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-7820874284', 'Supreme Speciality Hospitals', 'hospital', 12.80632, 80.22442, false, ''::jsonb)
+values ('hospital-node-7820874284', 'Supreme Speciality Hospitals', 'hospital', 12.80632, 80.22442, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-9591995528', 'S B Hospital', 'hospital', 12.84611, 80.22638, false, 'phone=+919514577333; addr:street=Rajiv Gandhi Salai; addr:city=Chennai; website=https://s-b-hospital.business.site/; opening_hours=Mo-Su 12:00-00:00'::jsonb)
+values ('hospital-node-9591995528', 'S B Hospital', 'hospital', 12.84611, 80.22638, false, '{"source":"osm","verified":false,"notes":"phone=+919514577333; addr:street=Rajiv Gandhi Salai; addr:city=Chennai; website=https://s-b-hospital.business.site/; opening_hours=Mo-Su 12:00-00:00"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('hospital-node-9952825959', 'Chennai Best Acupuncture Clinic in OMR Padur', 'hospital', 12.81249, 80.22578, false, 'healthcare:speciality=acupuncture;traditional_chinese_medicine;headac;chiropractic;alternative;pain_control;rheumatology; addr:street=Annai Theresa Street; addr:city=Kazhipattur'::jsonb)
+values ('hospital-node-9952825959', 'Chennai Best Acupuncture Clinic in OMR Padur', 'hospital', 12.81249, 80.22578, false, '{"source":"osm","verified":false,"notes":"healthcare:speciality=acupuncture;traditional_chinese_medicine;headac;chiropractic;alternative;pain_control;rheumatology; addr:street=Annai Theresa Street; addr:city=Kazhipattur"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('pharmacy-node-11079072040', 'Shree Andal Medical', 'pharmacy', 12.8461, 80.22638, false, 'addr:street=Rajiv Gandhi Salai; addr:city=Chennai'::jsonb)
+values ('pharmacy-node-11079072040', 'Shree Andal Medical', 'pharmacy', 12.8461, 80.22638, false, '{"source":"osm","verified":false,"notes":"addr:street=Rajiv Gandhi Salai; addr:city=Chennai"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('pharmacy-node-5321369027', 'Omega medicine', 'pharmacy', 12.83691, 80.22823, false, ''::jsonb)
+values ('pharmacy-node-5321369027', 'Omega medicine', 'pharmacy', 12.83691, 80.22823, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('pharmacy-node-7215078043', 'Kartic medical', 'pharmacy', 12.61955, 80.19426, false, ''::jsonb)
+values ('pharmacy-node-7215078043', 'Kartic medical', 'pharmacy', 12.61955, 80.19426, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('pharmacy-node-9899846917', 'Arafath Medicals', 'pharmacy', 12.624, 80.19406, false, ''::jsonb)
+values ('pharmacy-node-9899846917', 'Arafath Medicals', 'pharmacy', 12.624, 80.19406, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('police-node-2154131305', 'Traffic Police Station', 'police', 12.62127, 80.19555, false, ''::jsonb)
+values ('police-node-2154131305', 'Traffic Police Station', 'police', 12.62127, 80.19555, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('police-node-2375997491', 'Police', 'police', 12.62149, 80.19427, false, ''::jsonb)
+values ('police-node-2375997491', 'Police', 'police', 12.62149, 80.19427, false, '{"source":"osm","verified":false}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('police-node-4446991785', 'thiroporur police station', 'police', 12.72368, 80.18873, false, 'phone=044 – 27446221; addr:street=thiruporur,kanchipuram; addr:city=kanchipuram'::jsonb)
+values ('police-node-4446991785', 'thiroporur police station', 'police', 12.72368, 80.18873, false, '{"source":"osm","verified":false,"notes":"phone=044 – 27446221; addr:street=thiruporur,kanchipuram; addr:city=kanchipuram"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('police-node-4450010503', 'Thalambur Police Station', 'police', 12.8469, 80.22718, false, 'phone=044-27437100; addr:street=Navallur,; addr:city=kanchipuram,TN'::jsonb)
+values ('police-node-4450010503', 'Thalambur Police Station', 'police', 12.8469, 80.22718, false, '{"source":"osm","verified":false,"notes":"phone=044-27437100; addr:street=Navallur,; addr:city=kanchipuram,TN"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-relation-8171518', 'Sthalasayana Perumal Temple', 'shelter_candidate', 12.61743, 80.19298, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-relation-8171518', 'Sthalasayana Perumal Temple', 'shelter_candidate', 12.61743, 80.19298, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1095898101', null, 'shelter_candidate', 12.83859, 80.22832, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1095898101', null, 'shelter_candidate', 12.83859, 80.22832, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1184678996', 'Sri Chenganmaaleeswarar Temple', 'shelter_candidate', 12.77188, 80.21294, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1184678996', 'Sri Chenganmaaleeswarar Temple', 'shelter_candidate', 12.77188, 80.21294, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1185299838', 'Sri Vendarasi Amman Kovil', 'shelter_candidate', 12.76783, 80.15475, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1185299838', 'Sri Vendarasi Amman Kovil', 'shelter_candidate', 12.76783, 80.15475, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1185299844', 'Sri Vandavarasi Amman Kovil', 'shelter_candidate', 12.74923, 80.14189, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1185299844', 'Sri Vandavarasi Amman Kovil', 'shelter_candidate', 12.74923, 80.14189, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1474144809', null, 'shelter_candidate', 12.62063, 80.19476, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1474144809', null, 'shelter_candidate', 12.62063, 80.19476, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1474144810', null, 'shelter_candidate', 12.62023, 80.19298, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1474144810', null, 'shelter_candidate', 12.62023, 80.19298, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1474144813', null, 'shelter_candidate', 12.61652, 80.19016, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1474144813', null, 'shelter_candidate', 12.61652, 80.19016, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1474150401', null, 'shelter_candidate', 12.61957, 80.19716, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1474150401', null, 'shelter_candidate', 12.61957, 80.19716, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1474410420', null, 'shelter_candidate', 12.62244, 80.1928, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1474410420', null, 'shelter_candidate', 12.62244, 80.1928, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1474410422', 'Masjid-e-noor Jumma', 'shelter_candidate', 12.62265, 80.19435, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1474410422', 'Masjid-e-noor Jumma', 'shelter_candidate', 12.62265, 80.19435, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-1564779884', 'Mukundanayanar Temple', 'shelter_candidate', 12.62713, 80.19487, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-1564779884', 'Mukundanayanar Temple', 'shelter_candidate', 12.62713, 80.19487, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-274932901', 'Pudupakkam Aanjaneya Temple', 'shelter_candidate', 12.8087, 80.19045, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-274932901', 'Pudupakkam Aanjaneya Temple', 'shelter_candidate', 12.8087, 80.19045, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-351871090', null, 'shelter_candidate', 12.59795, 80.14767, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-351871090', null, 'shelter_candidate', 12.59795, 80.14767, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-355633804', null, 'shelter_candidate', 12.80421, 80.22357, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-355633804', null, 'shelter_candidate', 12.80421, 80.22357, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-370135158', 'Mamallapuram Shore Temple', 'shelter_candidate', 12.61648, 80.19923, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-370135158', 'Mamallapuram Shore Temple', 'shelter_candidate', 12.61648, 80.19923, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-575464761', null, 'shelter_candidate', 12.61611, 80.1947, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-575464761', null, 'shelter_candidate', 12.61611, 80.1947, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-576022679', 'Nakula Sahadeva Ratha', 'shelter_candidate', 12.60899, 80.18956, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-576022679', 'Nakula Sahadeva Ratha', 'shelter_candidate', 12.60899, 80.18956, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-576022681', 'Draupadi Ratha', 'shelter_candidate', 12.60901, 80.18972, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-576022681', 'Draupadi Ratha', 'shelter_candidate', 12.60901, 80.18972, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-576022684', 'Arjuna Ratha', 'shelter_candidate', 12.60896, 80.18968, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-576022684', 'Arjuna Ratha', 'shelter_candidate', 12.60896, 80.18968, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-576022688', 'Dharmaraja Ratha', 'shelter_candidate', 12.6087, 80.18951, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-576022688', 'Dharmaraja Ratha', 'shelter_candidate', 12.6087, 80.18951, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-576022690', 'Bhima Ratha', 'shelter_candidate', 12.60884, 80.1896, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-576022690', 'Bhima Ratha', 'shelter_candidate', 12.60884, 80.1896, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-576286129', 'Shri Kali Madha', 'shelter_candidate', 12.61553, 80.18942, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-576286129', 'Shri Kali Madha', 'shelter_candidate', 12.61553, 80.18942, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-596624663', 'Karukaatha Amman Temple', 'shelter_candidate', 12.62092, 80.18826, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-596624663', 'Karukaatha Amman Temple', 'shelter_candidate', 12.62092, 80.18826, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-597062759', 'Ganesh Ratha', 'shelter_candidate', 12.61843, 80.1925, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-597062759', 'Ganesh Ratha', 'shelter_candidate', 12.61843, 80.1925, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-646325955', 'Church in Stalin Street', 'shelter_candidate', 12.84646, 80.20794, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-646325955', 'Church in Stalin Street', 'shelter_candidate', 12.84646, 80.20794, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;
 
 insert into public.shelters (id, name, type, lat, lon, verified, metadata)
-values ('shelter_candidate-way-937507519', 'Christ the Redeemer Divine Mercy Church', 'shelter_candidate', 12.7868, 80.22539, false, 'CANDIDATE ONLY — not a designated shelter until confirmed'::jsonb)
+values ('shelter_candidate-way-937507519', 'Christ the Redeemer Divine Mercy Church', 'shelter_candidate', 12.7868, 80.22539, false, '{"source":"osm","verified":false,"notes":"CANDIDATE ONLY — not a designated shelter until confirmed"}'::jsonb)
 on conflict (id) do update set
   name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,
   metadata = excluded.metadata;

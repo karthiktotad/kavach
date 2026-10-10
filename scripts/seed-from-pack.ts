@@ -95,10 +95,20 @@ async function main(): Promise<void> {
   lines.push('-- ------------------------------------------------------------- shelters')
 
   for (const place of places.places) {
+    // `notes` in the pack is a plain string ("healthcare:speciality=general"),
+    // not an object, so it cannot be cast straight to jsonb. Wrap it in a real
+    // object and carry the provenance alongside it: if this row ever reaches a
+    // screen, the UI needs to know the place came from OSM and is unverified.
+    const metadata = {
+      source: place.source,
+      verified: place.verified,
+      ...(place.notes ? { notes: place.notes } : {}),
+    }
+
     lines.push(
-      `insert into public.shelters (id, name, type, lat, lon, verified, metadata)`,
+      'insert into public.shelters (id, name, type, lat, lon, verified, metadata)',
       `values (${sql(place.id)}, ${sql(place.name)}, ${sql(place.type)}, ` +
-        `${sql(place.lat)}, ${sql(place.lon)}, false, ${sql(place.notes)}::jsonb)`,
+        `${sql(place.lat)}, ${sql(place.lon)}, false, ${sql(metadata)}::jsonb)`,
       'on conflict (id) do update set',
       '  name = excluded.name, type = excluded.type, lat = excluded.lat, lon = excluded.lon,',
       '  metadata = excluded.metadata;',

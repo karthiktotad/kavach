@@ -28,6 +28,7 @@ zones           id, name, lat, lon, flood_prone, geometry (jsonb), verified
 shelters        id, name, type, lat, lon, phone?, capacity?, verified
 profiles        id → auth.users, role ('tourist' | 'authority')
 alerts          hazard, level 0-4, zone_ids[], packet, seq, is_drill, issued_at, expires_at
+alert_sequences hazard (PK), last_seq   ← monotonic counter; survives alert pruning
 reports         device_id, kind, lat, lon, geohash, zone_id, note, confidence, expires_at
 confirmations   (report_id, device_id)  ← composite PK makes repeat taps a no-op
 checkins        device_id, lat, lon, zone_id, status, note
@@ -45,11 +46,19 @@ machines without the extension bundle. Plain lat/lon + coarse geohash is enough.
 | Table | anon read | anon write | notes |
 | --- | --- | --- | --- |
 | `zones`, `shelters`, `risk_snapshots` | ✅ | ❌ | reference data |
-| `alerts` | ✅ | ❌ **no policy at all** | service-role insert only |
-| `profiles` | own row only | insert as `tourist` | **no UPDATE policy** — a user cannot self-promote to authority |
+| `alerts` | ✅ | ❌ **no grant, no policy** | service-role insert only |
+| `alert_sequences` | ❌ | ❌ | RLS on, **no policy at all** — only the `SECURITY DEFINER` allocator touches it |
+| `profiles` | own row only | insert as `tourist` | **no UPDATE** — a user cannot self-promote to authority |
 | `reports` | via `reports_public` view | ✅ insert | rate-limited: 10/hour/device |
 | `confirmations` | ✅ | ✅ insert | PK prevents inflation |
 | `checkins` | via `checkins_public` view | ✅ insert | rate-limited: 6 / 10 min / device |
+
+Two independent gates protect every table: a **grant** and a **policy**. Both
+must be open for a query to succeed, and the redundancy fails safe — a grant
+with RLS on still filters rows, and a policy with no grant behind it simply
+denies. `0002_rls.sql` revokes Supabase's default `anon`/`authenticated`
+privileges on `public` and re-grants precisely, so the access model is legible
+in the repo instead of living in an undocumented platform default.
 
 The sanitised views exist so a public reader cannot deanonymise a reporter or see
 internal trust scoring.
@@ -239,7 +248,66 @@ supabase functions logs sign-alert --tail
 
 ---
 
-## 6. Verifying Deno compatibility
+## 6. Verifying the schema and the RLS (done locally, no Supabase needed)
+
+```bash
+npm run db:verify
+```
+
+This spins up a throwaway Postgres cluster in a temp directory, applies
+`0001`–`0003` + `seed.sql` exactly as `supabase db push` would, re-applies them
+to prove idempotency, then runs `supabase/verify/01-security-tests.sql`.
+
+`supabase/verify/00-supabase-shim.sql` provides the minimum platform surface the
+migrations touch: the `auth` schema, `auth.users`, `auth.uid()`, the three
+Supabase roles, and the `supabase_realtime` publication. It is **not** a Supabase
+emulator — passing here means the SQL is valid and the policies behave as
+designed, not that this is byte-identical to your project.
+
+This exists because *"the migration applied without error" is not evidence that
+the security model is correct.* RLS has two independent gates — privileges and
+policies — and a schema can apply perfectly while granting far too much. The
+tests assert what a **hostile** client can actually do.
+
+### What the tests caught
+
+Running them found three real defects that reading the SQL had not:
+
+| Defect | Consequence if shipped |
+| --- | --- |
+| `next_alert_seq()` derived the counter from `max(alerts.seq)` | Prune an expired alert and a later alert is handed a `seq` a phone **already has**. The client orders alerts by `seq`, so a stale packet could outrank a current one. |
+| Grants were inherited from Supabase's undocumented default privileges | The whole access model lived in a platform default nobody can read from the repo. Now every grant is explicit. |
+| `scripts/seed-from-pack.ts` wrote `place.notes` (a plain string) as a JSONB literal | `supabase db execute --file seed.sql` failed on the **first** insert. |
+
+### The assertions
+
+```
+PASS  anon cannot INSERT into alerts (permission denied for table alerts)
+PASS  anon cannot UPDATE alerts
+PASS  anon cannot DELETE alerts
+PASS  anon can read alerts (0 rows)
+PASS  anon can read zones (9 rows)
+PASS  anon can read shelters (63 rows)
+PASS  report rate limit fired on insert #11 (max 10/hour)
+PASS  rate limit is per-device, not global
+PASS  reports_public hides device_id
+PASS  check-in rate limit fired on insert #7 (max 6/10min)
+PASS  a client cannot write to profiles
+PASS  private.is_authority() is executable by neither anon nor authenticated
+PASS  anon cannot reach the private schema at all
+PASS  next_alert_seq is monotonic and per-hazard (FL: 1, 2)
+PASS  seq is never reused after pruning (3, then 5)
+PASS  unknown zone_id is rejected by the foreign key
+PASS  expires_at before issued_at is rejected
+PASS  realtime publication contains: alerts, reports
+```
+
+Requires a local Postgres **server** (not just `psql`) on `PATH`, or `PGBIN`
+pointing at one. `brew install postgresql@18` / `apt-get install postgresql`.
+
+---
+
+## 7. Verifying Deno compatibility
 
 `npm run typecheck` deliberately **excludes** `supabase/functions/`. Those files
 run on Deno and use Deno globals; type-checking them with the Node config needed
@@ -262,12 +330,17 @@ What *has* been verified locally:
 - `shared/riskEngine.ts` — 45 table-driven tests passing under Vitest (`npm test`)
 - `shared/packet.ts` — 18 packet/codec/tamper tests (from M4)
 - `supabase/seed.sql` — regenerates cleanly from the pack (9 zones, 63 shelters)
-- The SQL itself has **not** been executed against a live database. Applying
-  `0001`–`0003` is the first real test of the schema.
+- **The schema and the RLS** — `npm run db:verify` applies every migration
+  against a real Postgres 18 and asserts 17 security properties (§6). Three real
+  defects were found and fixed this way.
+
+Still unverified: behaviour against **Supabase itself** (the shim is not an
+emulator), and anything requiring your project — `auth.users` contents, the
+service-role key, Realtime over websocket.
 
 ---
 
-## 7. Local development without Supabase
+## 8. Local development without Supabase
 
 The app must stay fully demoable with no backend at all (M3 requirement). With
 `VITE_SUPABASE_URL` unset, `src/lib/api.ts` returns `null` from every call and the

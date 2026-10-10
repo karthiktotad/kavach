@@ -25,6 +25,7 @@
     "verify": "npm run typecheck && npm run lint && npm test && npm run build",
     "typecheck:fn": "bash scripts/typecheck-functions.sh",
     "seed:pack": "node scripts/seed-from-pack.ts",
+    "db:verify": "bash scripts/db-verify.sh",
     "e2e": "playwright test"
   },
   "dependencies": {

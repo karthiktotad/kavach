@@ -194,6 +194,11 @@ Example packet      → KV1.k1.FL.3.Z1-Z2-Z3.16z5d4g.16z5df4.1.L.<86-char base64
 - [x] `src/lib/api.ts` — typed client; every fetch has a timeout, caches into
       IndexedDB on success, and on failure returns **cached data with its age**;
       realtime falls back to 30 s polling
+- [x] **Executed the schema against a real Postgres 18** (`npm run db:verify`) —
+      all 3 migrations + seed apply, are idempotent, and 17 RLS assertions hold.
+      Caught and fixed 3 real defects: seq reuse after alert pruning, grants
+      inherited from undocumented Supabase defaults, and a seed that emitted
+      invalid JSONB and failed on the first insert
 - [ ] `npm run typecheck:fn` (`deno check`) — **NOT RUN: Deno is not installed in
       this environment.** The functions are unverified against the Deno runtime
 - [ ] Apply migrations + seed to a live project, deploy functions, create an

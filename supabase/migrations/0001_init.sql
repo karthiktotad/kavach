@@ -103,6 +103,25 @@ create index if not exists alerts_hazard_seq_idx on public.alerts (hazard, seq d
 create index if not exists alerts_created_at_idx on public.alerts (created_at desc);
 create index if not exists alerts_active_idx on public.alerts (expires_at) where expires_at is not null;
 
+-- ---------------------------------------------------------------------------
+-- alert_sequences — the authoritative counter behind `alerts.seq`.
+--
+-- Kept separate from the alerts table on purpose. If the sequence were derived
+-- from max(alerts.seq), then pruning expired alerts would let a later alert be
+-- handed a seq some phone has already seen with different content, and the client
+-- (which orders alerts by seq) could show a stale warning as current.
+--
+-- One row per hazard, allocated under an advisory lock. Gaps are expected.
+-- ---------------------------------------------------------------------------
+create table if not exists public.alert_sequences (
+  hazard text primary key check (hazard in ('FL', 'CY', 'HT', 'WN', 'LS', 'AC')),
+  last_seq bigint not null default 0,
+  updated_at timestamptz not null default now()
+);
+
+comment on table public.alert_sequences is
+  'Monotonic per-hazard counter for alert seq. Never deleted, never decreased.';
+
 comment on column public.alerts.packet is
   'ECDSA P-256 signed packet. The columns alongside are an index; the packet is the truth.';
 
@@ -192,30 +211,26 @@ create table if not exists public.risk_snapshots (
 create index if not exists risk_snapshots_computed_idx on public.risk_snapshots (computed_at desc);
 
 -- =============================================================================
--- Updated-at trigger
--- =============================================================================
-create or replace function public.touch_updated_at()
-returns trigger
-language plpgsql
-as $$
-begin
-  new.created_at := old.created_at;  -- immutable
-  return new;
-end;
-$$;
-
--- =============================================================================
 -- Device-scoped rate limiting, enforced in the database.
 --
 -- A client-side limit is advisory; this one cannot be bypassed without a
 -- service-role key. Limits are deliberately generous — the goal is to stop a
 -- runaway client, not a determined flooder, which needs auth.
+--
+-- SECURITY DEFINER because the trigger must read the full reports table (RLS
+-- would otherwise hide rows from other devices) and write to devices on the
+-- inserter's behalf. `search_path = ''` closes the shadowing hole that an
+-- exposed schema creates for a definer function; pg_catalog is still searched,
+-- so builtins like count(*) and now() resolve.
+--
+-- SECURITY INVOKER would be safer, but then the rate limit only sees the rows
+-- the caller is already allowed to see, which is not a limit at all.
 -- =============================================================================
 create or replace function public.enforce_report_rate_limit()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   recent_count integer;
@@ -242,7 +257,7 @@ create or replace function public.enforce_checkin_rate_limit()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = ''
 as $$
 declare
   recent_count integer;
@@ -264,9 +279,15 @@ begin
 end;
 $$;
 
+-- DROP ... IF EXISTS first because CREATE TRIGGER has no IF NOT EXISTS, and this
+-- migration should survive a re-apply (a `db reset`, or a hand-run of the file).
+drop trigger if exists reports_rate_limit on public.reports;
+
 create trigger reports_rate_limit
   before insert on public.reports
   for each row execute function public.enforce_report_rate_limit();
+
+drop trigger if exists checkins_rate_limit on public.checkins;
 
 create trigger checkins_rate_limit
   before insert on public.checkins
