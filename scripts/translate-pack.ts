@@ -25,7 +25,7 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from '../src/config/region.ts'
 import { extractPlaceholders } from '../src/lib/packTypes.ts'
-import { PACK_DIR, fail, info, step, warn } from './_lib.ts'
+import { PACK_DIR, fail, info, loadLocalEnv, step, warn } from './_lib.ts'
 
 const MODEL = 'gemini-2.0-flash'
 const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models'
@@ -39,6 +39,9 @@ const force = args.includes('--force')
 const dryRun = args.includes('--dry-run')
 const onlyLocale = args.find((a) => a.startsWith('--locale='))?.split('=')[1]
 
+// Vite loads .env for the app bundle, but plain Node does not. Load it here so
+// a key placed in .env is actually found. Real env vars still take precedence.
+const envFiles = loadLocalEnv()
 const GEMINI_API_KEY = process.env['GEMINI_API_KEY']
 
 // ---------------------------------------------------------------------------
@@ -90,6 +93,24 @@ function applyUnits(source: unknown, translations: Map<string, string>, path = '
 // Gemini calls
 // ---------------------------------------------------------------------------
 
+/**
+ * A Gemini failure we can explain to a human, rather than a raw HTTP body.
+ * Keeps the key out of the message on purpose.
+ *
+ * Written without a parameter property because these scripts run under Node's
+ * type-stripping loader, which rejects non-erasable syntax
+ * (`erasableSyntaxOnly` in tsconfig).
+ */
+class GeminiError extends Error {
+  readonly hint: string
+
+  constructor(message: string, hint = '') {
+    super(message)
+    this.name = 'GeminiError'
+    this.hint = hint
+  }
+}
+
 async function callGemini(prompt: string, count: number): Promise<string[]> {
   const response = await fetch(`${ENDPOINT}/${MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
     method: 'POST',
@@ -101,21 +122,54 @@ async function callGemini(prompt: string, count: number): Promise<string[]> {
   })
 
   if (!response.ok) {
-    throw new Error(`Gemini HTTP ${response.status}: ${(await response.text()).slice(0, 300)}`)
+    const detail = (await response.text()).slice(0, 400)
+    if (response.status === 400 || response.status === 401 || response.status === 403) {
+      const reason = detail.includes('API_KEY_INVALID')
+        ? 'API_KEY_INVALID'
+        : detail.includes('PERMISSION_DENIED')
+          ? 'PERMISSION_DENIED'
+          : `HTTP ${response.status}`
+      throw new GeminiError(
+        `Gemini rejected the request (${reason}).`,
+        reason === 'API_KEY_INVALID'
+          ? 'The key in .env is wrong, expired, or still has placeholder text. Get a fresh one at https://aistudio.google.com/app/apikey'
+          : reason === 'PERMISSION_DENIED'
+            ? 'This key cannot access this model. Enable the Generative Language API for the project behind the key.'
+            : 'Check the key and the model name in scripts/translate-pack.ts',
+      )
+    }
+    if (response.status === 429) {
+      throw new GeminiError(
+        'Gemini rate limit hit (429).',
+        'Free tier is quota-limited. Wait a minute and re-run — completed locales are skipped, so you will not lose work.',
+      )
+    }
+    throw new GeminiError(`Gemini HTTP ${response.status}.`, detail)
   }
 
   const body = (await response.json()) as {
     candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>
   }
   const text = body.candidates?.[0]?.content?.parts?.[0]?.text
-  if (!text) throw new Error('Gemini returned no text')
+  if (!text) throw new GeminiError('Gemini returned no text.')
 
-  const parsed = JSON.parse(text) as unknown
+  let parsed: unknown
+  try {
+    parsed = JSON.parse(text)
+  } catch {
+    throw new GeminiError(
+      'Gemini did not return valid JSON.',
+      'This is a model formatting hiccup. Re-run; --force is not needed because nothing was written.',
+    )
+  }
   const list = Array.isArray(parsed) ? parsed : (parsed as Json)['translations']
   if (!Array.isArray(list))
-    throw new Error(`Gemini returned no translations array (got ${text.slice(0, 200)})`)
+    throw new GeminiError(
+      `Gemini returned no translations array.`,
+      `Model output was: ${text.slice(0, 200)}`,
+    )
   if (list.length !== count)
-    throw new Error(`Gemini returned ${list.length} items, expected ${count}`)
+    throw new GeminiError(`Gemini returned ${list.length} items, expected ${count}.`)
 
   return list.map(String)
 }
@@ -136,7 +190,10 @@ function buildPrompt(units: Unit[], locale: Locale): string {
 
 /**
  * Translate a batch, validating that every placeholder survived.
- * Retries once on a placeholder mismatch with a stricter reminder.
+ *
+ * Retries on *content* problems (bad JSON, dropped placeholder) but NOT on
+ * credential or quota errors — retrying a rejected key just wastes time and
+ * quota, and the fix is always on the operator's side.
  */
 async function translateBatch(units: Unit[], locale: Locale, attempt = 0): Promise<string[]> {
   try {
@@ -152,7 +209,11 @@ async function translateBatch(units: Unit[], locale: Locale, attempt = 0): Promi
     }
     return out
   } catch (error) {
-    if (attempt + 1 >= MAX_BATCH_RETRIES) throw error
+    // Auth/quota failures will not fix themselves on a retry.
+    const fatal =
+      error instanceof GeminiError &&
+      (error.message.includes('rejected the request') || error.message.includes('rate limit'))
+    if (fatal || attempt + 1 >= MAX_BATCH_RETRIES) throw error
     warn(`batch retry ${attempt + 1}: ${String(error)}`)
     return translateBatch(units, locale, attempt + 1)
   }
@@ -245,11 +306,16 @@ async function main(): Promise<void> {
   if (!GEMINI_API_KEY) {
     fail(
       'GEMINI_API_KEY is not set.\n\n' +
-        '  This script translates the pack with the Gemini free tier.\n' +
-        '  Set the key in your shell (it is never stored in the repo):\n\n' +
+        '  This script translates the pack with the Gemini free tier.\n\n' +
+        '  Put it in the gitignored .env file at the repo root:\n\n' +
+        '    GEMINI_API_KEY=your-gemini-key\n\n' +
+        '  …or export it for a single run:\n\n' +
         '    export GEMINI_API_KEY="your-gemini-key"\n' +
         '    node scripts/translate-pack.ts\n\n' +
-        '  Get a free key at https://aistudio.google.com/app/apikey\n\n' +
+        `  Get a free key at https://aistudio.google.com/app/apikey\n\n` +
+        (envFiles.length > 0
+          ? `  (.env was read from: ${envFiles.join(', ')} — check the key name and that it is not still blank)\n\n`
+          : '  (no .env file was found in the repo root)\n\n') +
         '  Note: translated output is machineTranslated:true and reviewed:false.\n' +
         '  It must be reviewed before shipping safety-critical text (TODO_VERIFY.md).',
     )
@@ -266,7 +332,9 @@ async function main(): Promise<void> {
   info(`model: ${MODEL}`)
   info(`target locales: ${locales.join(', ')}`)
   info(`mode: ${dryRun ? 'DRY RUN (writes nothing)' : force ? 'FORCE' : 'incremental'}`)
-  info('key is read from GEMINI_API_KEY and never printed')
+  info(`env: ${envFiles.length > 0 ? envFiles.join(', ') : 'shell only (no .env found)'}`)
+  // Presence only — the key itself is never printed.
+  info(`credential: GEMINI_API_KEY present (${GEMINI_API_KEY.length} chars)`)
 
   const files: Array<[string, (l: string) => string]> = [
     ['templates/en.json', (l) => `templates/${l}.json`],
@@ -288,4 +356,13 @@ async function main(): Promise<void> {
   info('done. Remember: machine translation still needs human review.')
 }
 
-await main()
+try {
+  await main()
+} catch (error) {
+  // Fail with an explanation, never a raw stack trace: a wrong key is an
+  // operator mistake, not a crash.
+  if (error instanceof GeminiError) {
+    fail(`${error.message}\n\n  ${error.hint}`)
+  }
+  fail(error instanceof Error ? error.message : String(error))
+}

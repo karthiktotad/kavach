@@ -100,6 +100,44 @@ export function sha256(input: string): string {
   return createHash('sha256').update(input).digest('hex')
 }
 
+/**
+ * Load `.env` into `process.env` for scripts run under plain Node.
+ *
+ * Vite loads `.env` for the app bundle, but `node scripts/translate-pack.ts`
+ * does not — so without this, a key the developer carefully put in `.env`
+ * would look "missing" and the script would wrongly claim it was never set.
+ *
+ * Precedence matches Vite: real environment variables always win over `.env`,
+ * so CI and one-off overrides (`GEMINI_API_KEY=x npm run pack:translate`)
+ * behave as expected.
+ *
+ * Never logs values — only which files were read.
+ */
+export function loadLocalEnv(): string[] {
+  const loaded: string[] = []
+  for (const name of ['.env.local', '.env']) {
+    const file = join(REPO_ROOT, name)
+    try {
+      process.loadEnvFile(file)
+      loaded.push(name)
+    } catch {
+      // Missing or unreadable .env is fine: the app must run with zero config.
+    }
+  }
+  return loaded
+}
+
+/**
+ * Report whether a required credential was found, without ever printing it.
+ * Used for a clear "where do I get this / did you spell it right" message.
+ */
+export function describeSecret(name: string, source: string): string {
+  const value = process.env[name]
+  if (!value || value.length === 0) return `${name} is not set`
+  // Length only — never any characters of the value itself.
+  return `${name} found (${value.length} chars, from ${source})`
+}
+
 /** Relative POSIX path used in manifest entries, e.g. `kb/en.json`. */
 export function toPosix(p: string): string {
   return p.split('\\').join('/')
