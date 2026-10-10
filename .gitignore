@@ -77,3 +77,10 @@ scratch/
 /test-results/
 /playwright-report/
 /blob-report/
+
+# Agent tooling — installed per-machine by `npx skills add`. Not runtime code:
+# nothing in package.json, vite or tsconfig references it, and it changes whenever
+# a skill is upgraded. Keeping it out of the repo keeps diffs honest.
+.agents/
+skills-lock.json
+.opencode/
