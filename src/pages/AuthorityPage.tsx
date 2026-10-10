@@ -181,7 +181,7 @@ export default function AuthorityPage() {
     setAuthError(null)
   }
 
-  // Real Supabase Authority Sign-in
+  // Authority Sign-in (Supabase or Local Mode)
   const handleRealSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsAuthLoading(true)
@@ -189,8 +189,15 @@ export default function AuthorityPage() {
 
     const supabase = getSupabase()
     if (!supabase) {
+      if (!authEmail.trim()) {
+        setIsAuthLoading(false)
+        setAuthError('Please enter an authority email.')
+        return
+      }
+      // Local development sign-in
+      setIsAuthenticated(true)
+      setIsDemoUser(false)
       setIsAuthLoading(false)
-      setAuthError('Backend not configured. Please use "Judge Demo Access".')
       return
     }
 
