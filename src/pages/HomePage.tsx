@@ -1,7 +1,17 @@
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Page } from '../components/Page'
 import { ConnectionSummary } from '../components/StatusChip'
 import { useLanguage } from '../store/language'
+import { packManager, type PackState } from '../lib/pack'
 import { IconAlerts, IconCellular, IconGlobe, IconMe, IconRelay } from '../components/icons'
+
+/** Subscribe to the pack manager so the version shown is the one on disk. */
+function usePackState(): PackState {
+  const [state, setState] = useState<PackState>(() => packManager.getState())
+  useEffect(() => packManager.subscribe(setState), [])
+  return state
+}
 
 /**
  * Home. For M1 this is a status surface: where am I on the ladder, what
@@ -79,9 +89,36 @@ function HomePage() {
           </article>
         </section>
 
-        <p className="text-ink-subtle text-xs">{t('status.stubbed')}</p>
+        <OfflinePackSummary />
       </div>
     </Page>
+  )
+}
+
+/**
+ * Live pack status.
+ *
+ * Replaces the "status detection arrives in M3" placeholder: the user should be
+ * able to see that the offline data is actually on their device, and when it
+ * was last refreshed. That is a safety fact, not a milestone note.
+ */
+function OfflinePackSummary() {
+  const { t } = useLanguage()
+  const pack = usePackState()
+
+  if (pack.status === 'ready') {
+    return (
+      <p className="text-ink-subtle text-xs">
+        {t('home.packReady', { version: pack.version ?? '—' })}
+      </p>
+    )
+  }
+  return (
+    <p className="text-ink-subtle text-xs">
+      <Link to="/ready" className="underline">
+        {t('home.packNotReady')}
+      </Link>
+    </p>
   )
 }
 

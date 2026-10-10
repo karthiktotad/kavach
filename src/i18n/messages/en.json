@@ -20,7 +20,6 @@
   "status.cellular.desc": "Metered mobile data. Text and QR only, map tiles paused.",
   "status.offline.desc": "No network. Using the preloaded Kavach pack on this device.",
   "status.relay.desc": "No data. Add alerts by SMS, QR code or share sheet.",
-  "status.stubbed": "Status detection arrives in M3.",
   "lang.label": "Language",
   "lang.change": "Change language",
   "lang.search": "Search languages",
@@ -132,5 +131,7 @@
   "update.newVersion": "A newer version of Kavach has been downloaded.",
   "update.reload": "Reload now",
   "status.lastLiveValue": "Last reached the network {age}.",
-  "status.neverReached": "This device has not reached the network yet."
+  "status.neverReached": "This device has not reached the network yet.",
+  "home.packReady": "Offline pack saved on this device ({version}).",
+  "home.packNotReady": "Offline pack is not downloaded yet — open Get Ready."
 }

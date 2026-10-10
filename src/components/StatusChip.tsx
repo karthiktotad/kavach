@@ -9,6 +9,7 @@
  * stopped updating will assume it is broken and uninstall it.
  */
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import {
   IconAlerts,
   IconCellular,
@@ -143,7 +144,12 @@ function ConnectivitySheet({
   const { t, locale } = useLanguage()
   const Icon = SPECS[snapshot.level].Icon
 
-  return (
+  // Portal to <body>: this component lives inside the header, and the header
+  // uses `backdrop-filter`. An ancestor with backdrop-filter becomes the
+  // containing block for `position: fixed`, so without a portal this
+  // full-screen sheet is confined to the header's own height and its Close
+  // button ends up off screen.
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-end bg-black/60"
       // Clicking the backdrop closes; the sheet itself stops propagation.
@@ -154,7 +160,10 @@ function ConnectivitySheet({
         aria-modal="true"
         aria-label={t('status.sheetTitle')}
         onClick={(e) => e.stopPropagation()}
-        className="bg-surface mx-auto w-full max-w-2xl rounded-t-3xl p-5"
+        // Constrained and scrollable: on a short phone the content is taller
+        // than the viewport, and without this the Close button ends up off
+        // screen — unreachable exactly when the user needs it.
+        className="bg-surface max-h-[85dvh] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-t-3xl p-5"
         style={{ paddingBottom: 'calc(1.25rem + var(--safe-bottom))' }}
       >
         <div className="mb-4 flex items-center gap-3">
@@ -206,7 +215,8 @@ function ConnectivitySheet({
           {t('ui.close')}
         </button>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 

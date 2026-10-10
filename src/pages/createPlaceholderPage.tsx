@@ -45,8 +45,6 @@ function PlaceholderNotice({ milestone }: { milestone: string }) {
       <span className="text-ink-muted font-semibold">
         {t('ui.comingSoon')} · {milestone}
       </span>
-      {' — '}
-      {t('status.stubbed')}
     </p>
   )
 }
