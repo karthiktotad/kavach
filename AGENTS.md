@@ -44,6 +44,7 @@ A **no-install PWA** (opened via QR code at hotels, airports and taxis) that kee
 ### Other must-haves
 
 - Preloaded **content pack** (offline map data, shelters, hospitals, first aid, phrasebook, alert templates in **8 languages**)
+- **Design system** — `docs/DESIGN_SPEC.md` defines tokens, components, i18n, RTL, and verification. Every screen must use only the specified components.
 - **Community reports** with a trust/confidence score — **never presented as official alerts**
 - **Offline outbox** that syncs on reconnect
 - **"I'm safe" check-ins**

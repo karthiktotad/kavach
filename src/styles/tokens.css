@@ -1,0 +1,40 @@
+/* Kavach Design Tokens — do not hardcode hex values in components */
+:root {
+  /* Font */
+  --font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-size-base: 1rem;    /* 17px */
+  --line-height-base: 1.35;
+
+  /* Colours (semantic, never colour-alone) */
+  --ink: #0B1F33;
+  --ground: #F4F6F8;
+  --surface: #FFFFFF;
+  --line: #D5DCE3;
+  --muted: #4A5B6C;
+  --text-2: #2A3B4C;
+  --verified: #0B57A4;
+  --verified-tint: #E6F0FA;
+  --drill: #B45309;
+  --drill-tint: #FFF1E0;
+  --danger: #9B1C1C;
+  --danger-dark: #7A1212;
+  --live: #0F6B4F;
+  --live-text: #0A4D38;
+  --live-tint: #DDF3EA;
+  --offline: #2B3A4C;
+
+  /* Radii */
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-16: 16px;
+
+  /* Touch targets */
+  --touch-min: 44px;
+  --touch-main: 52px;   /* md */
+  --touch-sos: 72px;
+
+  /* Focus ring */
+  --focus-width: 3px;
+  --focus-offset: 2px;
+}
