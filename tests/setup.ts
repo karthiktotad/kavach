@@ -6,43 +6,39 @@
  * focused on our logic instead of DOM polyfill plumbing.
  */
 import '@testing-library/jest-dom/vitest'
-import { expect, vi } from 'vitest'
+import { vi } from 'vitest'
 import { axe } from 'vitest-axe'
 import type { AxeResults } from 'axe-core'
 
 /**
- * `toHaveNoViolations` — a local axe matcher.
+ * `expectNoAxeViolations` — the axe assertion used by every component test.
  *
- * Why hand-written: the installed vitest-axe@0.1.0 exports the *type* for the
- * matcher and the `axe` runner, but never registers the matcher itself, so
- * the documented `expect.extend` path does not exist at runtime. Rather than
- * pin a fork or fight the package, the matcher is four lines of code and
- * lives here where it can be read.
+ * Why hand-written: the installed vitest-axe@0.1.0 exports the `axe` runner and
+ * the matcher's *type*, but never registers the matcher at runtime, so the
+ * documented `expect.extend` path does not exist. And augmenting vitest's
+ * `Assertion` interface to add it conflicts with @testing-library/jest-dom's own
+ * declaration (TS2428) — when that conflicts, BOTH sets of matchers stop
+ * resolving, which looks exactly like "the matcher was never registered".
  *
- * The failure message is written for a developer mid-debug: it names the rule,
- * the impact, and the offending HTML, because "some violation occurred" sends
- * you back into the DOM with nothing to go on.
+ * A helper function avoids the interface merge entirely.
+ *
+ * The failure text is written for a developer mid-debug: rule id, impact, and
+ * the offending HTML, because "a violation occurred" sends you back into the DOM
+ * with nothing to go on.
  */
-expect.extend({
-  async toHaveNoViolations(html: Element) {
-    const results: AxeResults = await axe(html)
-    const violations = results.violations
+export async function expectNoAxeViolations(html: Element): Promise<void> {
+  const results: AxeResults = await axe(html)
+  const violations = results.violations
 
-    return {
-      pass: violations.length === 0,
-      message: () => {
-        if (violations.length === 0) return 'expected axe violations, found none'
-        const lines = violations.map(
-          (v) =>
-            `  [${String(v.impact)}] ${v.id}: ${v.help}\n` +
-            `    ${v.nodes.map((n) => n.html).join('\n    ')}`,
-        )
-        return `axe found ${violations.length} violation(s):\n${lines.join('\n')}`
-      },
-      actual: violations,
-    }
-  },
-})
+  if (violations.length === 0) return
+
+  const lines = violations.map(
+    (v) =>
+      `  [${String(v.impact)}] ${v.id}: ${v.help}\n` +
+      `    ${v.nodes.map((n) => n.html).join('\n    ')}`,
+  )
+  throw new Error(`axe found ${violations.length} violation(s):\n${lines.join('\n')}`)
+}
 
 // React 19 + testing library: mark the environment so React's `act` warnings
 // behave correctly.

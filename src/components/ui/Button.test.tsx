@@ -5,7 +5,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { it, expect, describe, vi } from 'vitest'
-import { axe } from 'vitest-axe'
+import { expectNoAxeViolations } from '../../../tests/setup'
 import { Button, type ButtonVariant, type ButtonSize } from './Button'
 
 const VARIANTS: ButtonVariant[] = ['primary', 'secondary', 'danger', 'drill']
@@ -43,7 +43,7 @@ describe('Button', () => {
   it.each(VARIANTS)('applies the %s variant and an axe check', async (variant) => {
     const { container } = render(<Button variant={variant}>{variant}</Button>)
     expect(screen.getByRole('button')).toBeTruthy()
-    expect(await axe(container)).toHaveNoViolations()
+    await expectNoAxeViolations(container)
   })
 
   it.each(SIZES)('enforces the %s touch target of at least 44px', async (size) => {
@@ -52,7 +52,7 @@ describe('Button', () => {
     // The min-h class is the enforcement point; a caller cannot accidentally
     // shrink a control below the 44px floor by passing no padding.
     expect(classes).toMatch(/min-h-\[(52|60|72)px\]/)
-    expect(await axe(screen.getByRole('button').parentElement!)).toHaveNoViolations()
+    await expectNoAxeViolations(screen.getByRole('button').parentElement!)
   })
 
   it('blocks presses and announces them when loading', async () => {

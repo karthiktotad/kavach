@@ -15,13 +15,17 @@
  *   - Loading and disabled set `aria-disabled` as well as the attribute, so the
  *     state is announced, and are removed from the tab order.
  */
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from 'react'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'drill'
 export type ButtonSize = 'md' | 'lg' | 'xl'
 
 export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'type'> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
   variant?: ButtonVariant
   /** md=52, lg=60, xl=72px. Use xl only for SOS. */
   size?: ButtonSize
@@ -35,7 +39,6 @@ export interface ButtonProps
   className?: string
   children: ReactNode
 }
-
 const VARIANTS: Record<ButtonVariant, string> = {
   // Filled = primary action. Blue is reserved for "verified / primary" per the
   // semantics table; nothing else may use it.
@@ -118,7 +121,12 @@ export function Button({
               }
             : undefined
         }
-        {...linkRest}
+        // `linkRest` is typed for a <button> but the props the two elements
+        // actually share (id, data-*, aria-*, event handlers) are identical, so
+        // this is a safe narrowing rather than a lie. Casting at the boundary
+        // keeps the public API simple: one props interface, not a union the
+        // caller has to discriminate.
+        {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {inner}
       </a>
