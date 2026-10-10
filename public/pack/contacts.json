@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T00:00:00Z",
+    "machineTranslated": false,
+    "reviewed": false
+  },
+  "countryCode": "IN",
+  "emergency": [
+    {
+      "id": "ec-112",
+      "number": "112",
+      "service": "National emergency number",
+      "scope": "national",
+      "note": "Single number for any emergency in India. Use this if you do not know which service to call.",
+      "verified": false
+    },
+    {
+      "id": "ec-108",
+      "number": "108",
+      "service": "Ambulance",
+      "scope": "national",
+      "note": "Emergency ambulance service. Request one for serious injury or illness.",
+      "verified": false
+    },
+    {
+      "id": "ec-100",
+      "number": "100",
+      "service": "Police",
+      "scope": "national",
+      "note": "Call for crime, missing persons, or to report a hazard you have seen.",
+      "verified": false
+    },
+    {
+      "id": "ec-101",
+      "number": "101",
+      "service": "Fire",
+      "scope": "national",
+      "note": "Fire and rescue emergencies.",
+      "verified": false
+    },
+    {
+      "id": "ec-1070",
+      "number": "1070",
+      "service": "Tamil Nadu State Disaster Management / control room",
+      "scope": "state",
+      "note": "State disaster helpline for Tamil Nadu. VERIFY before relying on it — confirm with your hotel or the district office.",
+      "verified": false
+    },
+    {
+      "id": "ec-1363",
+      "number": "1363",
+      "service": "Tourist helpline",
+      "scope": "tourist",
+      "note": "Tourist assistance helpline. VERIFY — this number is not confirmed for all states; use only if confirmed locally.",
+      "verified": false
+    }
+  ],
+  "consulates": [
+    {
+      "id": "consul-placeholder-1",
+      "country": "PLACEHOLDER",
+      "name": "Your embassy or consulate",
+      "city": "Chennai",
+      "phone": null,
+      "note": "Consulates are added per nationality at setup. NEVER guess a number. See TODO_VERIFY.md.",
+      "verified": false
+    },
+    {
+      "id": "consul-placeholder-2",
+      "country": "PLACEHOLDER",
+      "name": "Your national tourist office",
+      "city": "Chennai",
+      "phone": null,
+      "note": "Added per nationality at setup. NEVER guess a number. See TODO_VERIFY.md.",
+      "verified": false
+    }
+  ]
+}

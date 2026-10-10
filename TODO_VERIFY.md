@@ -20,26 +20,134 @@ against an authoritative source. This file is the register of everything awaitin
 
 ---
 
-## Register
+## 1. Emergency contacts — `public/pack/contacts.json`
 
-*(No entries yet — the content pack is built in milestone M2.)*
+These numbers are real Indian national services, but **we have not independently confirmed
+them for the pilot region**, so every entry ships `verified: false` and must show an unverified
+badge until someone checks it.
 
-| ID | Item | Value in pack | Source to check | Status | Checked by | Date |
+| ID | Number | Service | Check against | Status | Checked by | Date |
 | --- | --- | --- | --- | --- | --- | --- |
-| — | *(empty template)* | | | | | |
+| ec-112 | 112 | National emergency | DoT / MoC unified emergency number | UNVERIFIED | | |
+| ec-108 | 108 | Ambulance | National Health Mission / GVK EMRI | UNVERIFIED | | |
+| ec-100 | 100 | Police | Tamil Nadu Police | UNVERIFIED | | |
+| ec-101 | 101 | Fire | Tamil Nadu Fire & Rescue | UNVERIFIED | | |
+| ec-1070 | 1070 | TN state disaster control room | Tamil Nadu State Disaster Management Authority | UNVERIFIED | | |
+| ec-1363 | 1363 | Tourist helpline | Ministry of Tourism / TN Tourism | UNVERIFIED | | |
+
+**Consulates** — currently two `PLACEHOLDER` rows with `phone: null`. Per-nationality entries are
+added at setup time. **Never guess a number**: an unknown number is stored as `null`, which the
+app renders as "not available", rather than a plausible-looking wrong number.
 
 ---
 
-## Intended entries (seeded during M2, refined as we go)
+## 2. First-aid knowledge base — `public/pack/kb/en.json`
 
-| ID | Item | Source to check | Status |
+**Every chunk below needs sign-off by a qualified medical professional before Kavach is used
+in a real deployment.** The wording is our own summary of standard guidance, not a citation of
+it, and compression into short steps can lose clinically important nuance.
+
+| ID | Topic | Source we based it on | Status | Reviewed by | Date |
+| --- | --- | --- | --- | --- | --- |
+| bleeding-severe | Severe bleeding | WHO / IFRC basic first aid | UNVERIFIED | | |
+| burns | Burns | WHO burn care / Red Cross | UNVERIFIED | | |
+| fractures | Fractures | Red Cross first aid | UNVERIFIED | | |
+| cpr-adult | Adult CPR | WHO BLS / Resuscitation Council UK | UNVERIFIED | | |
+| drowning | Drowning & floodwater rescue | WHO / Red Cross | UNVERIFIED | | |
+| heat-exhaustion | Heat exhaustion | WHO heat-health / ICMR | UNVERIFIED | | |
+| heat-stroke | Heatstroke | WHO heat-health / ICMR | UNVERIFIED | | |
+| hypothermia | Hypothermia | Red Cross / NHS | UNVERIFIED | | |
+| snake-bite | Snake bite | WHO snakebite / ICMR | UNVERIFIED | | |
+| electric-shock | Electric shock | Red Cross | UNVERIFIED | | |
+| anaphylaxis | Anaphylaxis | WAO / Resuscitation Council UK | UNVERIFIED | | |
+| fainting | Fainting | Red Cross first aid | UNVERIFIED | | |
+| choking | Choking | Red Cross choking guidance | UNVERIFIED | | |
+| flood-safety | Flood safety | FEMA / NDMA | UNVERIFIED | | |
+| cyclone-safety | Cyclone safety | IMD / NDMA | UNVERIFIED | | |
+| what-to-pack | What to pack | NDMA / UNICEF | UNVERIFIED | | |
+| find-shelter | Finding shelter | NDMA | UNVERIFIED | | |
+
+**Specific points a reviewer must confirm, not just wording:**
+
+- **CPR** — compression depth (5 cm), rate (≈2/sec) and compression:ventilation ratio vary by
+  national resuscitation body. Confirm which guideline Tamil Nadu / India follows. Currently the
+  app teaches compressions only, with no rescue breaths.
+- **Snake bite** — the "do not use a tight tourniquet" line is deliberate and current international
+  guidance; confirm it matches the advice a traveller will actually receive locally.
+- **Heatstroke vs heat exhaustion** — the 30-minute threshold in the decision tree is a common
+  heuristic, not a clinical threshold. Confirm.
+- **Anaphylaxis** — adrenaline auto-injector positioning (outer mid-thigh) and the second-dose
+  interval (10–15 min) must match local guidance.
+- **Decision trees** — the 5 trees (bleeding, CPR, drowning, heatstroke, anaphylaxis) were
+  written by us. They need a clinician to walk the branches and confirm no branch gives unsafe
+  advice.
+
+---
+
+## 3. Places — `public/pack/places.json`
+
+63 places extracted from OpenStreetMap (17 hospitals, 10 clinics, 4 police, 1 fire station,
+4 pharmacies, 27 shelter **candidates**).
+
+| ID range | Item | Source to check | Status |
 | --- | --- | --- | --- |
-| SHELTER-001 | Emergency shelter list, Mamallapuram | Mamallapuram town panchayat / Tamil Nadu DRDA shelter list | UNVERIFIED |
-| HOSP-001 | Hospital list + emergency numbers (108, 112, 100) | Tamil Nadu Health Dept / NHA | UNVERIFIED |
-| POL-001 | Police station contacts | Tamil Nadu Police | UNVERIFIED |
-| FIRSTAID-001 | First-aid procedure wording | Red Cross / WHO basic first aid | UNVERIFIED |
-| NUM-001 | One-tap SOS numbers | Must be confirmed per country; do **not** guess | UNVERIFIED |
-| HAZARD-001 | Flood-prone zone polygons | OSM + municipal flood maps | UNVERIFIED |
+| `hospital-*` | Hospital names/coords | Tamil Nadu Health Dept / Google Maps business listings | UNVERIFIED |
+| `clinic-*` | Clinic names/coords | Same | UNVERIFIED |
+| `police-*` | Police station names/coords | Tamil Nadu Police | UNVERIFIED |
+| `fire_station-*` | Fire station coords | Tamil Nadu Fire & Rescue | UNVERIFIED |
+| `pharmacy-*` | Pharmacy coords | Local licensing | UNVERIFIED |
+| `shelter_candidate-*` | **Candidate** shelters (schools, temples, community centres) | Mamallapuram town panchayat / TN DRDA official shelter list | UNVERIFIED |
+
+**Critical:** every `shelter_candidate` is a building that *might* be usable — a temple, a
+school ground, a community hall. **None of them are designated shelters.** The app must never
+present one as an official shelter without the unverified badge, and the 27 candidates should be
+checked against the official DRDA/panchayat shelter list before any demo claims a real shelter
+capacity.
+
+OSM data itself is ODbL — attribution is required. See `DISCLOSURES.md`.
+
+---
+
+## 4. Zones — `public/pack/zones.geojson`
+
+9 hand-drawn zones (Z1–Z9) for Mamallapuram + the Chennai coast. **These polygons are
+approximate.** They were sketched against the region's OSM coastline and road network to make
+the routing demo work; they are not surveyed flood boundaries.
+
+| ID | Zone | Status |
+| --- | --- | --- |
+| Z1 | Mamallapuram seafront & beach | UNVERIFIED — approximate polygon |
+| Z2 | Mamallapuram old town & fort | UNVERIFIED — approximate polygon |
+| Z3 | Theewari & west settlement | UNVERIFIED — approximate polygon |
+| Z4 | Salavankuppam & backwater lowlands | UNVERIFIED — approximate polygon |
+| Z5 | Seven Pagodas complex & hills | UNVERIFIED — approximate polygon |
+| Z6 | Kovalam coast | UNVERIFIED — approximate polygon |
+| Z7 | ECR corridor & Injambakkam | UNVERIFIED — approximate polygon |
+| Z8 | Thiruvanmiyur coast | UNVERIFIED — approximate polygon |
+| Z9 | OMR inland corridor | UNVERIFIED — approximate polygon |
+
+**To confirm:** replace with official municipal / flood-board inundation boundaries if they can be
+obtained before the demo. Until then the `floodProne` flag is our best-effort judgement and must
+be described as such.
+
+---
+
+## 5. Translated content — pending
+
+`scripts/translate-pack.ts` produces machine translations that are marked
+`machineTranslated: true, reviewed: false`. **None have been generated yet** (no `GEMINI_API_KEY`
+in CI).
+
+| Set | Locales | Status |
+| --- | --- | --- |
+| `public/pack/templates/<locale>.json` | ta, hi, fr, de, ar, zh, ja | NOT GENERATED |
+| `public/pack/phrases/<locale>.json` | ta, hi, fr, de, ar, zh, ja | NOT GENERATED |
+| `public/pack/kb/<locale>.json` | ta, hi, fr, de, ar, zh, ja | NOT GENERATED |
+| `src/i18n/messages/<locale>.json` | ta, hi, fr, de, ar, zh, ja | NOT GENERATED |
+
+**Machine-translated medical and alert text must be reviewed by a native speaker before it is
+shown to anyone in a real crisis.** Until reviewed, the UI should prefer the English source or
+show the English alongside.
 
 ---
 

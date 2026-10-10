@@ -1,0 +1,271 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T00:00:00Z",
+    "machineTranslated": false,
+    "reviewed": false
+  },
+  "locale": "en",
+  "categories": [
+    { "id": "medical", "label": "Medical" },
+    { "id": "shelter", "label": "Shelter and safety" },
+    { "id": "transport", "label": "Transport" },
+    { "id": "food_water", "label": "Food and water" },
+    { "id": "safety", "label": "Safety and help" },
+    { "id": "documents", "label": "Documents and money" }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "I need medical help.",
+      "intent": "Call an ambulance."
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "Please, doctor, quickly!",
+      "intent": "Ask them to hurry."
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "Where is the nearest clinic?",
+      "intent": "Ask for the closest clinic."
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "Where is the nearest hospital?",
+      "intent": "Ask for the closest hospital."
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "I am hurt here.",
+      "intent": "Point to where it hurts."
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "I am bleeding and it will not stop.",
+      "intent": "Show them the wound."
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "I have severe stomach pain.",
+      "intent": "Show where the pain is."
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "I cannot breathe well.",
+      "intent": "This is urgent."
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "I have a fever and dizziness.",
+      "intent": "Show them you feel unwell."
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "I have a severe allergy.",
+      "intent": "Point to your medical ID."
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "I need my medication.",
+      "intent": "Show the prescription or the pack."
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "Do you speak English?",
+      "intent": "Ask for an English speaker."
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "Where is the nearest shelter?",
+      "intent": "Ask for a safe place."
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "Is this shelter open?",
+      "intent": "Confirm before you go."
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "We need a safe place to sleep tonight.",
+      "intent": "Ask for accommodation."
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "Is it safe to go to {place}?",
+      "intent": "Show the place on the phone."
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "Where can we get drinking water?",
+      "intent": "Ask for water."
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "Can we all stay together?",
+      "intent": "Ask if your group can stay together."
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "How much is the taxi fare to {place}?",
+      "intent": "Ask the price first."
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "Please stop here.",
+      "intent": "Point to where you want to get out."
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "How do I get to the airport?",
+      "intent": "Ask for the route."
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "Where is the nearest railway or bus station?",
+      "intent": "Ask for the nearest stop."
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "Is the road to {place} open?",
+      "intent": "Show the place on the phone."
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "How far is it on foot?",
+      "intent": "Check the distance before you walk."
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "I am thirsty, please.",
+      "intent": "Ask for water."
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "Is this food safe to eat?",
+      "intent": "Ask before eating."
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "Do you have vegetarian food?",
+      "intent": "Ask about your dietary needs."
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "I cannot eat nuts. Does this contain nuts?",
+      "intent": "Point to the food."
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "Do you have clean water to wash with?",
+      "intent": "Ask for safe washing water."
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "Where can we get food nearby?",
+      "intent": "Ask for a nearby place to eat."
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "The water is coming. We need help.",
+      "intent": "This is urgent. Get a responder."
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "Please call the police.",
+      "intent": "Point at the phone."
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "I have lost my group. Please help me find them.",
+      "intent": "Explain your situation."
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "My bag has been stolen.",
+      "intent": "Tell a police officer."
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "I am a tourist and I do not speak Tamil.",
+      "intent": "Ask for an English speaker."
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "We are safe, thank you.",
+      "intent": "Tell a responder you are safe."
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "Here is my passport.",
+      "intent": "Hand over your passport."
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "I have lost my passport.",
+      "intent": "Ask police for help."
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "Where can I change money?",
+      "intent": "Ask for an exchange place."
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "Where is the nearest ATM?",
+      "intent": "Ask for cash access."
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "My SIM card is not working.",
+      "intent": "Ask a shop for help."
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "Please write this down for me.",
+      "intent": "Ask them to write it."
+    }
+  ]
+}

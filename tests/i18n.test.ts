@@ -1,22 +1,48 @@
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_LOCALE, dirFor, isLocale, resolveLocale, translate, MESSAGES } from '../src/i18n'
-import { LOCALE_META, RTL_LOCALES, SUPPORTED_LOCALES } from '../src/i18n'
+import {
+  DEFAULT_LOCALE,
+  LOCALE_META,
+  MESSAGES,
+  RTL_LOCALES,
+  SUPPORTED_LOCALES,
+  dirFor,
+  hasTranslation,
+  intlLocale,
+  isLocale,
+  resolveLocale,
+  translate,
+} from '../src/i18n'
 
 /**
  * The i18n layer is the backbone of "understandable in the tourist's language".
- * These tests lock the fallback + interpolation + RTL behaviour so a later
+ * These tests lock the fallback, interpolation and RTL behaviour so a later
  * milestone cannot silently break it.
  */
 describe('i18n', () => {
   it('registers exactly the 8 languages promised by the brief', () => {
     expect(SUPPORTED_LOCALES).toHaveLength(8)
-    expect([...SUPPORTED_LOCALES]).toEqual(['en', 'ta', 'hi', 'bn', 'ar', 'fr', 'es', 'ja'])
+    expect([...SUPPORTED_LOCALES]).toEqual(['en', 'ta', 'hi', 'fr', 'de', 'ar', 'zh', 'ja'])
   })
 
-  it('falls back to English for a locale with no translations yet', () => {
-    // Tamil catalogue is empty until M2; the key must still resolve.
+  it('ships a real English bundle with the full key set', () => {
+    expect(Object.keys(MESSAGES.en).length).toBeGreaterThan(50)
+    expect(MESSAGES.en['nav.alerts']).toBeTruthy()
+  })
+
+  it('falls back to English for a locale with no bundle yet', () => {
+    // Tamil is translated by scripts/translate-pack.ts, not yet at build time.
     expect(translate('ta', 'nav.alerts')).toBe(MESSAGES.en['nav.alerts'])
     expect(translate('ta', 'nav.alerts')).toBe('Alerts')
+  })
+
+  it('reports which locales actually have a bundle', () => {
+    expect(hasTranslation('en')).toBe(true)
+    // Untranslated locales resolve to an empty catalogue and fall back cleanly.
+    const untranslated = SUPPORTED_LOCALES.filter((l) => !hasTranslation(l))
+    for (const locale of untranslated) {
+      expect(Object.keys(MESSAGES[locale])).toHaveLength(0)
+      expect(translate(locale, 'nav.alerts')).toBe(MESSAGES.en['nav.alerts'])
+    }
   })
 
   it('interpolates {placeholder} tokens', () => {
@@ -40,6 +66,7 @@ describe('i18n', () => {
     expect(dirFor('ar')).toBe('rtl')
     expect(dirFor('en')).toBe('ltr')
     expect(dirFor('ja')).toBe('ltr')
+    expect(dirFor('zh')).toBe('ltr')
   })
 
   it('gives every locale an endonym and a direction', () => {
@@ -49,15 +76,24 @@ describe('i18n', () => {
     }
   })
 
-  it('matches a browser language list to a supported base language', () => {
+  it('matches a browser language list to the first supported base language', () => {
     expect(resolveLocale(['fr-CA', 'en-US'])).toBe('fr')
-    expect(resolveLocale(['zh-CN', 'ta-IN'])).toBe('ta')
+    // First match wins, which is what a browser language list means.
+    expect(resolveLocale(['zh-Hans-CN', 'ta-IN'])).toBe('zh')
+    expect(resolveLocale(['ta-IN', 'en-US'])).toBe('ta')
     expect(resolveLocale(['kl-GL'])).toBe(DEFAULT_LOCALE)
+    expect(resolveLocale([])).toBe(DEFAULT_LOCALE)
   })
 
   it('validates locale input', () => {
     expect(isLocale('hi')).toBe(true)
     expect(isLocale('xx')).toBe(false)
     expect(isLocale(42)).toBe(false)
+  })
+
+  it('maps every locale to an Intl tag', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      expect(intlLocale(locale)).toContain('-')
+    }
   })
 })

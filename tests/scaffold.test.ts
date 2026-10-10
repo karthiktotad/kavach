@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { PILOT_REGION, isInsideRegion } from '../src/config/region'
-import { messages as enMessages } from '../src/i18n/messages/en'
+import { PILOT_REGION, SUPPORTED_LOCALES, isInsideRegion } from '../src/config/region'
+import { MESSAGES } from '../src/i18n'
+import { CONNECTIVITY_LADDER } from '../src/store/connectivity'
+
+const enMessages = MESSAGES.en
 
 /**
  * Smoke test for the M1 scaffold. Also enforces two cross-cutting invariants:
@@ -49,9 +52,13 @@ describe('scaffold', () => {
   })
 
   it('has a key for every rung of the connectivity ladder', () => {
-    for (const level of ['live', 'degraded', 'cellular', 'offline', 'relay']) {
+    for (const level of CONNECTIVITY_LADDER) {
       expect(enMessages[`status.${level}`], `missing status.${level}`).toBeTruthy()
       expect(enMessages[`status.${level}.desc`], `missing status.${level}.desc`).toBeTruthy()
     }
+  })
+
+  it('registers 8 locales and one RTL language', () => {
+    expect(SUPPORTED_LOCALES).toHaveLength(8)
   })
 })

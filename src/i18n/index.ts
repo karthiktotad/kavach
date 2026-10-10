@@ -2,104 +2,129 @@
  * i18n runtime — engineering rule 5: no user-facing string may be hardcoded
  * in a component.
  *
- * This is intentionally tiny and dependency-free so it works offline with zero
- * bytes of network. The full translation set lands in M2/M3; the 8 languages
- * are registered here so the language selector and RTL logic are real from day
- * one rather than retrofitted later.
+ * Design (per the M2 brief):
+ * - `messages/en.json` is the base UI strings file and the source of truth for
+ *   the key set. `scripts/translate-pack.ts` produces the other locales from it.
+ * - `t(key, vars)` interpolates `{placeholder}` tokens and falls back to
+ *   English, then to the key itself (loud in dev, never a crash in prod).
+ * - RTL is driven by the locale table, not by string inspection, so Arabic
+ *   correctly flips the whole app through `<html dir>` and CSS logical props.
+ *
+ * Locales are discovered with `import.meta.glob`, so a locale that has not been
+ * translated yet simply has no file and quietly falls back to English.
  */
+import {
+  DEFAULT_LOCALE,
+  LOCALE_META,
+  RTL_LOCALES,
+  SUPPORTED_LOCALES,
+  dirFor,
+  isLocale,
+  isRtl,
+  resolveLocale,
+  type Locale,
+} from '../config/region'
 
-export const SUPPORTED_LOCALES = ['en', 'ta', 'hi', 'bn', 'ar', 'fr', 'es', 'ja'] as const
-
-export type Locale = (typeof SUPPORTED_LOCALES)[number]
-
-/** Locales written right-to-left. Drives `<html dir>` and Tailwind logical props. */
-export const RTL_LOCALES: ReadonlySet<Locale> = new Set<Locale>(['ar'])
-
-export interface LocaleMeta {
-  /** Name in the language itself — never in English. */
-  readonly endonym: string
-  readonly dir: 'ltr' | 'rtl'
-  readonly flag: string
+export {
+  SUPPORTED_LOCALES,
+  LOCALE_META,
+  RTL_LOCALES,
+  DEFAULT_LOCALE,
+  dirFor,
+  isLocale,
+  isRtl,
+  resolveLocale,
 }
+export type { Locale }
 
-export const LOCALE_META: Record<Locale, LocaleMeta> = {
-  en: { endonym: 'English', dir: 'ltr', flag: '🇬🇧' },
-  ta: { endonym: 'தமிழ்', dir: 'ltr', flag: '🇮🇳' },
-  hi: { endonym: 'हिन्दी', dir: 'ltr', flag: '🇮🇳' },
-  bn: { endonym: 'বাংলা', dir: 'ltr', flag: '🇮🇳' },
-  ar: { endonym: 'العربية', dir: 'rtl', flag: '🌍' },
-  fr: { endonym: 'Français', dir: 'ltr', flag: '🌍' },
-  es: { endonym: 'Español', dir: 'ltr', flag: '🌍' },
-  ja: { endonym: '日本語', dir: 'ltr', flag: '🌍' },
-}
-
-export const DEFAULT_LOCALE: Locale = 'en'
-
-export function isLocale(value: unknown): value is Locale {
-  return typeof value === 'string' && (SUPPORTED_LOCALES as readonly string[]).includes(value)
-}
-
-/** Best-effort match of a browser language list against our supported set. */
-export function resolveLocale(candidates: readonly string[]): Locale {
-  for (const raw of candidates) {
-    const base = raw.toLowerCase().split('-')[0]
-    if (base && isLocale(base)) return base
-  }
-  return DEFAULT_LOCALE
-}
-
-export function dirFor(locale: Locale): 'ltr' | 'rtl' {
-  return LOCALE_META[locale].dir
-}
-
-/**
- * Translation dictionary. Flat keys, `{placeholder}` interpolation.
- * Values are stored as functions of the interpolation map so we do not need a
- * template parser and stay tree-shakeable.
- */
 export type Messages = Record<string, string>
 
-import { messages as enMessages } from './messages/en'
+/**
+ * All locale bundles present at build time. Vite statically analyses this, so
+ * missing translations simply are not included.
+ */
+const bundles = import.meta.glob<Messages>('./messages/*.json', {
+  eager: true,
+  import: 'default',
+})
 
-export const MESSAGES: Record<Locale, Messages> = {
-  en: enMessages,
-  ta: {}, // populated in M2 — falls back to English until translated
-  hi: {},
-  bn: {},
-  ar: {},
-  fr: {},
-  es: {},
-  ja: {},
+function bundleFor(locale: Locale): Messages | undefined {
+  const direct = bundles[`./messages/${locale}.json`]
+  if (direct) return direct
+  // Fall back to a regional file (e.g. `pt-BR` → `pt`) if one is added later.
+  const base = locale.split('-')[0]
+  return base ? bundles[`./messages/${base}.json`] : undefined
 }
+
+/** Locale messages, guaranteed to contain every English key. */
+export const MESSAGES: Record<Locale, Messages> = Object.fromEntries(
+  SUPPORTED_LOCALES.map((locale) => [locale, { ...(bundleFor(locale) ?? {}) }]),
+) as Record<Locale, Messages>
+
+/** True once a locale has its own bundle (used to warn about silent fallback). */
+export function hasTranslation(locale: Locale): boolean {
+  const bundle = bundleFor(locale)
+  if (!bundle) return false
+  return Object.keys(bundle).length > 0
+}
+
+/** BCP-47 tag for `Intl` APIs (number/date/relative-time formatting). */
+const INTL_TAGS: Record<Locale, string> = {
+  en: 'en-IN',
+  ta: 'ta-IN',
+  hi: 'hi-IN',
+  fr: 'fr-FR',
+  de: 'de-DE',
+  ar: 'ar-IN',
+  zh: 'zh-CN',
+  ja: 'ja-JP',
+}
+
+export function intlLocale(locale: Locale): string {
+  return INTL_TAGS[locale]
+}
+
+/** Values accepted by `{placeholder}` interpolation. */
+export type Vars = Record<string, string | number>
 
 /**
  * Look up `key` for `locale`, falling back to English and finally to the key
- * itself so a missing translation is loud in development but never breaks the UI.
+ * itself. `{name}` tokens are replaced from `vars`; an unknown token is left
+ * visible rather than printed as `undefined`.
  */
-export function translate(
-  locale: Locale,
-  key: string,
-  params?: Record<string, string | number>,
-): string {
+export function translate(locale: Locale, key: string, vars?: Vars): string {
   const raw = MESSAGES[locale]?.[key] ?? MESSAGES[DEFAULT_LOCALE][key] ?? key
-  if (!params) return raw
+  if (!vars) return raw
   return raw.replace(/\{(\w+)\}/g, (match, name: string) => {
-    const value = params[name]
+    const value = vars[name]
     return value === undefined ? match : String(value)
   })
 }
 
-/** BCP-47 tag for Intl APIs (number/date/relative-time formatting). */
-export function intlLocale(locale: Locale): string {
-  const map: Record<Locale, string> = {
-    en: 'en-IN',
-    ta: 'ta-IN',
-    hi: 'hi-IN',
-    bn: 'bn-IN',
-    ar: 'ar-IN',
-    fr: 'fr-FR',
-    es: 'es-ES',
-    ja: 'ja-JP',
+/**
+ * Locale-aware number formatting. Falls back to a plain string in runtimes
+ * without full ICU rather than throwing.
+ */
+export function formatNumber(locale: Locale, value: number): string {
+  try {
+    return new Intl.NumberFormat(intlLocale(locale)).format(value)
+  } catch {
+    return String(value)
   }
-  return map[locale]
+}
+
+/**
+ * Relative time ("in 25 minutes", "2 h ago") for alert expiry.
+ * `Intl.RelativeTimeFormat` is not universal, so this degrades gracefully.
+ */
+export function formatRelative(locale: Locale, deltaMinutes: number): string {
+  try {
+    const rtf = new Intl.RelativeTimeFormat(intlLocale(locale), { numeric: 'auto' })
+    const abs = Math.abs(deltaMinutes)
+    if (abs < 60) return rtf.format(Math.round(deltaMinutes), 'minute')
+    return rtf.format(Math.round(deltaMinutes / 60), 'hour')
+  } catch {
+    const abs = Math.abs(deltaMinutes)
+    return abs < 60 ? `${Math.round(deltaMinutes)} min` : `${Math.round(deltaMinutes / 60)} h`
+  }
 }

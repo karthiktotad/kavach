@@ -1,0 +1,642 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T02:32:52Z",
+    "machineTranslated": false,
+    "reviewed": false
+  },
+  "regionId": "in-tn-mamallapuram",
+  "count": 63,
+  "places": [
+    {
+      "id": "clinic-node-13526307845",
+      "type": "clinic",
+      "name": null,
+      "lat": 12.62058,
+      "lon": 80.1965,
+      "source": "osm",
+      "verified": false,
+      "notes": "healthcare:speciality=general"
+    },
+    {
+      "id": "clinic-node-7820652177",
+      "type": "clinic",
+      "name": "Moorthi Poly Clinic",
+      "lat": 12.72015,
+      "lon": 80.18702,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820652180",
+      "type": "clinic",
+      "name": "Ananthi Clinic",
+      "lat": 12.62037,
+      "lon": 80.19301,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820652181",
+      "type": "clinic",
+      "name": "Sri Sakthi Clinic",
+      "lat": 12.71926,
+      "lon": 80.18761,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820874215",
+      "type": "clinic",
+      "name": "Vinayaga Homeo Clinic",
+      "lat": 12.84846,
+      "lon": 80.14288,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820874244",
+      "type": "clinic",
+      "name": "Dr. Mohammad Sajeed",
+      "lat": 12.82675,
+      "lon": 80.16477,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820874279",
+      "type": "clinic",
+      "name": "Sri Sai Clinic",
+      "lat": 12.8271,
+      "lon": 80.16604,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820874282",
+      "type": "clinic",
+      "name": "Thulasi Clinic Centre",
+      "lat": 12.80544,
+      "lon": 80.2247,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820874283",
+      "type": "clinic",
+      "name": "Padur Clinic",
+      "lat": 12.80547,
+      "lon": 80.22473,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "clinic-node-7820874293",
+      "type": "clinic",
+      "name": "AKM ENT Clinic",
+      "lat": 12.80658,
+      "lon": 80.22443,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "fire_station-node-5304198425",
+      "type": "fire_station",
+      "name": null,
+      "lat": 12.83102,
+      "lon": 80.22243,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-2125931950",
+      "type": "hospital",
+      "name": "Chettinadu Hospital & Research Institute",
+      "lat": 12.79608,
+      "lon": 80.21552,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-2334799039",
+      "type": "hospital",
+      "name": "Suradeep Hospital",
+      "lat": 12.61782,
+      "lon": 80.19502,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-5321368440",
+      "type": "hospital",
+      "name": "Marhura hospital",
+      "lat": 12.83693,
+      "lon": 80.22757,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-6930405963",
+      "type": "hospital",
+      "name": "Chettinad Hospital",
+      "lat": 12.79716,
+      "lon": 80.2176,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7257289090",
+      "type": "hospital",
+      "name": "Shri Isari Velan Hospital",
+      "lat": 12.84669,
+      "lon": 80.19726,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7257518761",
+      "type": "hospital",
+      "name": "Government Hospital, Mahabalipuram",
+      "lat": 12.61773,
+      "lon": 80.18097,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7257518775",
+      "type": "hospital",
+      "name": "Thiruporur Government Hospital",
+      "lat": 12.72842,
+      "lon": 80.18815,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820652130",
+      "type": "hospital",
+      "name": "Rakshith Hospital",
+      "lat": 12.71974,
+      "lon": 80.18746,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820652132",
+      "type": "hospital",
+      "name": "Raja Hospital",
+      "lat": 12.73046,
+      "lon": 80.18781,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820652158",
+      "type": "hospital",
+      "name": "Varam Health Care",
+      "lat": 12.63325,
+      "lon": 80.19617,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820652205",
+      "type": "hospital",
+      "name": "Moorthy Hospital",
+      "lat": 12.62071,
+      "lon": 80.19203,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820874234",
+      "type": "hospital",
+      "name": "Sugam Hospital",
+      "lat": 12.82684,
+      "lon": 80.16631,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820874273",
+      "type": "hospital",
+      "name": "Kathir Memorial Hospital",
+      "lat": 12.84935,
+      "lon": 80.14174,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820874276",
+      "type": "hospital",
+      "name": "Punarjeevan Hospital",
+      "lat": 12.81787,
+      "lon": 80.22217,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-7820874284",
+      "type": "hospital",
+      "name": "Supreme Speciality Hospitals",
+      "lat": 12.80632,
+      "lon": 80.22442,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "hospital-node-9591995528",
+      "type": "hospital",
+      "name": "S B Hospital",
+      "lat": 12.84611,
+      "lon": 80.22638,
+      "source": "osm",
+      "verified": false,
+      "notes": "phone=+919514577333; addr:street=Rajiv Gandhi Salai; addr:city=Chennai; website=https://s-b-hospital.business.site/; opening_hours=Mo-Su 12:00-00:00"
+    },
+    {
+      "id": "hospital-node-9952825959",
+      "type": "hospital",
+      "name": "Chennai Best Acupuncture Clinic in OMR Padur",
+      "lat": 12.81249,
+      "lon": 80.22578,
+      "source": "osm",
+      "verified": false,
+      "notes": "healthcare:speciality=acupuncture;traditional_chinese_medicine;headac;chiropractic;alternative;pain_control;rheumatology; addr:street=Annai Theresa Street; addr:city=Kazhipattur"
+    },
+    {
+      "id": "pharmacy-node-11079072040",
+      "type": "pharmacy",
+      "name": "Shree Andal Medical",
+      "lat": 12.8461,
+      "lon": 80.22638,
+      "source": "osm",
+      "verified": false,
+      "notes": "addr:street=Rajiv Gandhi Salai; addr:city=Chennai"
+    },
+    {
+      "id": "pharmacy-node-5321369027",
+      "type": "pharmacy",
+      "name": "Omega medicine",
+      "lat": 12.83691,
+      "lon": 80.22823,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "pharmacy-node-7215078043",
+      "type": "pharmacy",
+      "name": "Kartic medical",
+      "lat": 12.61955,
+      "lon": 80.19426,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "pharmacy-node-9899846917",
+      "type": "pharmacy",
+      "name": "Arafath Medicals",
+      "lat": 12.624,
+      "lon": 80.19406,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "police-node-2154131305",
+      "type": "police",
+      "name": "Traffic Police Station",
+      "lat": 12.62127,
+      "lon": 80.19555,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "police-node-2375997491",
+      "type": "police",
+      "name": "Police",
+      "lat": 12.62149,
+      "lon": 80.19427,
+      "source": "osm",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "police-node-4446991785",
+      "type": "police",
+      "name": "thiroporur police station",
+      "lat": 12.72368,
+      "lon": 80.18873,
+      "source": "osm",
+      "verified": false,
+      "notes": "phone=044 – 27446221; addr:street=thiruporur,kanchipuram; addr:city=kanchipuram"
+    },
+    {
+      "id": "police-node-4450010503",
+      "type": "police",
+      "name": "Thalambur Police Station",
+      "lat": 12.8469,
+      "lon": 80.22718,
+      "source": "osm",
+      "verified": false,
+      "notes": "phone=044-27437100; addr:street=Navallur,; addr:city=kanchipuram,TN"
+    },
+    {
+      "id": "shelter_candidate-relation-8171518",
+      "type": "shelter_candidate",
+      "name": "Sthalasayana Perumal Temple",
+      "lat": 12.61743,
+      "lon": 80.19298,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1095898101",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.83859,
+      "lon": 80.22832,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1184678996",
+      "type": "shelter_candidate",
+      "name": "Sri Chenganmaaleeswarar Temple",
+      "lat": 12.77188,
+      "lon": 80.21294,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1185299838",
+      "type": "shelter_candidate",
+      "name": "Sri Vendarasi Amman Kovil",
+      "lat": 12.76783,
+      "lon": 80.15475,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1185299844",
+      "type": "shelter_candidate",
+      "name": "Sri Vandavarasi Amman Kovil",
+      "lat": 12.74923,
+      "lon": 80.14189,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1474144809",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.62063,
+      "lon": 80.19476,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1474144810",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.62023,
+      "lon": 80.19298,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1474144813",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.61652,
+      "lon": 80.19016,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1474150401",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.61957,
+      "lon": 80.19716,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1474410420",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.62244,
+      "lon": 80.1928,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1474410422",
+      "type": "shelter_candidate",
+      "name": "Masjid-e-noor Jumma",
+      "lat": 12.62265,
+      "lon": 80.19435,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-1564779884",
+      "type": "shelter_candidate",
+      "name": "Mukundanayanar Temple",
+      "lat": 12.62713,
+      "lon": 80.19487,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-274932901",
+      "type": "shelter_candidate",
+      "name": "Pudupakkam Aanjaneya Temple",
+      "lat": 12.8087,
+      "lon": 80.19045,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-351871090",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.59795,
+      "lon": 80.14767,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-355633804",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.80421,
+      "lon": 80.22357,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-370135158",
+      "type": "shelter_candidate",
+      "name": "Mamallapuram Shore Temple",
+      "lat": 12.61648,
+      "lon": 80.19923,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-575464761",
+      "type": "shelter_candidate",
+      "name": null,
+      "lat": 12.61611,
+      "lon": 80.1947,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-576022679",
+      "type": "shelter_candidate",
+      "name": "Nakula Sahadeva Ratha",
+      "lat": 12.60899,
+      "lon": 80.18956,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-576022681",
+      "type": "shelter_candidate",
+      "name": "Draupadi Ratha",
+      "lat": 12.60901,
+      "lon": 80.18972,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-576022684",
+      "type": "shelter_candidate",
+      "name": "Arjuna Ratha",
+      "lat": 12.60896,
+      "lon": 80.18968,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-576022688",
+      "type": "shelter_candidate",
+      "name": "Dharmaraja Ratha",
+      "lat": 12.6087,
+      "lon": 80.18951,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-576022690",
+      "type": "shelter_candidate",
+      "name": "Bhima Ratha",
+      "lat": 12.60884,
+      "lon": 80.1896,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-576286129",
+      "type": "shelter_candidate",
+      "name": "Shri Kali Madha",
+      "lat": 12.61553,
+      "lon": 80.18942,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-596624663",
+      "type": "shelter_candidate",
+      "name": "Karukaatha Amman Temple",
+      "lat": 12.62092,
+      "lon": 80.18826,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-597062759",
+      "type": "shelter_candidate",
+      "name": "Ganesh Ratha",
+      "lat": 12.61843,
+      "lon": 80.1925,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-646325955",
+      "type": "shelter_candidate",
+      "name": "Church in Stalin Street",
+      "lat": 12.84646,
+      "lon": 80.20794,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    },
+    {
+      "id": "shelter_candidate-way-937507519",
+      "type": "shelter_candidate",
+      "name": "Christ the Redeemer Divine Mercy Church",
+      "lat": 12.7868,
+      "lon": 80.22539,
+      "source": "osm",
+      "verified": false,
+      "notes": "CANDIDATE ONLY — not a designated shelter until confirmed"
+    }
+  ]
+}

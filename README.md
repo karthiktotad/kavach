@@ -57,13 +57,13 @@ one-tap SOS via `sms:`/`tel:`, and show-a-local cards with read-aloud.
 
 ---
 
-## Status: **M1 — scaffold complete**
+## Status: **M1 + M2 complete**
 
 | Milestone | Status |
 | --- | --- |
 | M1 Scaffold, docs, app shell | ✅ complete |
-| M2 Content pack | ⬜ next |
-| M3 Offline core (Dexie, connectivity ladder, i18n) | ⬜ |
+| M2 Content pack (offline data) | ✅ complete |
+| M3 Offline core (Dexie, connectivity ladder) | ⬜ next |
 | M4 Signed alert packets | ⬜ |
 | M5 Backend (Supabase) | ⬜ |
 | M6 Authority console | ⬜ |
@@ -80,6 +80,26 @@ contributor are in [`AGENTS.md`](./AGENTS.md).
 connectivity status chip, language selector across 8 locales with RTL support),
 all ten routes including the offline deep link `/#/a/<packet>`, the PWA manifest
 and service worker, and the test/lint/typecheck/build gates.
+
+### The content pack (M2)
+
+`public/pack/` holds the data that makes the app useful with **zero internet** —
+~848 KB total, built from live OpenStreetMap data:
+
+| File | Size | What it is |
+| --- | --- | --- |
+| `places.json` | 17 KB | 63 real places: hospitals, clinics, police, fire, pharmacies, shelter candidates |
+| `roads.json` | 785 KB | Offline road graph, 15 599 nodes / 18 292 edges, 94% connected |
+| `zones.geojson` | 7 KB | 9 alert zones `Z1`–`Z9` with a flood-prone flag |
+| `contacts.json` | 2 KB | 112 / 108 / 100 / 101 / 1070 / 1363 + consulates |
+| `kb/en.json` | 22 KB | 17 first-aid chunks + 5 decision trees |
+| `templates/en.json` | 9 KB | Alert templates for 6 hazards × levels 1–4 + all-clear |
+| `phrases/en.json` | 7 KB | 40 emergency phrases in 6 categories |
+
+Rebuild it with `npm run pack:build`, or `npm run pack:build -- --offline` when
+Overpass is unreachable (writes clearly-marked `sample: true` files rather than
+inventing data). Translation to the other 7 languages:
+`GEMINI_API_KEY=… npm run pack:translate`.
 
 ---
 
@@ -110,6 +130,8 @@ npm run dev                    # http://localhost:5173
 | `npm run lint` | ESLint (type-aware) |
 | `npm run test` | Vitest unit tests |
 | `npm run test:coverage` | Tests with V8 coverage |
+| `npm run pack:build` | Build the content pack (places + roads + manifest) |
+| `npm run pack:translate` | Translate the pack to the other 7 locales (needs `GEMINI_API_KEY`) |
 | `npm run verify` | typecheck → lint → test → build, in one command |
 
 ## Repository layout

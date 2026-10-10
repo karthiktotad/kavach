@@ -56,10 +56,17 @@ Web Share API, `speechSynthesis` (SpeechSynthesis API), `BarcodeDetector` (progr
 | [GDACS](https://www.gdacs.org/) RSS | European Commission / JRC | Public feed, attribution required | Global disaster alerts | 🟡 |
 | [NDMA SACHET](https://sachet.ndma.gov.in/) | National Disaster Management Authority, India | Government open data | India-wide alerts (reachability varies) | 🟡 |
 | [IMD CAP](https://mausam.imd.gov.in/) | India Meteorological Department | Government open data | India weather warnings | 🟡 |
-| [OpenStreetMap](https://www.openstreetmap.org/) data | OpenStreetMap contributors | **ODbL 1.0** — attribution + share-alike required | Road graph, shelter/hospital points, hazard polygons for the pilot region | 🟡 |
+| [OpenStreetMap](https://www.openstreetmap.org/) data | OpenStreetMap contributors | **ODbL 1.0** — attribution + share-alike required | Road graph (`roads.json`) and safety-relevant places (`places.json`) for the pilot region | ✅ |
+| [Overpass API](https://overpass-api.de/) | OpenStreetMap Foundation | Free community service; needs a descriptive User-Agent, fair use, no heavy automated querying | Build-time queries from `scripts/fetch-osm.ts` and `scripts/build-road-graph.ts` | ✅ |
 
 **Attribution requirement:** OpenStreetMap data is ODbL. The final app and the demo video must carry
-"© OpenStreetMap contributors" wherever OSM-derived data is shown.
+"© OpenStreetMap contributors" wherever OSM-derived data is shown. `roads.json` and `places.json`
+are derived works and must keep that attribution.
+
+**Overpass usage:** one query per script run, bounded timeout, descriptive User-Agent, and a local
+cache in `.cache/osm/` so reruns during the hackathon never re-query. If Overpass is unreachable,
+`npm run pack:build -- --offline` writes clearly-marked `sample: true` files rather than silently
+degrading to fake data.
 
 ---
 
@@ -67,11 +74,16 @@ Web Share API, `speechSynthesis` (SpeechSynthesis API), `BarcodeDetector` (progr
 
 | Model | Provider | Plan | Where called | Status |
 | --- | --- | --- | --- | --- |
-| [Gemini](https://ai.google.dev/) (free tier, Flash class) | Google AI Studio | Free tier, subject to Google AI Studio Terms | **Supabase Edge Function `ai-proxy` only.** Never from the browser. Never used for safety-critical facts. | 🟡 |
+| [Gemini](https://ai.google.dev/) (`gemini-2.0-flash`) | Google AI Studio | Free tier, subject to Google AI Studio Terms | **Build-time only**, from `scripts/translate-pack.ts`. Machine-translates the content pack and UI strings. Not shipped in the app and never called at runtime. | ✅ |
 
-**Guardrail:** the model may only rephrase/ground content from the curated knowledge base and the
-computed risk snapshot. Phone numbers, shelter coordinates and medical facts are always served from
-deterministic data and are never sourced from model output.
+**Guardrail:** the model is only ever used for *translation at build time*. It never supplies
+runtime facts. Safety-critical values — phone numbers, shelter coordinates, medical instructions —
+come from the content pack and signed packets, never from model output. Translated medical text is
+marked `machineTranslated: true, reviewed: false` and must be human-reviewed before use in a real
+crisis (see `TODO_VERIFY.md`).
+
+**Privacy:** the API key is read from `GEMINI_API_KEY` in the environment only. It is never written
+to a file, never committed, and never logged.
 
 ---
 

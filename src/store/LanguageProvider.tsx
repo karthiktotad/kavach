@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
-import type { Locale } from '../i18n'
-import { dirFor, translate } from '../i18n'
+import { dirFor, translate, type Locale } from '../i18n'
 import {
   LANGUAGE_STORAGE_KEY,
   LanguageContext,
@@ -12,8 +11,9 @@ import {
 /**
  * Provides the active locale + `t()` to the whole app.
  *
- * M3 will back this with Dexie so the preference syncs across the device;
- * localStorage keeps the choice alive across reloads right now.
+ * The initial value is read synchronously from localStorage/navigator so the
+ * first paint already matches the user's choice and RTL is applied with no
+ * layout flash.
  */
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => readStoredLocale())
@@ -25,6 +25,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     } catch {
       // Private-mode / quota errors must never break the language switch.
     }
+    // Applied immediately rather than in an effect so direction flips on the
+    // same frame as the state change.
     applyLocaleToDocument(next)
   }, [])
 
@@ -33,7 +35,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       locale,
       dir: dirFor(locale),
       setLocale,
-      t: (key, params) => translate(locale, key, params),
+      t: (key, vars) => translate(locale, key, vars),
     }),
     [locale, setLocale],
   )

@@ -1,0 +1,221 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "Z1",
+      "properties": {
+        "id": "Z1",
+        "name": "Mamallapuram seafront & beach",
+        "floodProne": true,
+        "note": "Low-lying sand behind the beach. Storm surge and wave run-up reach here first, and the only road out runs parallel to the shore.",
+        "source": "hand-drawn, approximate — coastal band traced from the OSM coastline in the region bbox",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.192, 12.614],
+            [80.203, 12.6155],
+            [80.2035, 12.628],
+            [80.1935, 12.6285],
+            [80.192, 12.614]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z2",
+      "properties": {
+        "id": "Z2",
+        "name": "Mamallapuram old town & fort",
+        "floodProne": true,
+        "note": "Dense low town centre with narrow lanes. Slow to drain and hard to route a vehicle through when water rises.",
+        "source": "hand-drawn, approximate — built-up area traced from OSM landuse around the town centre",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.186, 12.6165],
+            [80.1965, 12.6155],
+            [80.1975, 12.6275],
+            [80.1885, 12.6295],
+            [80.186, 12.6165]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z3",
+      "properties": {
+        "id": "Z3",
+        "name": "Theewari & west settlement",
+        "floodProne": true,
+        "note": "Very dense low-lying settlement west of the old town, with a large inland water body nearby. Evacuation on foot only.",
+        "source": "hand-drawn, approximate — built-up area traced from OSM around the Theewari pilgrimage town",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.174, 12.6095],
+            [80.1865, 12.6105],
+            [80.1875, 12.6225],
+            [80.176, 12.6235],
+            [80.174, 12.6095]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z4",
+      "properties": {
+        "id": "Z4",
+        "name": "Salavankuppam & backwater lowlands",
+        "floodProne": true,
+        "note": "Backwater and paddy lowland south-west of town. Inundates early and drains slowly; treat all minor roads here as water-prone.",
+        "source": "hand-drawn, approximate — traced from OSM water/backwater features south-west of Mamallapuram",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.158, 12.598],
+            [80.18, 12.5995],
+            [80.1805, 12.6145],
+            [80.161, 12.6155],
+            [80.158, 12.598]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z5",
+      "properties": {
+        "id": "Z5",
+        "name": "Seven Pagodas complex & hills",
+        "floodProne": false,
+        "note": "Rocky elevated heritage site. Higher ground and open assembly space — the nearest refuge for people from Z1 to Z3.",
+        "source": "hand-drawn, approximate — traced from OSM around the monument complex",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.188, 12.6105],
+            [80.2, 12.6125],
+            [80.2, 12.6205],
+            [80.189, 12.6195],
+            [80.188, 12.6105]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z6",
+      "properties": {
+        "id": "Z6",
+        "name": "Kovalam coast",
+        "floodProne": true,
+        "note": "Rocky coast with steep approach roads. The main access road is the single route in and out; blocked access strands visitors on the rocks.",
+        "source": "hand-drawn, approximate — coastal band traced from the OSM coastline near Kovalam",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.195, 12.6585],
+            [80.215, 12.66],
+            [80.2145, 12.684],
+            [80.1965, 12.6835],
+            [80.195, 12.6585]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z7",
+      "properties": {
+        "id": "Z7",
+        "name": "ECR corridor & Injambakkam",
+        "floodProne": true,
+        "note": "Busy East Coast Road strip north of Mamallapuram. Heavy traffic becomes impassable when the carriageway floods; use parallel streets where possible.",
+        "source": "hand-drawn, approximate — coastal corridor traced from the OSM coastline north of Mamallapuram",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.19, 12.786],
+            [80.215, 12.7875],
+            [80.2145, 12.828],
+            [80.191, 12.8265],
+            [80.19, 12.786]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z8",
+      "properties": {
+        "id": "Z8",
+        "name": "Thiruvanmiyur coast",
+        "floodProne": true,
+        "note": "Dense urban coastline at the northern end of the pilot region. Many low-lying stretches and a limited number of cross streets.",
+        "source": "hand-drawn, approximate — coastal band traced from the OSM coastline near Thiruvanmiyur",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.192, 12.8265],
+            [80.215, 12.828],
+            [80.2145, 12.848],
+            [80.1935, 12.847],
+            [80.192, 12.8265]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "Z9",
+      "properties": {
+        "id": "Z9",
+        "name": "OMR inland corridor (Kelambakkam–Thiruporur)",
+        "floodProne": false,
+        "note": "Elevated inland corridor with wider roads and more open ground. Usually a safer move than the coast when a flood warning covers the shore.",
+        "source": "hand-drawn, approximate — inland corridor traced from the OSM road network",
+        "verified": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.148, 12.688],
+            [80.2, 12.6895],
+            [80.199, 12.762],
+            [80.152, 12.7615],
+            [80.148, 12.688]
+          ]
+        ]
+      }
+    }
+  ]
+}

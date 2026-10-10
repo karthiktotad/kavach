@@ -1,0 +1,532 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T00:00:00Z",
+    "machineTranslated": false,
+    "reviewed": false
+  },
+  "locale": "en",
+  "chunks": [
+    {
+      "id": "bleeding-severe",
+      "title": "Severe bleeding",
+      "tags": ["bleeding", "blood", "wound", "cut", "haemorrhage", "hemorrhage"],
+      "steps": [
+        "Press hard directly on the wound with a clean cloth or your palm.",
+        "Keep pressing without lifting to check. Do not remove the first cloth if blood soaks through — add another on top.",
+        "Raise the injured limb above the heart if there is no suspected fracture.",
+        "Keep the person warm and lying still.",
+        "Call for medical help now. If the bleeding does not slow after 10 minutes of firm pressure, it is an emergency."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO / International Federation of Red Cross basic first aid guidance",
+      "verified": false
+    },
+    {
+      "id": "burns",
+      "title": "Burns",
+      "tags": ["burn", "fire", "flame", "scald", "hot", "boil", "steam", "sunburn"],
+      "steps": [
+        "Stop the burning. If the person is on fire, cover them with a blanket or heavy cloth to smother the flames.",
+        "Cool the burn under cool running water for at least 20 minutes. Do not use ice.",
+        "Remove rings, watches and tight clothing before swelling starts, unless stuck to the skin.",
+        "Cover loosely with cling film or a clean, non-fluffy cloth.",
+        "Do not burst blisters, do not apply toothpaste, oil, butter or ice, and do not pull off fabric stuck to the burn."
+      ],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "WHO burn care guidance / Red Cross first aid",
+      "verified": false
+    },
+    {
+      "id": "fractures",
+      "title": "Fractures and suspected breaks",
+      "tags": ["fracture", "break", "bone", "sprain", "dislocation", "injury"],
+      "steps": [
+        "Do not try to straighten the limb.",
+        "Support the injured part in the position found. Pad around it with soft material.",
+        "If it helps, secure the limb to the uninjured part of the body with broad cloth.",
+        "Apply a cold pack wrapped in cloth for up to 20 minutes to reduce swelling.",
+        "Get medical help. Do not let the person eat or drink, in case they need an operation."
+      ],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Red Cross first aid guidance",
+      "verified": false
+    },
+    {
+      "id": "cpr-adult",
+      "title": "CPR — adult (basic)",
+      "tags": ["cpr", "heart", "cardiac", "not breathing", "resuscitation", "unresponsive"],
+      "steps": [
+        "Check the person responds. Tap their shoulders and shout.",
+        "Check breathing normally. Look, listen and feel for up to 10 seconds.",
+        "If they are not breathing normally, send someone for help and get an AED if one is nearby.",
+        "Place both hands in the centre of the chest, between the nipples. Press down about 5 cm, fast and hard, about twice a second.",
+        "Keep going until the person breathes normally, help arrives, or you are too exhausted to continue."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO basic life support principles / Resuscitation Council UK lay guidance. NOTE: exact compression depth and rate vary by national body — confirm before publishing.",
+      "verified": false
+    },
+    {
+      "id": "drowning",
+      "title": "Drowning and floodwater rescue",
+      "tags": ["drowning", "flood", "water", "submersion", "rescue", "in water", "underwater"],
+      "steps": [
+        "Do not enter moving or unknown-depth water to attempt a rescue. Reach or throw, never go.",
+        "Call for help immediately and get a life ring, long pole or rope if available.",
+        "Once out of the water, check breathing and start CPR if they are not breathing normally.",
+        "Keep the person warm and on their side if breathing, in case they vomit.",
+        "Every submersion needs medical assessment, even if the person seems fine afterwards."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO drowning prevention / Red Cross water rescue guidance",
+      "verified": false
+    },
+    {
+      "id": "heat-exhaustion",
+      "title": "Heat exhaustion",
+      "tags": ["heat", "hot", "sunstroke", "dehydration", "sweating", "dizzy"],
+      "steps": [
+        "Move the person to a cool, shaded place.",
+        "Loosen heavy clothing.",
+        "Give cool water to sip if they are fully awake and not vomiting.",
+        "Cool the skin with damp cloth or fan them.",
+        "If they do not improve within 30 minutes, treat it as heatstroke."
+      ],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "WHO heat–health guidance / Indian Council of Medical Research heatwave advice",
+      "verified": false
+    },
+    {
+      "id": "heat-stroke",
+      "title": "Heatstroke",
+      "tags": ["heat", "stroke", "hot", "confusion", "hot skin", "collapse", "fever"],
+      "steps": [
+        "This is a life-threatening emergency. Move the person to shade and cool them immediately.",
+        "Remove excess clothing and wet the skin with cool water, then fan them hard.",
+        "Apply cold packs to the neck, armpits and groin.",
+        "Give cool water only if they are fully awake and swallowing normally.",
+        "Call for emergency help now. Confusion, collapse or very hot skin means heatstroke, not heat exhaustion."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO heat–health guidance / Indian Council of Medical Research heatwave advice",
+      "verified": false
+    },
+    {
+      "id": "hypothermia",
+      "title": "Hypothermia (too cold)",
+      "tags": ["cold", "hypothermia", "wet", "shivering", "freezing", "chill"],
+      "steps": [
+        "Move the person somewhere warm, out of the wind and rain.",
+        "Remove wet clothing and replace with dry clothes, blankets or coats.",
+        "Warm gradually. Do not rub the limbs and do not use direct heat or very hot water.",
+        "Give a warm sweet drink if they are awake and able to swallow.",
+        "Handle gently and keep them lying still. Hypothermia can follow a flood rescue when the person is wet and wind-exposed."
+      ],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Red Cross / NHS cold-weather first aid guidance",
+      "verified": false
+    },
+    {
+      "id": "snake-bite",
+      "title": "Snake bite",
+      "tags": ["snake", "bite", "venom", "cobra", "krait", "viper"],
+      "steps": [
+        "Move away from the snake. Do not try to catch or kill it.",
+        "Keep the person still and calm. Movement spreads venom faster.",
+        "Rest the bitten limb, keeping it below heart level.",
+        "Remove rings, watches and tight clothing from the limb before swelling starts.",
+        "Do not cut the wound, do not suck out venom, and do not apply a tight tourniquet or ice. Call emergency services and get to hospital immediately."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO snakebite management guidance / Indian Council of Medical Research",
+      "verified": false
+    },
+    {
+      "id": "electric-shock",
+      "title": "Electric shock",
+      "tags": ["electric", "shock", "lightning", "power", "live wire", "current"],
+      "steps": [
+        "Do not touch the person while they are in contact with electricity or standing water.",
+        "Switch off the power at the mains first. Only if you cannot, push them clear with dry, non-conductive material such as wood or plastic.",
+        "Once free of the current, check breathing and start CPR if they are not breathing normally.",
+        "Any electric shock, even one that feels minor, needs medical assessment — the heart rhythm can be affected later.",
+        "Assume all nearby wiring is live until it is officially confirmed safe."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Red Cross first aid guidance / electrical safety first aid",
+      "verified": false
+    },
+    {
+      "id": "anaphylaxis",
+      "title": "Severe allergic reaction (anaphylaxis)",
+      "tags": ["allergy", "allergic", "anaphylaxis", "epipen", "adrenaline", "sting", "swelling"],
+      "steps": [
+        "Call emergency help immediately. This can kill within minutes.",
+        "Use the person's own adrenaline auto-injector if they have one, into the outer mid-thigh.",
+        "Lie them flat with legs raised, unless they are having trouble breathing, in which case let them sit up.",
+        "If there is no breathing or pulse, start CPR.",
+        "Stay with them. Symptoms can return within 10–15 minutes, so a second dose may be needed if they carry one."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "World Allergy Organization / Resuscitation Council UK anaphylaxis guidance",
+      "verified": false
+    },
+    {
+      "id": "fainting",
+      "title": "Fainting",
+      "tags": ["faint", "dizzy", "collapse", "unconscious", "passed out", "syncope"],
+      "steps": [
+        "Lay the person flat on their back.",
+        "Raise their legs about 30 cm above the body.",
+        "Loosen tight clothing and make sure the area is ventilated.",
+        "They should recover within a minute or two. Give water once fully awake.",
+        "If they do not recover within a minute, are injured by the fall, or it happens again, call for medical help."
+      ],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "Red Cross first aid guidance",
+      "verified": false
+    },
+    {
+      "id": "choking",
+      "title": "Choking",
+      "tags": ["choking", "throat", "blocked", "swallow", "cannot breathe", "silent"],
+      "steps": [
+        "Ask if they can cough. If they can cough forcefully, encourage them to keep coughing.",
+        "If they cannot speak, breathe or cough, give 5 firm blows between the shoulder blades with the heel of your hand.",
+        "Then give 5 abdominal thrusts: fist above the navel, grasp with the other hand, pull sharply inwards and upwards.",
+        "Alternate 5 back blows and 5 abdominal thrusts until the object comes out or they become unresponsive.",
+        "If they become unresponsive, call emergency help and start CPR. Do not sweep the mouth blindly with a finger."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Red Cross choking guidance / Resuscitation Council UK",
+      "verified": false
+    },
+    {
+      "id": "flood-safety",
+      "title": "Flood safety — do not walk or drive through floodwater",
+      "tags": ["flood", "water", "crossing", "road", "drive", "walk", "floodwater"],
+      "steps": [
+        "Never walk or drive through floodwater, even if it looks shallow. Moving water that is knee deep can knock a person over; 30 cm of fast water can carry away a car.",
+        "Do not drive through water of unknown depth. Turn around and find another route.",
+        "Stay away from fast-moving water, culverts, bridges, storm drains and underpasses.",
+        "If you are caught in a vehicle in moving water, stay inside. Get out and move to higher ground only if the water is not rising.",
+        "Watch for electrical cables and treat any water you cannot see the bottom of as live."
+      ],
+      "severity": "critical",
+      "escalate": true,
+      "source": "FEMA / Indian National Disaster Management Authority public flood safety guidance",
+      "verified": false
+    },
+    {
+      "id": "cyclone-safety",
+      "title": "Cyclone and severe storm safety",
+      "tags": ["cyclone", "storm", "hurricane", "typhoon", "wind", "typhoon"],
+      "steps": [
+        "Move indoors and stay away from windows and glass doors.",
+        "Stay on the ground floor or in an inner room, not on a roof or balcony.",
+        "Keep away from the coast, the beach and any area with trees or loose structures.",
+        "Charge your phone, keep a torch and power bank ready, and note your shelter location now — not during the event.",
+        "Do not attempt to travel during the storm. Wait for the official all-clear."
+      ],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "IMD cyclone safety guidance / NDMA public preparedness guidance",
+      "verified": false
+    },
+    {
+      "id": "what-to-pack",
+      "title": "What to pack for a storm or evacuation",
+      "tags": ["pack", "supplies", "bag", "evacuation", "kit", "prepare", "essentials"],
+      "steps": [
+        "Water: at least 1 litre per person per day, plus a small extra supply.",
+        "Power: a charged power bank, a torch and spare batteries.",
+        "Documents: passport, insurance and any medication details, kept in a waterproof bag.",
+        "Health: a few days of any regular prescription medication, plus basic first aid items.",
+        "Clothing and food: one change of clothes, high-visibility clothing if you have it, dry food that needs no cooking, and a small cash note."
+      ],
+      "severity": "routine",
+      "escalate": false,
+      "source": "NDMA / UNICEF emergency preparedness guidance",
+      "verified": false
+    },
+    {
+      "id": "find-shelter",
+      "title": "Finding a safe shelter",
+      "tags": ["shelter", "safe", "refuge", "high ground", "protect", "find"],
+      "steps": [
+        "Move to higher ground. Avoid low-lying land, riverbanks, canals, underpasses and basements.",
+        "Stay clear of the coast, the beach and any flood-prone zone named in an alert.",
+        "Choose a sturdy building on high ground, or a designated shelter if you know one.",
+        "Take your phone, water, medication and documents with you.",
+        "Tell someone where you are going and register as safe with your accommodation or family."
+      ],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "NDMA public flood preparedness guidance / Kavach pilot content",
+      "verified": false
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree-bleeding",
+      "question": "Is the person bleeding heavily and continuously?",
+      "options": [
+        {
+          "label": "Yes, blood is flowing or soaking the cloth",
+          "next": "bleeding-press"
+        },
+        {
+          "label": "No, it is only a graze or minor cut",
+          "next": "bleeding-clean"
+        }
+      ]
+    },
+    {
+      "id": "bleeding-press",
+      "question": "You have pressed firmly for 10 minutes. Has the bleeding slowed?",
+      "options": [
+        {
+          "label": "Yes, it has slowed or stopped",
+          "next": "bleeding-clean"
+        },
+        {
+          "label": "No, it is still heavy",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "This is an emergency. Keep pressing hard and do not lift the cloth to check.",
+        "Call for emergency help now and stay with the person until help arrives.",
+        "Keep them warm and lying still. Do not give food or drink."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "bleeding-clean",
+      "question": "You have stopped the bleeding. What is the next step?",
+      "options": [
+        {
+          "label": "The wound is small and clean",
+          "next": null
+        },
+        {
+          "label": "The wound is deep, gaping, or dirt is embedded",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Rinse the wound with clean water and cover it with a clean dressing.",
+        "Get medical help today if the wound is deep, gaping, dirty, or if the cut was caused by a rusty or dirty object."
+      ],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-cpr",
+      "question": "Does the person respond when you tap their shoulders and shout?",
+      "options": [
+        {
+          "label": "Yes, they respond",
+          "next": "cpr-responsive"
+        },
+        {
+          "label": "No response",
+          "next": "cpr-breathing"
+        }
+      ]
+    },
+    {
+      "id": "cpr-breathing",
+      "question": "Are they breathing normally (look, listen and feel for up to 10 seconds)?",
+      "options": [
+        {
+          "label": "No, not breathing or only gasping",
+          "next": null
+        },
+        {
+          "label": "Yes, breathing normally",
+          "next": "cpr-recovery"
+        }
+      ],
+      "terminalSteps": [
+        "Call for emergency help now and send someone for an AED.",
+        "Start chest compressions: hands in the centre of the chest, press hard and fast about twice a second.",
+        "Keep going until they breathe normally, help arrives, or you are too exhausted to continue."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "cpr-recovery",
+      "question": "They are breathing. What next?",
+      "options": [
+        {
+          "label": "Continue",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Roll them onto their side into the recovery position.",
+        "Keep watching their breathing until help arrives.",
+        "If they stop breathing normally, start chest compressions again."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "cpr-responsive",
+      "question": "They are awake. What should you focus on?",
+      "options": [
+        {
+          "label": "Continue",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Leave them sitting or lying where they are, and do not give them anything to eat or drink.",
+        "Watch them closely. If they become unresponsive, check breathing and start CPR.",
+        "Get medical help as soon as possible."
+      ],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-drowning",
+      "question": "Have you pulled the person out of the water safely?",
+      "options": [
+        {
+          "label": "Yes, they are out of the water",
+          "next": "drowning-breathing"
+        },
+        {
+          "label": "No, they are still in the water",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Do not enter moving or unknown-depth water to attempt a rescue.",
+        "Reach or throw, never go. Call for help and bring a life ring, long pole or rope.",
+        "Wait for trained rescuers. Your own safety comes first."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "drowning-breathing",
+      "question": "Are they breathing normally?",
+      "options": [
+        {
+          "label": "No, not breathing or only gasping",
+          "next": null
+        },
+        {
+          "label": "Yes, breathing normally",
+          "next": "drowning-seek"
+        }
+      ],
+      "terminalSteps": [
+        "Start chest compressions immediately, the same as for CPR.",
+        "Send someone to call emergency help and get an AED.",
+        "Keep going until they breathe normally or help arrives."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "drowning-seek",
+      "question": "They are breathing after submersion. What next?",
+      "options": [
+        {
+          "label": "Continue",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Keep them warm, lying on their side, and watch their breathing.",
+        "Every submersion needs a medical assessment, even if they now seem fine. Get to hospital.",
+        "Watch for breathing problems for the rest of the day."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "tree-heat",
+      "question": "Is the person confused, collapsed, or is their skin very hot to the touch?",
+      "options": [
+        {
+          "label": "Yes, any of those",
+          "next": null
+        },
+        {
+          "label": "No, they are alert and sweating",
+          "next": "heat-exhaustion-step"
+        }
+      ],
+      "terminalSteps": [
+        "This is heatstroke and it is life-threatening. Move them into shade and cool them immediately.",
+        "Remove excess clothing, wet the skin with cool water, and fan hard. Use cold packs on neck, armpits and groin.",
+        "Call for emergency help now."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "heat-exhaustion-step",
+      "question": "They are alert and sweating. What do you do?",
+      "options": [
+        {
+          "label": "Continue",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Move them to a cool, shaded place and loosen heavy clothing.",
+        "Give cool water to sip if they are fully awake and not vomiting.",
+        "If they do not improve within 30 minutes, or become confused, treat it as heatstroke and call for help."
+      ],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-anaphylaxis",
+      "question": "Do they have swelling of the face or throat, difficulty breathing, or a widespread rash with vomiting?",
+      "options": [
+        {
+          "label": "Yes, any of those",
+          "next": null
+        },
+        {
+          "label": "No, it is a mild local reaction",
+          "next": "anaphylaxis-mild"
+        }
+      ],
+      "terminalSteps": [
+        "This is anaphylaxis. Call emergency help immediately — it can be fatal within minutes.",
+        "Use their own adrenaline auto-injector into the outer mid-thigh if they have one.",
+        "Lay them flat with legs raised, or let them sit up if breathing is difficult. Stay with them."
+      ],
+      "terminalEscalates": true
+    },
+    {
+      "id": "anaphylaxis-mild",
+      "question": "It is a mild, local reaction. What next?",
+      "options": [
+        {
+          "label": "Continue",
+          "next": null
+        }
+      ],
+      "terminalSteps": [
+        "Watch closely. Symptoms can worsen quickly.",
+        "If swelling, breathing difficulty, vomiting or a widespread rash develops, call emergency help and use their adrenaline auto-injector.",
+        "Stay with them for at least 15 minutes."
+      ],
+      "terminalEscalates": false
+    }
+  ]
+}

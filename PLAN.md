@@ -38,20 +38,38 @@ Vite 8 + React 19 + TypeScript 6; ESLint 10 instead of the oxlint scaffold defau
 `react-router-dom` 7. All recorded in the README "Status" section.
 
 ### M1 — next
-- [ ] Start **M2** with the content-pack schema + `scripts/build-pack.mjs`
+- [x] ~~Start M2 with the content-pack schema~~ — **done, see M2**
 
 ---
 
 ## M2 — Content pack (preloaded data)
-- [ ] `src/config/region.ts` — pilot region (Mamallapuram + Chennai coast) as a single configurable module
-- [ ] Content-pack schema + `scripts/build-pack.mjs` (validate + emit JSON to `public/pack/`)
-- [ ] Bundled **road graph** (nodes/edges, walk speed, road class) for the pilot region
-- [ ] **Hazard polygons** (flood-prone lowlands, river/canal buffers) as GeoJSON
-- [ ] **Shelters**, **hospitals**, **police stations**, **first-aid points** (with `verified: false` until checked)
-- [ ] **First-aid KB** (condition → deterministic steps, red flags, do-nots)
-- [ ] **Phrasebook** (show-a-local + read-aloud) in 8 languages
-- [ ] **Alert templates** in 8 languages (one per hazard code × level)
-- [ ] Content-pack validation test (schema, refs, coordinates inside region bbox)
+- [x] `src/config/region.ts` — pilot region (Mamallapuram + Chennai coast) as a single configurable module, with the 8 supported locales (en, ta, hi, fr, de, ar, zh, ja) and RTL flags
+- [x] Content-pack schema (`src/lib/packTypes.ts`) + pack scripts writing versioned static JSON into `public/pack/`
+- [x] Bundled **road graph** (nodes/edges, drivable/walkable/water flags) for the pilot region — 15 599 nodes / 18 292 edges, 785 KiB, 94% connectivity
+- [x] **Hazard polygons** as GeoJSON — 9 hand-drawn zones `Z1`–`Z9` (seafront, old town, Theewari, backwater lowlands, hills, Kovalam, ECR, Thiruvanmiyur, OMR corridor)
+- [x] **Shelters**, **hospitals**, **police**, **pharmacies**, **fire stations** from OSM (63 places, all `verified: false`)
+- [x] **First-aid KB** — 17 deterministic chunks + 5 decision trees (bleeding, CPR, drowning, heat stroke, anaphylaxis)
+- [x] **Phrasebook** — 40 emergency phrases in 6 categories (medical, shelter, transport, food/water, safety, documents)
+- [x] **Alert templates** — FL/CY/HT/WN/LS × levels 1–4 + AC all-clear, up to 3 steps, `{zone}/{shelter}/{distance}/{until}` placeholders, drill text
+- [x] **Emergency contacts** — 112, 108, 100, 101, 1070, 1363 (all `verified: false`) + placeholder consulates with `phone: null`
+- [x] `scripts/translate-pack.ts` — Gemini build-time translation, idempotent, placeholder-validated, `_meta.machineTranslated/reviewed` (user runs this with their key)
+- [x] `scripts/build-pack-manifest.ts` + `npm run pack:build` orchestrator (with `--offline` sample fallback)
+- [x] `src/i18n` JSON message catalogue + `t(key, vars)` + localStorage persistence + `dir="rtl"` for `ar`
+- [x] Content-pack validation test (`tests/pack.test.ts`) — schema, unique ids, valid placeholders, resolvable decision-tree `next`, closed GeoJSON polygons, nothing falsely `verified`
+
+### M2 verification record (real command output)
+
+```
+npm run pack:build     → places 63 · roads 785.3 KiB · manifest 7 files, 847.7 KiB total
+npm run typecheck      → clean
+npm run lint           → 0 problems
+npm test               → 5 files, 48 tests passed (22 of them pack validation)
+npm run build          → precache 27 entries (310 KiB); pack copied to dist/pack, NOT precached (runtime SWR cache)
+npm run pack:build -- --offline → sample fallback works, flagged sample:true
+```
+
+### M2 — next
+- [ ] Start **M3**: Dexie schema + real connectivity detector, then wire the app to load the pack
 
 ---
 
@@ -59,8 +77,8 @@ Vite 8 + React 19 + TypeScript 6; ESLint 10 instead of the oxlint scaffold defau
 - [ ] **Dexie** schema: alerts, packets, reports, outbox, checkins, prefs, content cache
 - [ ] Connectivity detector + `navigator.onLine`, latency probe, effective-type → ladder level
 - [ ] `StatusChip` real implementation with the 5 levels + accessible labels
-- [ ] **i18n layer**: 8 languages, interpolation, pluralisation, number/date formatting, **RTL** (`ar`/`he` dir switching)
-- [ ] Language selector (real) — persists in Dexie + `localStorage`, applied before first paint
+- [ ] **i18n layer**: 8 languages, interpolation, number/relative-time formatting, **RTL** (`ar`) — *JSON catalogue, `t()`, localStorage and `dir` done in M2; Dexie persistence + pluralisation still open*
+- [~] Language selector — *functional now (native `<select>` + endonyms); M3 upgrades it to the searchable sheet with flags*
 - [ ] `<html lang dir>` wiring, font stacks per script
 - [ ] Offline banner/behaviour switch driven by ladder level
 - [ ] Unit tests: ladder state machine, i18n interpolation/RTL

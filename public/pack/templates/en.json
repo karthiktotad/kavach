@@ -1,0 +1,262 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T00:00:00Z",
+    "machineTranslated": false,
+    "reviewed": false
+  },
+  "locale": "en",
+  "templates": [
+    {
+      "id": "FL-1",
+      "hazard": "FL",
+      "level": 1,
+      "headline": "Minor flooding reported in {zone}.",
+      "steps": [
+        "Keep away from drains and low-lying streets in {zone}.",
+        "Watch for deeper or faster water before you set off."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "FL-2",
+      "hazard": "FL",
+      "level": 2,
+      "headline": "Flooding is rising in {zone}.",
+      "steps": [
+        "Leave low-lying parts of {zone} now and move to higher ground.",
+        "Do not walk or drive through floodwater.",
+        "Take water, phone and medicines with you."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "FL-3",
+      "hazard": "FL",
+      "level": 3,
+      "headline": "Severe flooding in {zone}. People should evacuate now.",
+      "steps": [
+        "Evacuate {zone} now to higher ground. Do not wait for the water to rise.",
+        "Go on foot. Never drive through floodwater.",
+        "Head to {shelter}, about {distance} away, if it is reachable."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "FL-4",
+      "hazard": "FL",
+      "level": 4,
+      "headline": "Extreme life-threatening flooding in {zone}.",
+      "steps": [
+        "Leave {zone} immediately and move to high ground or {shelter}.",
+        "Stay out of moving water. Do not attempt to cross flooded roads.",
+        "Stay where you are safe until the all-clear. Keep your phone charged."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "CY-1",
+      "hazard": "CY",
+      "level": 1,
+      "headline": "Cyclone watch for {zone}. Winds may increase later.",
+      "steps": [
+        "Secure loose objects outdoors and stay close to shelter.",
+        "Keep your phone charged in case the network drops."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "CY-2",
+      "hazard": "CY",
+      "level": 2,
+      "headline": "Cyclone warning for {zone}. Expect heavy rain and strong wind.",
+      "steps": [
+        "Stay indoors and away from windows.",
+        "Move to an inner room on a low floor.",
+        "Do not travel unless you must."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "CY-3",
+      "hazard": "CY",
+      "level": 3,
+      "headline": "Severe cyclone approaching {zone}. Take shelter now.",
+      "steps": [
+        "Take shelter now in a sturdy building on high ground, away from the coast.",
+        "Stay on the ground floor, away from windows.",
+        "Keep your phone charged and follow official updates."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "CY-4",
+      "hazard": "CY",
+      "level": 4,
+      "headline": "Cyclone landfall risk for {zone}. This is life-threatening.",
+      "steps": [
+        "Shelter now. Stay indoors until the official all-clear.",
+        "Stay away from the coast and from windows.",
+        "Do not go outside to check conditions."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "HT-1",
+      "hazard": "HT",
+      "level": 1,
+      "headline": "High temperature expected in {zone}.",
+      "steps": [
+        "Drink water regularly and stay in the shade.",
+        "Rest during the hottest part of the day."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "HT-2",
+      "hazard": "HT",
+      "level": 2,
+      "headline": "Very high heat in {zone}. Heat illness is possible.",
+      "steps": [
+        "Drink water often. Avoid alcohol and heavy meals.",
+        "Carry water with you and rest in the shade.",
+        "Check on elderly people and children."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "HT-3",
+      "hazard": "HT",
+      "level": 3,
+      "headline": "Extreme heat warning for {zone}. Heatstroke risk.",
+      "steps": [
+        "Avoid going outside between midday and late afternoon.",
+        "Drink water often and stay in air-conditioned or shaded places.",
+        "Know the signs of heatstroke: confusion, collapse, very hot skin."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "HT-4",
+      "hazard": "HT",
+      "level": 4,
+      "headline": "Dangerous heat in {zone}. Heatstroke can be fatal.",
+      "steps": [
+        "Stay indoors with air conditioning or fans through the hottest hours.",
+        "Drink water regularly even if you do not feel thirsty.",
+        "Cool anyone who becomes confused or collapses straight away and call for help."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "WN-1",
+      "hazard": "WN",
+      "level": 1,
+      "headline": "Strong winds in {zone}. Take care outdoors.",
+      "steps": [
+        "Watch for falling branches and loose objects.",
+        "Secure anything light that could blow away."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "WN-2",
+      "hazard": "WN",
+      "level": 2,
+      "headline": "Damaging winds in {zone}. Stay indoors if you can.",
+      "steps": [
+        "Stay indoors and away from windows and doors.",
+        "Keep clear of trees and construction."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "WN-3",
+      "hazard": "WN",
+      "level": 3,
+      "headline": "Severe wind warning for {zone}. Do not travel.",
+      "steps": [
+        "Stay indoors and shelter away from windows.",
+        "Do not drive or walk outside.",
+        "Keep your phone charged for official updates."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "WN-4",
+      "hazard": "WN",
+      "level": 4,
+      "headline": "Extreme winds in {zone}. Life-threatening outside.",
+      "steps": [
+        "Shelter indoors on the lowest floor, away from windows.",
+        "Do not go outside until the official all-clear.",
+        "Stay clear of trees, power lines and loose structures."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "LS-1",
+      "hazard": "LS",
+      "level": 1,
+      "headline": "Landslide risk noted in {zone} after rain.",
+      "steps": [
+        "Watch for slope movement or cracks near hillsides.",
+        "Avoid walking near steep slopes after heavy rain."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "LS-2",
+      "hazard": "LS",
+      "level": 2,
+      "headline": "Landslide risk rising in {zone}.",
+      "steps": [
+        "Stay away from slopes, cuttings and rock faces.",
+        "Move away if you see ground movement, cracks or falling soil.",
+        "Do not travel through hilly areas in {zone}."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "LS-3",
+      "hazard": "LS",
+      "level": 3,
+      "headline": "High landslide risk in {zone}. Leave the area.",
+      "steps": [
+        "Leave slopes and low ground below them now.",
+        "Move to stable, open ground away from {zone}.",
+        "Do not return until the all-clear."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "LS-4",
+      "hazard": "LS",
+      "level": 4,
+      "headline": "Extreme landslide risk in {zone}. Immediate danger.",
+      "steps": [
+        "Leave {zone} immediately and move to open, flat ground.",
+        "Stay clear of slopes, gullies and river valleys.",
+        "Follow official instructions and do not re-enter the area."
+      ],
+      "drillNote": "DRILL. This is a practice alert."
+    },
+    {
+      "id": "AC",
+      "hazard": "AC",
+      "level": null,
+      "headline": "All clear for {zone}. The danger has passed.",
+      "steps": [
+        "The all-clear for {zone} has been issued.",
+        "You may return, but stay alert and check for new alerts.",
+        "Keep your phone charged in case conditions change."
+      ],
+      "drillNote": "DRILL. This is a practice all-clear, not a real one."
+    }
+  ],
+  "drill": {
+    "banner": "DRILL",
+    "bannerLong": "DRILL — practice alert, not a real emergency",
+    "disclaimer": "This alert is a drill issued for training and testing. Do not act on it as if it were a real emergency."
+  }
+}

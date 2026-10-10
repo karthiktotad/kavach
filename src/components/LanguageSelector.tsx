@@ -29,7 +29,7 @@ export function LanguageSelector({ variant = 'compact' }: LanguageSelectorProps)
         >
           {SUPPORTED_LOCALES.map((code) => (
             <option key={code} value={code}>
-              {LOCALE_META[code].flag} {LOCALE_META[code].endonym}
+              {LOCALE_META[code].endonym}
             </option>
           ))}
         </select>
@@ -51,7 +51,7 @@ export function LanguageSelector({ variant = 'compact' }: LanguageSelectorProps)
       >
         {SUPPORTED_LOCALES.map((code) => (
           <option key={code} value={code}>
-            {LOCALE_META[code].flag} {LOCALE_META[code].endonym}
+            {LOCALE_META[code].endonym}
           </option>
         ))}
       </select>
