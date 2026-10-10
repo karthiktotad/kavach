@@ -40,7 +40,13 @@ describe('permissions request()', () => {
     Object.defineProperty(navigator, 'geolocation', {
       value: {
         getCurrentPosition: (_success: PositionCallback, error?: PositionErrorCallback) => {
-          error?.({ code: 1, message: 'denied', PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3 } as GeolocationPositionError)
+          error?.({
+            code: 1,
+            message: 'denied',
+            PERMISSION_DENIED: 1,
+            POSITION_UNAVAILABLE: 2,
+            TIMEOUT: 3,
+          })
         },
       },
       configurable: true,

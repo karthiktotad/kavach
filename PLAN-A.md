@@ -56,19 +56,19 @@ Device A owns:
 
 ## FE-2 — Home Page
 
-- [ ] Build Home page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/home.json)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Home page using design system components
+- [x] Add i18n keys (home risk/alert promise strings and supporting locale content)
+- [x] Write tests
+- [x] Verify
 
 ---
 
 ## FE-3 — Ready Page
 
-- [ ] Build Ready page using design system components
-- [ ] Add i18n keys (src/i18n/<lang>/ready.json - merged into core.json per rules)
-- [ ] Write tests
-- [ ] Verify
+- [x] Build Ready page using design system components
+- [x] Add i18n keys (ready strings in the shared locale bundle per rules)
+- [x] Write tests
+- [x] Verify
 
 ---
 

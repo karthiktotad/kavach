@@ -134,6 +134,8 @@
   "status.neverReached": "This device has not reached the network yet.",
   "home.packReady": "Offline pack saved on this device ({version}).",
   "home.packNotReady": "Offline pack is not downloaded yet — open Get Ready.",
+  "home.risk.empty": "No risk data yet. Connect once to get it.",
+  "home.alert.none": "No active alerts. Last checked {age}.",
   "packet.verified": "Verified Official Alert",
   "packet.unverified": "Could Not Verify Alert",
   "packet.authority": "Authority",

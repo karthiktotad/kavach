@@ -57,7 +57,7 @@ async function queryPermissionState(kind: PermissionKind): Promise<PermissionQue
   }
 
   try {
-    const status = await navigator.permissions.query({ name } as PermissionDescriptor)
+    const status = await navigator.permissions.query({ name })
     return status.state
   } catch {
     return 'unsupported'
