@@ -94,12 +94,14 @@ function OnboardingGate({ children }: { children: ReactNode }) {
   // Render nothing until we know the flag for THIS path.
   if (!read || read.path !== location.pathname) return null
 
-  // `/a/<packet>` and `/check` are always exempt: a signed packet or a shared
-  // message review must render even for someone who never completed onboarding.
+  // Emergency packet handling, shared message review, and the authority console
+  // must remain reachable even before onboarding is completed.
   const exempt =
     location.pathname === '/ready' ||
     location.pathname.startsWith('/a/') ||
-    location.pathname === '/check'
+    location.pathname === '/check' ||
+    location.pathname === '/authority'
+
   if (!read.value && !exempt) return <Navigate to="/ready" replace />
 
   return <>{children}</>
@@ -142,6 +144,8 @@ function Updates() {
 
 export function AppRoutes() {
   const { t } = useLanguage()
+  const { pathname } = useLocation()
+  const isAuthority = pathname === '/authority'
 
   return (
     <div className="bg-surface-sunken min-h-dvh">
@@ -155,8 +159,8 @@ export function AppRoutes() {
         {t('a11y.skipToContent')}
       </a>
 
-      <AppHeader />
-      <Updates />
+      {!isAuthority && <AppHeader />}
+      {!isAuthority && <Updates />}
 
       <Suspense fallback={<RouteFallback />}>
         <OnboardingGate>
@@ -166,6 +170,7 @@ export function AppRoutes() {
             <Route path="/map" element={<MapPage />} />
             <Route path="/assist" element={<AssistPage />} />
             <Route path="/aid" element={<AidPage />} />
+            <Route path="/sos" element={<AidPage />} />
             <Route path="/phrases" element={<PhrasesPage />} />
             <Route path="/me" element={<MePage />} />
             <Route path="/report" element={<ReportsPage />} />
@@ -193,7 +198,7 @@ export function AppRoutes() {
         </Suspense>
       ) : null}
 
-      <BottomNav />
+      {!isAuthority && <BottomNav />}
     </div>
   )
 }

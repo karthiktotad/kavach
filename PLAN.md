@@ -294,3 +294,20 @@ Example packet      → KV1.k1.FL.3.Z1-Z2-Z3.16z5d4g.16z5df4.1.L.<86-char base64
 | Packet too big for SMS | Budget test at 160 chars / single QR; fall back to short-URL + code if exceeded |
 | App too large to install | No-install PWA by design; content pack loaded once and cached |
 | Fake demo risk | DRILL mode is loudly labelled everywhere; nothing fabricated, ever |
+
+---
+
+## Integrate branch QA checkpoint (2026-10-10)
+
+- [x] Route sanity pass for the core app shell and main offline routes
+- [x] Final production build passes with the current branch state
+- [x] Unit suite passes (`42` files, `371` tests)
+- [x] Browser offline validation passes (`2` Playwright tests passed)
+- [x] Screenshot evidence captured and saved under [docs/qa/screens](docs/qa/screens)
+- [x] Honest fallback content preserved: no fake phrasebook or fabricated safety claims
+- [ ] Full accessibility pass on a real device and keyboard flow
+- [ ] Live authority-console + Supabase smoke test against a real deployed project
+- [ ] Full mobile-device matrix for relay / low-signal / GPS-denied / install flow
+- [ ] Lighthouse / deployment readiness audit on a public production URL
+
+This checkpoint records the verified local state only. It does not claim a live production launch sign-off for every device and backend path.

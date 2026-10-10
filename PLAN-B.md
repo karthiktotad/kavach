@@ -1,0 +1,83 @@
+# PLAN-B.md — Device B Execution Plan
+
+This plan tracks non-UI and UI tasks owned by Device B on branch `fe-b`.
+
+## Progress Checklist
+
+- [x] Initial setup: `PARALLEL_B.md`, `PLAN-B.md`, `docs/HANDOFF_B.md`, `src/routes/b.routes.ts`
+- [x] **FE-6 Logic: Assistant Contract and Providers**
+  - [x] `docs/ASSISTANT_DECISION.md`
+  - [x] `src/lib/assistant/types.ts`
+  - [x] `src/lib/assistant/router.ts` (deterministic intents)
+  - [x] `src/lib/assistant/offline.ts` (MiniSearch BM25 over KB + decision trees)
+  - [x] `src/lib/assistant/api.ts` (Edge Function proxy client with timeout and zod validation)
+  - [x] `src/lib/assistant/webllm.ts` (stub provider)
+  - [x] `src/lib/assistant/assistant.ts` (orchestrator & context builder)
+  - [x] Tests in `tests/assistant.test.ts` (32 tests passing)
+- [x] **FE-7 Logic: SOS and Medical ID**
+  - [x] `src/lib/sos.ts` (pure SOS message formatter with SMS URI handling & character limits)
+  - [x] `src/lib/medicalId.ts` (IndexedDB store, QR export, local-only)
+  - [x] Tests in `tests/sos.test.ts` and `tests/medical-id.test.ts` (13 tests passing)
+- [x] **FE-8 Logic: Authority Wizard State Machine**
+  - [x] `src/pages/authority/wizard.ts` (state machine, drill/live confirmation, cancel/all-clear logic, preview)
+  - [x] Tests in `tests/authority-wizard.test.ts` (8 tests passing)
+- [x] **FE-5 Logic & UI: Map, Place Sheet, and Compass**
+  - [x] `src/lib/map/math.ts` (distance, bearing, compass text)
+  - [x] `src/lib/map/polling.ts` (low-power geolocation settings)
+  - [x] `src/lib/map/nearest.ts` (nearest place search & list fallback)
+  - [x] `src/lib/map/layers.ts` (GeoJSON layer builders)
+  - [x] `src/lib/map/route.ts` & `src/workers/router.worker.ts` (offline graph routing avoiding hazard zones in <1s)
+  - [x] `src/pages/MapPage.tsx`
+    - [x] 100% offline vector SVG map engine with bottom-to-top rendering: Base flat ground, white road graph, hazard zones (risk levels 0..4, hatch pattern for flagged level >= 2, dashed halo for unverified reports), place markers with distinct shapes (shield for shelter, cross for hospital/clinic, diamond for police), route line (white casing + blue), user dot + accuracy ring.
+    - [x] Top-left legend: "Flagged by authority" (hatch swatch), "Unverified report" (dashed swatch).
+    - [x] Top-right controls: Layers/filters sheet, Compass modal, Recentre, Zoom controls.
+    - [x] Bottom-end mandatory attribution: "Map data © OpenStreetMap contributors".
+    - [x] Place bottom sheet (`Sheet`): Name, type, distance, bearing, `UnverifiedTag`, honest duration note: "About N min on foot. The route avoids flagged areas. It cannot promise the way is safe."
+    - [x] Buttons: `Start route` (blue primary) and `Compass` (secondary), plus expandable `StepList`.
+    - [x] Full-screen Compass modal: Rotating needle + distance + bearing + sensor permission request + fallback text: "Head roughly north-east, 900 m".
+    - [x] Fallbacks: GPS denied (manual start location picker), No places (`EmptyState`), WebGL/map error (List fallback view of nearest places), Low-power mode toggle (reduces GPS polling & animations).
+    - [x] Code-split lazy chunk in `src/app/routes.tsx` (`MapPage-*.js`, 29.1 kB).
+    - [x] Tests in `tests/map-page.test.tsx` (7 tests passing).
+- [x] **FE-6 UI: Assistant Screen (`/assist`)**
+  - [x] `src/pages/AssistPage.tsx`
+  - [x] Header mode badge: "Online AI" | "Offline guidance · from saved safety data" | "On-device AI"
+  - [x] Persistent serious-case banner with 112 emergency call button
+  - [x] User bubbles and Assistant cards with `SeverityPill`, `StepList`, `SourceChip`, Read aloud TTS
+  - [x] Quick-reply chips (Is it safe here?, Nearest shelter, I need a doctor, First aid)
+  - [x] Labelled text input, Web Speech microphone integration, clear history (last 20)
+  - [x] "Checking saved safety data..." loading and graceful offline fallback notice
+  - [x] Tests in `tests/assist-page.test.tsx` (8 tests passing)
+- [x] **FE-7 UI: SOS Screen (`/sos`, `/aid`) and Medical ID (`/me`)**
+  - [x] `src/pages/AidPage.tsx`
+    - [x] Header with `StatusChip`, honest mobile-network helper note
+    - [x] GPS location card with 22px bold coordinates, accuracy `±X m`, age ticker, copy button
+    - [x] Last known location fallback with age calculation
+    - [x] 72px danger `Call 112` button (`tel:112`), `Call 108` ambulance outline button (`tel:108`)
+    - [x] Emergency contact SMS launcher (`sms:phone?body=...`) with dashed message preview
+    - [x] Idempotent high-priority outbox check-in enqueue when online
+    - [x] Tests in `tests/aid-page.test.tsx` (6 tests passing)
+  - [x] `src/pages/MePage.tsx`
+    - [x] Privacy banner: "Stored on this device only. Never uploaded or shared."
+    - [x] Optional medical fields stored strictly in IndexedDB (zero network requests)
+    - [x] QR export bottom sheet with lock-screen friendly emergency summary
+    - [x] "Delete all" data bottom sheet confirmation
+    - [x] "Offline AI (experimental)" toggle with WebGPU check, ~400 MB download hint, and delete model button
+    - [x] Tests in `tests/me-page.test.tsx` (5 tests passing)
+- [x] **FE-8 UI: Authority Console (`/authority`)**
+  - [x] Responsive Desktop-First Shell:
+    - [x] Top bar (ink): Logo, "Kavach Authority Console", Mode chip (`DRILL MODE · 演習` orange / `LIVE MODE · 本番` red), "Signed in · Authority role" badge, Sign out.
+    - [x] Sidebar (220px desktop, wrapping responsive down to 768px): *Create alert*, *Active alerts*, *History*, *Community reports*, *Check-ins*.
+    - [x] Dedicated Demo Authority login for judges (forced to Drill server-side, clearly labelled).
+  - [x] 4-Step Alert Creation Wizard (built on `src/pages/authority/wizard.ts`):
+    - [x] Step 1: Hazard and level radio cards with plain-language level descriptions + duration.
+    - [x] Step 2: Zones checklist + risk mapping per zone.
+    - [x] Step 3: Review summary, Mode segmented control (`Drill` default, `Live` with confirmation dialog naming affected zone count), "What tourists will see" tabs across 8 languages (`EN`, `TA`, `HI`, `FR`, `DE`, `AR`, `ZH`, `JA`), payload preview showing PAYLOAD ONLY with `[issued] [expires] [seq]` placeholders & length estimate under 160 chars, optional "Suggest wording" assistant.
+    - [x] Step 4: Sign & Broadcast calling `sign-alert` with double-submit lock (no optimistic UI), success screen with packet, length, share link, copy buttons, pure SVG QR code, and "Print QR poster" (print stylesheet with high-contrast poster and DRILL marking).
+  - [x] Other Panels:
+    - [x] *Active alerts*: Expiry countdown, Extend (+2h), Escalate (+1 level), Cancel (Level 0 / AC All-Clear with higher seq via `AuthorityWizard.createCancelDraft`).
+    - [x] *History*: Filter by All/Drill/Live with in-browser offline ECDSA re-verification badge per packet.
+    - [x] *Right Aside*: Community reports with confidence score and "Official confirm" (pre-filling wizard) + Aggregated zone check-ins with drop detection flags ("No names, phone numbers or exact positions").
+  - [x] Code-split lazy chunk in `src/app/routes.tsx` (`AuthorityPage-*.js`, 277.6 kB, lazy-loaded out of tourist bundle).
+  - [x] Tests in `tests/authority-page.test.tsx` (6 tests passing).
+- [x] **Verification**: Typecheck (tsc -b), Lint (eslint), Tests (367 tests across 41 test files passing), Build (production bundle + service worker clean)
+

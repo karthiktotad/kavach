@@ -1,11 +1,14 @@
 {
   "k1": {
-    "key_ops": ["verify"],
+    "key_ops": [
+      "verify"
+    ],
     "ext": true,
     "kty": "EC",
-    "x": "0QErlD-6ZJnJJYxCBpV7R8hGG08bVsA9t_85rNU5Nz4",
-    "y": "8iM8gHvhIE8eEq--2FteZnoLgYiZ5uqqeBxtrul0DeQ",
+    "x": "pAOsdvif4n2Rd9Zo3ldqTKYNfYXmRYmsxSXJwgipYr4",
+    "y": "K4XvQXAeZnNekA9Ni2Q6qpusFeIN4t65T4ZxCXkXluI",
     "crv": "P-256",
     "kid": "k1"
   }
 }
+

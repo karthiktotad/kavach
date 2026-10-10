@@ -10,6 +10,10 @@ import { vi } from 'vitest'
 import { axe } from 'vitest-axe'
 import type { AxeResults } from 'axe-core'
 
+vi.mock('virtual:pwa-register', () => ({
+  registerSW: () => () => {},
+}))
+
 /**
  * `expectNoAxeViolations` — the axe assertion used by every component test.
  *
