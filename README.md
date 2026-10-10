@@ -7,13 +7,22 @@
 
 ---
 
-[![Hackathon Track](https://img.shields.io/badge/Hackathon%20Track-TravelTech-blue.svg?style=for-the-badge)](https://kavach.pages.dev)
-[![Offline Guarantee](https://img.shields.io/badge/Offline%20First-100%25%20Functional%20No%20Data-success.svg?style=for-the-badge)](https://kavach.pages.dev)
-[![Cryptography](https://img.shields.io/badge/Security-ECDSA%20P--256%20WebCrypto-orange.svg?style=for-the-badge)](https://kavach.pages.dev)
-[![Languages](https://img.shields.io/badge/Languages-8%20Pre--Translated%20Locales-purple.svg?style=for-the-badge)](https://kavach.pages.dev)
-[![Test Suite](https://img.shields.io/badge/Tests-369%20Passed%20(41%20Suites)-brightgreen.svg?style=for-the-badge)](https://kavach.pages.dev)
+[![Live App](https://img.shields.io/badge/Live%20App-kavach--drab.vercel.app-blue.svg?style=for-the-badge&logo=vercel)](https://kavach-drab.vercel.app/)
+[![Demo Video](https://img.shields.io/badge/Demo%20Video-Google%20Drive-red.svg?style=for-the-badge&logo=google-drive)](https://drive.google.com/drive/folders/1fMdtV2fdBkDb_2fgMU6jtOa10H-hm9SW)
+[![Offline Guarantee](https://img.shields.io/badge/Offline%20First-100%25%20Functional%20No%20Data-success.svg?style=for-the-badge)](https://kavach-drab.vercel.app/)
+[![Cryptography](https://img.shields.io/badge/Security-ECDSA%20P--256%20WebCrypto-orange.svg?style=for-the-badge)](https://kavach-drab.vercel.app/)
+[![Languages](https://img.shields.io/badge/Languages-8%20Pre--Translated%20Locales-purple.svg?style=for-the-badge)](https://kavach-drab.vercel.app/)
+[![Test Suite](https://img.shields.io/badge/Tests-369%20Passed%20(41%20Suites)-brightgreen.svg?style=for-the-badge)](https://kavach-drab.vercel.app/)
 
 `Pilot Region:` **Mamallapuram (Mahabalipuram) & the Chennai Coastal Corridor, Tamil Nadu, India**
+
+<br />
+
+| 🌐 Resource | 🔗 URL | 📝 Note |
+|---|---|---|
+| **Live App** | [https://kavach-drab.vercel.app/](https://kavach-drab.vercel.app/) | No-install PWA with full offline caching |
+| **Authority Interface** | [https://kavach-drab.vercel.app/#/authority](https://kavach-drab.vercel.app/#/authority) | Sign-in required; alerts issued here are Drills |
+| **Demo Video** | [Google Drive Demo Folder](https://drive.google.com/drive/folders/1fMdtV2fdBkDb_2fgMU6jtOa10H-hm9SW) | 2–5 min end-to-end walkthrough video |
 
 </div>
 
@@ -363,11 +372,11 @@ Follow this 3-minute walkthrough to verify all core features:
 
 ```
  Step 1: Authority Issuance ──▶ Step 2: Tourist Verification ──▶ Step 3: Offline Map & Evacuation
- (http://localhost:5173/#/authority)   (http://localhost:5173/#/alerts)     (http://localhost:5173/#/map)
+ (https://kavach-drab.vercel.app/#/authority)   (https://kavach-drab.vercel.app/#/alerts)     (https://kavach-drab.vercel.app/#/map)
 ```
 
 1. **Step 1: Open the Authority Console**
-   - Navigate to **[http://localhost:5173/#/authority](http://localhost:5173/#/authority)**.
+   - Navigate to **[https://kavach-drab.vercel.app/#/authority](https://kavach-drab.vercel.app/#/authority)** (or `http://localhost:5173/#/authority`).
    - Click **`Demo Authority (Judge Access · Drill-Only)`**.
    - In Step 1, select **Flood (`FL`)** and **Level 3 (Warning)**. Click *Next*.
    - In Step 2, check **Zone 1 (Mamallapuram seafront)** and **Zone 2**. Click *Next*.
@@ -376,11 +385,11 @@ Follow this 3-minute walkthrough to verify all core features:
    - Click **`Print QR poster`** to preview the evacuation poster layout.
 
 2. **Step 2: Verify in the Tourist App**
-   - Navigate to **[http://localhost:5173/#/alerts](http://localhost:5173/#/alerts)**.
+   - Navigate to **[https://kavach-drab.vercel.app/#/alerts](https://kavach-drab.vercel.app/#/alerts)** (or `http://localhost:5173/#/alerts`).
    - Observe the newly broadcast alert with its **ECDSA Verified Badge**, **Drill indicator**, and translated safety actions.
 
 3. **Step 3: Test Zero-Tile Map & Evacuation Routing**
-   - Navigate to **[http://localhost:5173/#/map](http://localhost:5173/#/map)**.
+   - Navigate to **[https://kavach-drab.vercel.app/#/map](https://kavach-drab.vercel.app/#/map)** (or `http://localhost:5173/#/map`).
    - Notice the coastal flood zones rendered with red hatch patterns.
    - Click any green shelter marker (e.g. *Government School Shelter*).
    - Click **`Start route`** — see the client-side Dijkstra engine compute a safe route navigating around the flooded zones!
