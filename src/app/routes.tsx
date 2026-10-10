@@ -161,6 +161,7 @@ export function AppRoutes() {
             <Route path="/map" element={<MapPage />} />
             <Route path="/assist" element={<AssistPage />} />
             <Route path="/aid" element={<AidPage />} />
+            <Route path="/sos" element={<AidPage />} />
             <Route path="/phrases" element={<PhrasesPage />} />
             <Route path="/me" element={<MePage />} />
             <Route path="/report" element={<ReportsPage />} />

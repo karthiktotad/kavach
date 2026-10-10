@@ -126,12 +126,7 @@ export async function deleteAllMedicalId(): Promise<void> {
   await getDb().medicalId.delete(DOCUMENT_ID)
 }
 
-/**
- * Export Medical ID as a compact payload suitable for emergency responder QR codes.
- * Omits all empty/undefined fields.
- */
-export async function exportToQrPayload(): Promise<string> {
-  const data = await getMedicalId()
+export function formatMedicalIdToQr(data: MedicalIdData | null): string {
   if (!data) return 'KAVACH:MED:EMPTY'
 
   const exportObj: Record<string, unknown> = {
@@ -150,4 +145,13 @@ export async function exportToQrPayload(): Promise<string> {
   if (data.embassyNumber) exportObj.emb = data.embassyNumber
 
   return `KAVACH:MED:${JSON.stringify(exportObj)}`
+}
+
+/**
+ * Export Medical ID as a compact payload suitable for emergency responder QR codes.
+ * Omits all empty/undefined fields.
+ */
+export async function exportToQrPayload(overrideData?: MedicalIdData | null): Promise<string> {
+  const data = overrideData !== undefined ? overrideData : await getMedicalId()
+  return formatMedicalIdToQr(data)
 }
