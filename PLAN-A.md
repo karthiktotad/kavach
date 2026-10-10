@@ -110,9 +110,9 @@ Device A owns:
 
 ## FE-8 — Permissions Module
 
-- [ ] Build src/lib/permissions.ts
-- [ ] Write tests
-- [ ] Verify
+- [x] Build src/lib/permissions.ts
+- [x] Write tests
+- [x] Verify
 
 ---
 
