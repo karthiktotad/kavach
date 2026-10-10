@@ -39,7 +39,7 @@ export function AppHeader() {
           <button
             type="button"
             onClick={() => {
-              if (window.history.length > 1) navigate(-1)
+              if (window.history.length > 1) void navigate(-1)
               else void navigate('/')
             }}
             aria-label={t('ui.back')}

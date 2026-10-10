@@ -29,9 +29,10 @@ import { useRoutes } from 'react-router-dom'
 const DevUiPage = import.meta.env.DEV ? lazy(() => import('../pages/DevUiPage')) : null
 
 const ARoutes: ComponentType = () => {
-  if (!import.meta.env.DEV || DevUiPage === null) return null
-  const DevUi = DevUiPage
-  return useRoutes([{ path: '/dev/ui', element: <DevUi /> }])
+  const routes = useRoutes(
+    !import.meta.env.DEV || DevUiPage === null ? [] : [{ path: '/dev/ui', element: <DevUiPage /> }],
+  )
+  return routes
 }
 
 export default ARoutes

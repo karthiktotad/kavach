@@ -21,36 +21,36 @@ Device A owns:
 
 - [x] Create PARALLEL_A.md
 - [x] Create PLAN-A.md
-- [ ] Write DESIGN_SPEC.md (if not exists)
-- [ ] Add pointer to PARALLEL_A.md in AGENTS.md (already exists at line 161)
-- [ ] Build tokens (Tailwind theme + src/styles/tokens.css)
-- [ ] Build Icon component (inline SVG, stroke 2, round caps, aria-hidden)
-- [ ] Build Button component (primary, secondary, danger, drill; sizes md/lg/xl)
-- [ ] Build StatusChip component (live|degraded|offline|relay + age)
-- [ ] Build VerifiedBadge component
-- [ ] Build DrillBanner component
-- [ ] Build RiskMeter component (4 bars, filled vs outlined)
-- [ ] Build SeverityPill component
-- [ ] Build UnverifiedTag component (dashed)
-- [ ] Build SourceChip component
-- [ ] Build Card component
-- [ ] Build Sheet component (bottom sheet, focus trap, Esc)
-- [ ] Build ChipGroup component (aria-pressed)
-- [ ] Build StepList component (large numbered steps)
-- [ ] Build BottomNav component (Home, Alerts, Map, Assist, Me; aria-current)
-- [ ] Build AppHeader component (back, title, StatusChip, language button)
-- [ ] Build EmptyState component
-- [ ] Build ErrorFallback component
-- [ ] Build PhoneShell layout (max-width 480, safe-area padding)
-- [ ] Add i18n keys for UI components (src/i18n/<lang>/core.json)
-- [ ] Write unit + axe tests for each component (zero violations)
-- [ ] Create dev-only route /dev/ui (import.meta.env.DEV only)
-- [ ] Show every component in every state at 100% and 200% text
-- [ ] Show every component in RTL
-- [ ] Verify /dev/ui is absent from production build (grep)
-- [ ] Run typecheck, lint, tests, build
-- [ ] Report first-route bundle size
-- [ ] Commit, update PLAN-A.md, push fe-a
+- [x] Write DESIGN_SPEC.md (already exists, matches spec)
+- [x] Add pointer to PARALLEL_A.md in AGENTS.md (already exists at line 161)
+- [x] Build tokens (Tailwind theme + src/styles/tokens.css)
+- [x] Build Icon component (inline SVG, stroke 2, round caps, aria-hidden)
+- [x] Build Button component (primary, secondary, danger, drill; sizes md/lg/xl)
+- [x] Build StatusChip component (live|degraded|offline|relay + age)
+- [x] Build VerifiedBadge component
+- [x] Build DrillBanner component
+- [x] Build RiskMeter component (4 bars, filled vs outlined)
+- [x] Build SeverityPill component
+- [x] Build UnverifiedTag component (dashed)
+- [x] Build SourceChip component
+- [x] Build Card component
+- [x] Build Sheet component (bottom sheet, focus trap, Esc)
+- [x] Build ChipGroup component (aria-pressed)
+- [x] Build StepList component (large numbered steps)
+- [x] Build BottomNav component (Home, Alerts, Map, Assist, Me; aria-current)
+- [x] Build AppHeader component (back, title, StatusChip, language button)
+- [x] Build EmptyState component
+- [x] Build ErrorFallback component
+- [x] Build PhoneShell layout (max-width 480, safe-area padding)
+- [x] Add i18n keys for UI components (src/i18n/<lang>/core.json)
+- [x] Write unit + axe tests for each component (zero violations)
+- [x] Create dev-only route /dev/ui (import.meta.env.DEV only)
+- [x] Show every component in every state at 100% and 200% text
+- [x] Show every component in RTL
+- [x] Verify /dev/ui is absent from production build (grep)
+- [x] Run typecheck, lint, tests, build
+- [x] Report first-route bundle size: 458.03 kB (index-Cb5mwMd_.js)
+- [x] Commit, update PLAN-A.md, push fe-a
 
 ---
 

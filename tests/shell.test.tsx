@@ -69,7 +69,7 @@ describe('app shell', () => {
 
     await waitFor(() => {
       const nav = screen.getByRole('navigation', { name: /main navigation/i })
-      for (const label of [/home/i, /alerts/i, /map/i, /assist/i, /aid/i]) {
+      for (const label of [/home/i, /alerts/i, /map/i, /assist/i, /me/i]) {
         expect(nav).toHaveTextContent(label)
       }
     })
