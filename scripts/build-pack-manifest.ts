@@ -30,7 +30,7 @@ async function listPackFiles(): Promise<string[]> {
         continue
       }
       if (entry.name === 'manifest.json') continue // never list itself
-      if (INCLUDE.test(entry.name)) out.push(relative(PACK_DIR, full))
+      if (INCLUDE.test(entry.name)) out.push(relative(PACK_DIR, full).replace(/\\/g, '/'))
     }
   }
 
