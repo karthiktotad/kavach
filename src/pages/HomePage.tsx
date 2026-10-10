@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Button, Card, DrillBanner, RiskMeter, VerifiedBadge } from '../components/ui'
+import { Link } from 'react-router-dom'
+import { Button, Card, DrillBanner, Icon, RiskMeter, VerifiedBadge } from '../components/ui'
 import { Page } from '../components/Page'
 import { useLanguage } from '../store/language'
 import { useConnectivity } from '../lib/connectivity'
@@ -195,9 +196,11 @@ export function HomePageView({
                   Expires {alert.expiresAt ? new Date(alert.expiresAt).toLocaleString(locale) : 'n/a'}
                 </span>
               </div>
-              <Button href={`/a/${alert.packetId}`} className="w-full" size="lg">
-                Open action card
-              </Button>
+              <Link to={`/a/${alert.packetId}`} className="block w-full">
+                <Button className="w-full" size="lg">
+                  Open action card
+                </Button>
+              </Link>
             </>
           ) : (
             <p className="text-[15px] text-ink">
@@ -218,43 +221,49 @@ export function HomePageView({
           <p className="text-[12px] text-muted">Last check-in {formatAge(lastCheckIn, locale)}</p>
         ) : null}
 
-        <div className="grid grid-cols-3 gap-3">
-          <a
-            href="/map?focus=nearest"
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-12 bg-surface p-3 text-center text-ink ring-1 ring-line"
+        <div className="grid grid-cols-3 gap-2.5">
+          <Link
+            to="/map"
+            className="flex min-h-[80px] flex-col items-center justify-center rounded-14 bg-surface p-2.5 text-center text-ink border border-line shadow-xs hover:border-verified/50 active:scale-98 transition-all"
           >
-            <span className="text-[12px] font-bold">Nearest shelter</span>
-          </a>
-          <a
-            href="/sos"
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-12 bg-danger p-3 text-center text-white ring-1 ring-danger-dark"
+            <Icon name="pin" className="h-5 w-5 mb-1 text-verified" />
+            <span className="text-[11px] font-bold leading-tight">Nearest shelter</span>
+          </Link>
+          <Link
+            to="/sos"
+            className="flex min-h-[80px] flex-col items-center justify-center rounded-14 bg-danger p-2.5 text-center text-white border border-danger-dark shadow-xs hover:opacity-95 active:scale-98 transition-all"
           >
-            <span className="text-[12px] font-bold">SOS</span>
-          </a>
-          <a
-            href="/assist"
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-12 bg-surface p-3 text-center text-ink ring-1 ring-line"
+            <Icon name="phone" className="h-5 w-5 mb-1 text-white" />
+            <span className="text-[11px] font-bold leading-tight">SOS</span>
+          </Link>
+          <Link
+            to="/assist"
+            className="flex min-h-[80px] flex-col items-center justify-center rounded-14 bg-surface p-2.5 text-center text-ink border border-line shadow-xs hover:border-verified/50 active:scale-98 transition-all"
           >
-            <span className="text-[12px] font-bold">Ask assistant</span>
-          </a>
-          <a
-            href="/aid"
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-12 bg-surface p-3 text-center text-ink ring-1 ring-line"
+            <Icon name="chat" className="h-5 w-5 mb-1 text-brand" />
+            <span className="text-[11px] font-bold leading-tight">Ask assistant</span>
+          </Link>
+          <Link
+            to="/aid"
+            className="flex min-h-[80px] flex-col items-center justify-center rounded-14 bg-surface p-2.5 text-center text-ink border border-line shadow-xs hover:border-verified/50 active:scale-98 transition-all"
           >
-            <span className="text-[12px] font-bold">First aid</span>
-          </a>
-          <a
-            href="/phrases"
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-12 bg-surface p-3 text-center text-ink ring-1 ring-line"
+            <Icon name="aid" className="h-5 w-5 mb-1 text-danger" />
+            <span className="text-[11px] font-bold leading-tight">First aid</span>
+          </Link>
+          <Link
+            to="/phrases"
+            className="flex min-h-[80px] flex-col items-center justify-center rounded-14 bg-surface p-2.5 text-center text-ink border border-line shadow-xs hover:border-verified/50 active:scale-98 transition-all"
           >
-            <span className="text-[12px] font-bold">Show a local</span>
-          </a>
-          <a
-            href="/check"
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-12 bg-surface p-3 text-center text-ink ring-1 ring-line"
+            <Icon name="speaker" className="h-5 w-5 mb-1 text-verified" />
+            <span className="text-[11px] font-bold leading-tight">Show a local</span>
+          </Link>
+          <Link
+            to="/scan"
+            className="flex min-h-[80px] flex-col items-center justify-center rounded-14 bg-surface p-2.5 text-center text-ink border border-line shadow-xs hover:border-verified/50 active:scale-98 transition-all"
           >
-            <span className="text-[12px] font-bold">Check a message</span>
-          </a>
+            <Icon name="qr" className="h-5 w-5 mb-1 text-ink" />
+            <span className="text-[11px] font-bold leading-tight">Check a message</span>
+          </Link>
         </div>
       </div>
     </Page>
