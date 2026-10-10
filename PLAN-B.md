@@ -63,4 +63,21 @@ This plan tracks non-UI and UI tasks owned by Device B on branch `fe-b`.
     - [x] "Delete all" data bottom sheet confirmation
     - [x] "Offline AI (experimental)" toggle with WebGPU check, ~400 MB download hint, and delete model button
     - [x] Tests in `tests/me-page.test.tsx` (5 tests passing)
-- [x] **Verification**: Typecheck (tsc -b), Lint (eslint), Tests (361 tests across 40 test files passing), Build (production bundle + service worker clean)
+- [x] **FE-8 UI: Authority Console (`/authority`)**
+  - [x] Responsive Desktop-First Shell:
+    - [x] Top bar (ink): Logo, "Kavach Authority Console", Mode chip (`DRILL MODE · 演習` orange / `LIVE MODE · 本番` red), "Signed in · Authority role" badge, Sign out.
+    - [x] Sidebar (220px desktop, wrapping responsive down to 768px): *Create alert*, *Active alerts*, *History*, *Community reports*, *Check-ins*.
+    - [x] Dedicated Demo Authority login for judges (forced to Drill server-side, clearly labelled).
+  - [x] 4-Step Alert Creation Wizard (built on `src/pages/authority/wizard.ts`):
+    - [x] Step 1: Hazard and level radio cards with plain-language level descriptions + duration.
+    - [x] Step 2: Zones checklist + risk mapping per zone.
+    - [x] Step 3: Review summary, Mode segmented control (`Drill` default, `Live` with confirmation dialog naming affected zone count), "What tourists will see" tabs across 8 languages (`EN`, `TA`, `HI`, `FR`, `DE`, `AR`, `ZH`, `JA`), payload preview showing PAYLOAD ONLY with `[issued] [expires] [seq]` placeholders & length estimate under 160 chars, optional "Suggest wording" assistant.
+    - [x] Step 4: Sign & Broadcast calling `sign-alert` with double-submit lock (no optimistic UI), success screen with packet, length, share link, copy buttons, pure SVG QR code, and "Print QR poster" (print stylesheet with high-contrast poster and DRILL marking).
+  - [x] Other Panels:
+    - [x] *Active alerts*: Expiry countdown, Extend (+2h), Escalate (+1 level), Cancel (Level 0 / AC All-Clear with higher seq via `AuthorityWizard.createCancelDraft`).
+    - [x] *History*: Filter by All/Drill/Live with in-browser offline ECDSA re-verification badge per packet.
+    - [x] *Right Aside*: Community reports with confidence score and "Official confirm" (pre-filling wizard) + Aggregated zone check-ins with drop detection flags ("No names, phone numbers or exact positions").
+  - [x] Code-split lazy chunk in `src/app/routes.tsx` (`AuthorityPage-*.js`, 277.6 kB, lazy-loaded out of tourist bundle).
+  - [x] Tests in `tests/authority-page.test.tsx` (6 tests passing).
+- [x] **Verification**: Typecheck (tsc -b), Lint (eslint), Tests (367 tests across 41 test files passing), Build (production bundle + service worker clean)
+

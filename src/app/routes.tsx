@@ -93,9 +93,9 @@ function OnboardingGate({ children }: { children: ReactNode }) {
   // Render nothing until we know the flag for THIS path.
   if (!read || read.path !== location.pathname) return null
 
-  // `/a/<packet>` is always exempt: a signed packet handed over by SMS must render
-  // even for someone who never completed onboarding.
-  const exempt = location.pathname === '/ready' || location.pathname.startsWith('/a/')
+  // `/a/<packet>` and `/authority` are always exempt: emergency packets and authority console
+  // must render even if tourist onboarding was not completed.
+  const exempt = location.pathname === '/ready' || location.pathname.startsWith('/a/') || location.pathname === '/authority'
   if (!read.value && !exempt) return <Navigate to="/ready" replace />
 
   return <>{children}</>
@@ -138,6 +138,8 @@ function Updates() {
 
 export function AppRoutes() {
   const { t } = useLanguage()
+  const { pathname } = useLocation()
+  const isAuthority = pathname === '/authority'
 
   return (
     <div className="bg-surface-sunken min-h-dvh">
@@ -151,8 +153,8 @@ export function AppRoutes() {
         {t('a11y.skipToContent')}
       </a>
 
-      <AppHeader />
-      <Updates />
+      {!isAuthority && <AppHeader />}
+      {!isAuthority && <Updates />}
 
       <Suspense fallback={<RouteFallback />}>
         <OnboardingGate>
@@ -189,7 +191,7 @@ export function AppRoutes() {
         </Suspense>
       ) : null}
 
-      <BottomNav />
+      {!isAuthority && <BottomNav />}
     </div>
   )
 }

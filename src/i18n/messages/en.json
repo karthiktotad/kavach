@@ -322,5 +322,17 @@
   "compass.grantPermission": "Enable Compass Heading",
   "compass.target": "Target:",
   "compass.bearing": "Bearing:",
-  "compass.distance": "Distance:"
+  "compass.distance": "Distance:",
+  "authority.title": "Kavach Authority Console",
+  "authority.roleBadge": "Signed in · Authority role",
+  "authority.signOut": "Sign out",
+  "authority.demoMode": "Demo Authority (Judge Access · Drill Only)",
+  "authority.notAuthorised": "Not authorised",
+  "authority.step1": "Hazard & Level",
+  "authority.step2": "Target Zones",
+  "authority.step3": "Review & Translations",
+  "authority.step4": "Sign & Broadcast",
+  "authority.drillMode": "DRILL MODE · 演習",
+  "authority.liveMode": "LIVE BROADCAST",
+  "authority.printPoster": "Print QR poster"
 }
