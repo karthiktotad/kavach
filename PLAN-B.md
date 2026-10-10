@@ -21,13 +21,24 @@ This plan tracks non-UI and UI tasks owned by Device B on branch `fe-b`.
 - [x] **FE-8 Logic: Authority Wizard State Machine**
   - [x] `src/pages/authority/wizard.ts` (state machine, drill/live confirmation, cancel/all-clear logic, preview)
   - [x] Tests in `tests/authority-wizard.test.ts` (8 tests passing)
-- [x] **FE-5 Logic: Map and Routing Helpers**
+- [x] **FE-5 Logic & UI: Map, Place Sheet, and Compass**
   - [x] `src/lib/map/math.ts` (distance, bearing, compass text)
   - [x] `src/lib/map/polling.ts` (low-power geolocation settings)
   - [x] `src/lib/map/nearest.ts` (nearest place search & list fallback)
   - [x] `src/lib/map/layers.ts` (GeoJSON layer builders)
-  - [x] `src/lib/map/route.ts` & `src/workers/router.worker.ts` (offline graph routing avoiding hazard zones)
-  - [x] **FE-6 UI: Assistant Screen (`/assist`)**
+  - [x] `src/lib/map/route.ts` & `src/workers/router.worker.ts` (offline graph routing avoiding hazard zones in <1s)
+  - [x] `src/pages/MapPage.tsx`
+    - [x] 100% offline vector SVG map engine with bottom-to-top rendering: Base flat ground, white road graph, hazard zones (risk levels 0..4, hatch pattern for flagged level >= 2, dashed halo for unverified reports), place markers with distinct shapes (shield for shelter, cross for hospital/clinic, diamond for police), route line (white casing + blue), user dot + accuracy ring.
+    - [x] Top-left legend: "Flagged by authority" (hatch swatch), "Unverified report" (dashed swatch).
+    - [x] Top-right controls: Layers/filters sheet, Compass modal, Recentre, Zoom controls.
+    - [x] Bottom-end mandatory attribution: "Map data © OpenStreetMap contributors".
+    - [x] Place bottom sheet (`Sheet`): Name, type, distance, bearing, `UnverifiedTag`, honest duration note: "About N min on foot. The route avoids flagged areas. It cannot promise the way is safe."
+    - [x] Buttons: `Start route` (blue primary) and `Compass` (secondary), plus expandable `StepList`.
+    - [x] Full-screen Compass modal: Rotating needle + distance + bearing + sensor permission request + fallback text: "Head roughly north-east, 900 m".
+    - [x] Fallbacks: GPS denied (manual start location picker), No places (`EmptyState`), WebGL/map error (List fallback view of nearest places), Low-power mode toggle (reduces GPS polling & animations).
+    - [x] Code-split lazy chunk in `src/app/routes.tsx` (`MapPage-*.js`, 29.1 kB).
+    - [x] Tests in `tests/map-page.test.tsx` (7 tests passing).
+- [x] **FE-6 UI: Assistant Screen (`/assist`)**
   - [x] `src/pages/AssistPage.tsx`
   - [x] Header mode badge: "Online AI" | "Offline guidance · from saved safety data" | "On-device AI"
   - [x] Persistent serious-case banner with 112 emergency call button
@@ -52,4 +63,4 @@ This plan tracks non-UI and UI tasks owned by Device B on branch `fe-b`.
     - [x] "Delete all" data bottom sheet confirmation
     - [x] "Offline AI (experimental)" toggle with WebGPU check, ~400 MB download hint, and delete model button
     - [x] Tests in `tests/me-page.test.tsx` (5 tests passing)
-- [x] **Verification**: Typecheck, Lint, Tests (340 tests across 36 test files passing), Build clean
+- [x] **Verification**: Typecheck (tsc -b), Lint (eslint), Tests (361 tests across 40 test files passing), Build (production bundle + service worker clean)
