@@ -19,6 +19,9 @@ build/
 .env
 .env.*
 !.env.example
+!.env.local.example
+!.env.production.example
+!.env.development.example
 *.pem
 *.key
 *.private*
