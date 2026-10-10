@@ -376,7 +376,7 @@ Follow this 3-minute walkthrough to verify all core features:
 ```
 
 1. **Step 1: Open the Authority Console**
-   - Navigate to **[https://kavach-drab.vercel.app/#/authority](https://kavach-drab.vercel.app/#/authority)** (or `http://localhost:5173/#/authority`).
+   - Navigate to **[https://kavach-drab.vercel.app/#/authority](https://kavach-drab.vercel.app/#/authority)**.
    - Click **`Demo Authority (Judge Access · Drill-Only)`**.
    - In Step 1, select **Flood (`FL`)** and **Level 3 (Warning)**. Click *Next*.
    - In Step 2, check **Zone 1 (Mamallapuram seafront)** and **Zone 2**. Click *Next*.
@@ -385,19 +385,19 @@ Follow this 3-minute walkthrough to verify all core features:
    - Click **`Print QR poster`** to preview the evacuation poster layout.
 
 2. **Step 2: Verify in the Tourist App**
-   - Navigate to **[https://kavach-drab.vercel.app/#/alerts](https://kavach-drab.vercel.app/#/alerts)** (or `http://localhost:5173/#/alerts`).
+   - Navigate to **[https://kavach-drab.vercel.app/#/alerts](https://kavach-drab.vercel.app/#/alerts)**.
    - Observe the newly broadcast alert with its **ECDSA Verified Badge**, **Drill indicator**, and translated safety actions.
 
 3. **Step 3: Test Zero-Tile Map & Evacuation Routing**
-   - Navigate to **[https://kavach-drab.vercel.app/#/map](https://kavach-drab.vercel.app/#/map)** (or `http://localhost:5173/#/map`).
+   - Navigate to **[https://kavach-drab.vercel.app/#/map](https://kavach-drab.vercel.app/#/map)**.
    - Notice the coastal flood zones rendered with red hatch patterns.
    - Click any green shelter marker (e.g. *Government School Shelter*).
    - Click **`Start route`** — see the client-side Dijkstra engine compute a safe route navigating around the flooded zones!
    - Click **`Compass`** to open the full-screen directional needle.
 
 4. **Step 4: Test Show-a-Local Phrasebook & SOS**
-   - Navigate to **[http://localhost:5173/#/phrases](http://localhost:5173/#/phrases)** and click **`Read aloud`** to hear spoken Tamil.
-   - Navigate to **[http://localhost:5173/#/sos](http://localhost:5173/#/sos)** to see 22px high-contrast GPS coordinates and 112 speed dial.
+   - Navigate to **[https://kavach-drab.vercel.app/#/phrases](https://kavach-drab.vercel.app/#/phrases)** and click **`Read aloud`** to hear spoken Tamil.
+   - Navigate to **[https://kavach-drab.vercel.app/#/sos](https://kavach-drab.vercel.app/#/sos)** to see 22px high-contrast GPS coordinates and 112 speed dial.
 
 ---
 
