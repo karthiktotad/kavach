@@ -9,6 +9,16 @@
     "y": "K4XvQXAeZnNekA9Ni2Q6qpusFeIN4t65T4ZxCXkXluI",
     "crv": "P-256",
     "kid": "k1"
+  },
+  "kavach-pilot-2026-01": {
+    "key_ops": [
+      "verify"
+    ],
+    "ext": true,
+    "kty": "EC",
+    "x": "hupxfXfftGdTU2bFwVa4GoPD9NdJdzEaQ7pMq0ao5Nk",
+    "y": "HHRh6SvXLiG823c4APmFM8TRV6PG4u3wPWnrT6ODeZU",
+    "crv": "P-256",
+    "kid": "kavach-pilot-2026-01"
   }
 }
-
