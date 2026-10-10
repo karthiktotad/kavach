@@ -20,16 +20,20 @@
     "pack:roads": "node scripts/build-road-graph.ts",
     "pack:manifest": "node scripts/build-pack-manifest.ts",
     "pack:translate": "node scripts/translate-pack.ts",
+    "keys:gen": "node scripts/gen-keys.ts",
+    "gen-keys": "node scripts/gen-keys.ts",
     "verify": "npm run typecheck && npm run lint && npm test && npm run build",
     "e2e": "playwright test"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.117.3",
     "dexie": "^4.4.6",
     "maplibre-gl": "^6.13.0",
     "minisearch": "^7.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
