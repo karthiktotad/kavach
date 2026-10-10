@@ -57,14 +57,14 @@ one-tap SOS via `sms:`/`tel:`, and show-a-local cards with read-aloud.
 
 ---
 
-## Status: **M1 + M2 + M3 complete**
+## Status: **M1 + M2 complete**
 
 | Milestone | Status |
 | --- | --- |
 | M1 Scaffold, docs, app shell | ✅ complete |
 | M2 Content pack (offline data) | ✅ complete |
-| M3 Offline core (Dexie, connectivity ladder) | ✅ complete |
-| M4 Signed alert packets | ⬜ next |
+| M3 Offline core (Dexie, connectivity ladder) | ⬜ next |
+| M4 Signed alert packets | ⬜ |
 | M5 Backend (Supabase) | ⬜ |
 | M6 Authority console | ⬜ |
 | M7 Tourist alerts + relay | ⬜ |
