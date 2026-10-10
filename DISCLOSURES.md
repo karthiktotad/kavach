@@ -22,8 +22,8 @@ not allowed in the repo — add the entry in the same commit that introduces the
 | [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) | MIT | Service worker / Workbox precache + runtime caching | ✅ |
 | [Workbox](https://developer.chrome.com/docs/workbox) (via vite-plugin-pwa) | MIT | Offline caching strategy | ✅ |
 | [Dexie](https://dexie.org/) | Apache-2.0 | IndexedDB wrapper for offline storage | 🟡 |
-| [MapLibre GL JS](https://maplibre.org/) | BSD-3-Clause | Map rendering (no proprietary tiles) | 🟡 |
-| [MiniSearch](https://lucaong.github.io/minisearch/) | MIT | On-device full-text search over the first-aid / phrasebook KB | 🟡 |
+| [MapLibre GL JS](https://maplibre.org/) | BSD-3-Clause | Map rendering (no proprietary tiles) | ✅ |
+| [MiniSearch](https://lucaong.github.io/minisearch/) | MIT | On-device full-text search over the first-aid / phrasebook KB | ✅ |
 | [Vitest](https://vitest.dev/) | MIT | Unit test runner | ✅ |
 | [Testing Library](https://testing-library.com/) | MIT | Component tests | ✅ |
 | [ESLint](https://eslint.org/) | MIT | Linting | ✅ |
@@ -41,9 +41,9 @@ Web Share API, `speechSynthesis` (SpeechSynthesis API), `BarcodeDetector` (progr
 
 | Component | Licence / plan | Use | Status |
 | --- | --- | --- | --- |
-| [Supabase](https://supabase.com/) | Apache-2.0 core / free tier | Postgres + PostGIS, Realtime, Auth (anonymous sign-ins), Edge Functions (Deno) | 🟡 |
-| PostgreSQL | PostgreSQL Licence | Primary datastore | 🟡 |
-| PostGIS | GPL-2.0 (as bundled by Supabase) | Geometry columns for zones, hazards, shelters | 🟡 |
+| [Supabase](https://supabase.com/) | Apache-2.0 core / free tier | Postgres + PostGIS, Realtime, Auth (anonymous sign-ins), Edge Functions (Deno) | ✅ |
+| PostgreSQL | PostgreSQL Licence | Primary datastore | ✅ |
+| PostGIS | GPL-2.0 (as bundled by Supabase) | Geometry columns for zones, hazards, shelters | ✅ |
 
 ---
 
@@ -51,11 +51,11 @@ Web Share API, `speechSynthesis` (SpeechSynthesis API), `BarcodeDetector` (progr
 
 | Source | Provider | Terms / attribution | Use | Status |
 | --- | --- | --- | --- | --- |
-| [Open-Meteo](https://open-meteo.com/) Forecast API | open-meteo.com | Free for non-commercial use, attribution required | Weather forecast per zone | 🟡 |
+| [Open-Meteo](https://open-meteo.com/) Forecast API | open-meteo.com | Free for non-commercial use, attribution required | Weather forecast per zone | ✅ |
 | [Open-Meteo](https://open-meteo.com/) Flood / discharge API | open-meteo.com | Free for non-commercial use, attribution required | River discharge + flood probability | 🟡 |
-| [GDACS](https://www.gdacs.org/) RSS | European Commission / JRC | Public feed, attribution required | Global disaster alerts | 🟡 |
-| [NDMA SACHET](https://sachet.ndma.gov.in/) | National Disaster Management Authority, India | Government open data | India-wide alerts (reachability varies) | 🟡 |
-| [IMD CAP](https://mausam.imd.gov.in/) | India Meteorological Department | Government open data | India weather warnings | 🟡 |
+| [GDACS](https://www.gdacs.org/) RSS | European Commission / JRC | Public feed, attribution required | Global disaster alerts | ✅ |
+| [NDMA SACHET](https://sachet.ndma.gov.in/) | National Disaster Management Authority, India | Government open data | India-wide alerts (reachability varies) | ✅ |
+| [IMD CAP](https://mausam.imd.gov.in/) | India Meteorological Department | Government open data | India weather warnings | ✅ |
 | [OpenStreetMap](https://www.openstreetmap.org/) data | OpenStreetMap contributors | **ODbL 1.0** — attribution + share-alike required | Road graph (`roads.json`) and safety-relevant places (`places.json`) for the pilot region | ✅ |
 | [Overpass API](https://overpass-api.de/) | OpenStreetMap Foundation | Free community service; needs a descriptive User-Agent, fair use, no heavy automated querying | Build-time queries from `scripts/fetch-osm.ts` and `scripts/build-road-graph.ts` | ✅ |
 
