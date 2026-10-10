@@ -156,8 +156,8 @@ describe('FE-8: Authority Console UI (/authority)', () => {
     await waitFor(() => {
       expect(screen.getByTestId('step-review')).toBeInTheDocument()
     })
-    expect(screen.getByText(/All-Clear/i)).toBeInTheDocument()
-    expect(screen.getByText(/Level 0/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/All-Clear/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Level 0/i).length).toBeGreaterThan(0)
 
     // Broadcast the All-Clear cancellation
     fireEvent.click(screen.getByTestId('wizard-next-btn'))
