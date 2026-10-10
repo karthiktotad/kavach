@@ -20,6 +20,7 @@
     "pack:roads": "node scripts/build-road-graph.ts",
     "pack:manifest": "node scripts/build-pack-manifest.ts",
     "pack:translate": "node scripts/translate-pack.ts",
+    "keys:gen": "node scripts/gen-keys.ts",
     "verify": "npm run typecheck && npm run lint && npm test && npm run build",
     "e2e": "playwright test"
   },

@@ -21,6 +21,7 @@ build/
 !.env.example
 *.pem
 *.key
+*.private*
 supabase/.branches
 supabase/.temp
 

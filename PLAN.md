@@ -107,16 +107,30 @@ testing offline there would prove nothing.
 ---
 
 ## M4 — Signed alert packets (the trust core)
-- [ ] `shared/packet/codec.ts` — compact encode/decode (**fits one SMS and one QR**), versioned, checksummed
-- [ ] `shared/packet/types.ts` — hazard codes, levels 0–4, zone ids, expiry, issuer, signature
-- [ ] `shared/packet/verify.ts` — ECDSA P-256 verify via **WebCrypto**
-- [ ] `shared/keys/` — bundled authority public key(s) + key id registry
-- [ ] Ed25519→P-256 decision recorded; canonical serialisation + base64url helpers
-- [ ] UI: scan QR (`BarcodeDetector` where available, manual paste fallback), paste SMS link
-- [ ] Deep link `/#/a/:packet` renders + verifies a packet fully offline
-- [ ] Packet detail: who signed, when, expiry, hazard, zone, plain-language render, **DRILL badge**
-- [ ] Tamper tests: flipped byte, wrong key, expired, unknown key id, truncated, malformed base64
-- [ ] Unit tests: codec round-trip, size budget, verification matrix
+- [x] `shared/packet.ts` — compact encode/decode (**fits one SMS and one QR**), versioned, strict validation
+- [x] `shared/packet.ts` — hazard codes, levels 0–4, zone ids, base36 unix minutes, sequence, mode (L/D)
+- [x] `shared/packet.ts` — ECDSA P-256 verify & sign via standard **WebCrypto**
+- [x] `src/config/authorityKeys.json` & `scripts/gen-keys.ts` — bundled authority public key(s) + key id registry
+- [x] Base64url helpers without padding or unsafe characters, 64-byte raw IEEE P1363 signature format
+- [x] Clock handling with skew tolerance (10 min default) + caution warning banner
+- [x] `shared/alertState.ts` — alert supersede, level 0 / All-Clear cancellation, seq precedence, drill isolation
+- [x] `src/lib/packetClient.ts` — client-side verify, template renderer, IndexedDB (`packets` + `alerts`) persistence
+- [x] Deep link `/#/a/:packet` renders + verifies a packet fully offline
+- [x] Packet detail: who signed, when, expiry, hazard, zone, plain-language render, **DRILL badge**
+- [x] `docs/PACKET_SPEC.md` — comprehensive specification of packet protocol and constraints
+- [x] Tamper tests: flipped byte, wrong key, expired, unknown key id, truncated, malformed base64
+- [x] Unit tests: codec round-trip, size budget (< 160 chars), verification matrix, 500-string fuzz test
+
+### M4 verification record (real output)
+
+```
+npm run typecheck   → clean (0 errors)
+npm run lint        → 0 problems
+npm test            → 9 test files, 105 tests passed (18 packet & alert state tests)
+npm run build       → 31 precache entries (509 KiB), manifest + sw.js emitted
+npx playwright test → 2 passed (offline shell + offline /#/a/<packet> deep link verified)
+Example packet      → KV1.k1.FL.3.Z1-Z2-Z3.16z5d4g.16z5df4.1.L.<86-char base64url sig> (~126 chars, < 160 budget)
+```
 
 ---
 

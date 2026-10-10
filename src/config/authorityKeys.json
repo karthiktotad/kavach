@@ -1,0 +1,13 @@
+{
+  "k1": {
+    "key_ops": [
+      "verify"
+    ],
+    "ext": true,
+    "kty": "EC",
+    "x": "4gN4MqpDA7M0303SqV3tIvIPJUpWF_9owVj_8uv1E8w",
+    "y": "ymcecjiEt8U_siv2_tuzay00PAzy7aJxnCcU7NvNv3U",
+    "crv": "P-256",
+    "kid": "k1"
+  }
+}
