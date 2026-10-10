@@ -1,0 +1,383 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:25:16Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "fr",
+  "chunks": [
+    {
+      "id": "bleeding-severe",
+      "title": "Saignement sévère",
+      "tags": ["saignement", "sang", "plaie", "coupure", "hémorragie", "hémorragie"],
+      "steps": ["Appuyez fermement et directement sur la plaie avec un linge propre ou la paume de votre main.", "Continuez à appuyer sans soulever pour vérifier. Ne retirez pas le premier linge si le sang le traverse — ajoutez-en un autre par-dessus.", "Surélevez le membre blessé au-dessus du cœur s'il n'y a pas de suspicion de fracture.", "Gardez la personne au chaud et immobile.", "Appelez les secours immédiatement. Si le saignement ne diminue pas après 10 minutes de pression ferme, c'est une urgence."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "OMS / Fédération internationale des sociétés de la Croix-Rouge - Directives de premiers secours de base",
+      "verified": false
+    },
+    {
+      "id": "burns",
+      "title": "Brûlures",
+      "tags": ["brûlure", "feu", "flamme", "brûlure thermique", "chaud", "bouillir", "vapeur", "coup de soleil"],
+      "steps": ["Arrêtez la combustion. Si la personne est en feu, recouvrez-la d'une couverture ou d'un tissu lourd pour étouffer les flammes.", "Refroidissez la brûlure sous de l'eau fraîche du robinet pendant au moins 20 minutes. N'utilisez pas de glace.", "Retirez bagues, montres et vêtements serrés avant que le gonflement ne commence, sauf s'ils collent à la peau.", "Recouvrez sans serrer avec du film étirable ou un linge propre et non pelucheux.", "Ne percez pas les cloques, n'appliquez pas de dentifrice, d'huile, de beurre ou de glace, et ne tirez pas sur les vêtements collés à la brûlure."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Directives de l'OMS sur les soins aux brûlés / Premiers secours de la Croix-Rouge",
+      "verified": false
+    },
+    {
+      "id": "fractures",
+      "title": "Fractures et suspicions de fractures",
+      "tags": ["fracture", "cassure", "os", "entorse", "luxation", "blessure"],
+      "steps": ["N'essayez pas de redresser le membre.", "Soutenez la partie blessée dans la position trouvée. Bourrez autour avec de la matière souple.", "Si cela aide, fixez le membre à la partie saine du corps avec un tissu large.", "Appliquez une compresse froide enveloppée dans un tissu pendant 20 minutes maximum pour réduire le gonflement.", "Obtenez de l'aide médicale. Ne laissez pas la personne manger ou boire, au cas où elle aurait besoin d'une opération."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Directives de premiers secours de la Croix-Rouge",
+      "verified": false
+    },
+    {
+      "id": "cpr-adult",
+      "title": "RCR — adulte (de base)",
+      "tags": ["rcr", "cœur", "cardiaque", "ne respire pas", "réanimation", "inerte"],
+      "steps": ["Vérifiez si la personne réagit. Secouez ses épaules et criez.", "Vérifiez si elle respire normalement. Regardez, écoutez et sentez pendant 10 secondes maximum.", "Si elle ne respire pas normalement, envoyez quelqu'un chercher de l'aide et trouvez un DAE s'il y en a un à proximité.", "Placez vos deux mains au centre de la poitrine, entre les mamelons. Appuyez d'environ 5 cm vers le bas, rapidement et fermement, environ deux fois par seconde.", "Continuez jusqu'à ce que la personne respire normalement, que les secours arrivent ou que vous soyez trop épuisé pour continuer."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Principes de base de soutien de la vie de l'OMS / Directives grand public du Resuscitation Council UK. REMARQUE : la profondeur et la fréquence exactes des compressions varient selon les organismes nationaux — à confirmer avant publication.",
+      "verified": false
+    },
+    {
+      "id": "drowning",
+      "title": "Noyade et sauvetage en eaux de crues",
+      "tags": ["noyade", "inondation", "eau", "submersion", "sauvetage", "dans l'eau", "sous l'eau"],
+      "steps": ["N'entrez pas dans l'eau en mouvement ou de profondeur inconnue pour tenter un sauvetage. Tendez un objet ou lancez-en un, n'y allez jamais.", "Appelez immédiatement à l'aide et procurez-vous une bouée de sauvetage, une longue perche ou une corde si possible.", "Une fois hors de l'eau, vérifiez la respiration et commencez la RCR si la personne ne respire pas normalement.", "Gardez la personne au chaud et sur le côté si elle respire, au cas où elle vomirait.", "Toute submersion nécessite une évaluation médicale, même si la personne semble aller bien ensuite."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Prévention des noyades de l'OMS / Directives de sauvetage aquatique de la Croix-Rouge",
+      "verified": false
+    },
+    {
+      "id": "heat-exhaustion",
+      "title": "Épuisement par la chaleur",
+      "tags": ["chaleur", "chaud", "insolation", "déshydratation", "transpiration", "étourdi"],
+      "steps": ["Placez la personne dans un endroit frais et ombragé.", "Desserrez les vêtements amples.", "Donnez de l'eau fraîche à siroter si elle est totalement consciente et ne vomit pas.", "Refroidissez la peau avec un linge humide ou ventilez-la.", "Si son état ne s'améliore pas dans les 30 minutes, considérez qu'il s'agit d'un coup de chaleur."],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "Directives santé-chaleur de l'OMS / Conseils canicule du Conseil indien de la recherche médicale",
+      "verified": false
+    },
+    {
+      "id": "heat-stroke",
+      "title": "Coup de chaleur",
+      "tags": ["chaleur", "coup", "chaud", "confusion", "peau chaude", "collapsus", "fièvre"],
+      "steps": ["C'est une urgence vitale. Placez la personne à l'ombre et refroidissez-la immédiatement.", "Retirez l'excès de vêtements, mouillez la peau avec de l'eau fraîche, puis ventilez-la vigoureusement.", "Appliquez des poches de froid sur le cou, les aisselles et l'aine.", "Donnez de l'eau fraîche uniquement si elle est totalement consciente et avale normalement.", "Appelez les secours immédiatement. La confusion, l'effondrement ou une peau très chaude indiquent un coup de chaleur et non un épuisement par la chaleur."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Directives santé-chaleur de l'OMS / Conseils canicule du Conseil indien de la recherche médicale",
+      "verified": false
+    },
+    {
+      "id": "hypothermia",
+      "title": "Hypothermie (trop froid)",
+      "tags": ["froid", "hypothermie", "mouillé", "frissons", "gel", "frisson"],
+      "steps": ["Placez la personne dans un endroit chaud, à l'abri du vent et de la pluie.", "Retirez les vêtements mouillés et remplacez-les par des vêtements secs, des couvertures ou des manteaux.", "Réchauffez progressivement. Ne massez pas les membres et n'utilisez pas de chaleur directe ou d'eau très chaude.", "Donnez une boisson chaude et sucrée si elle est consciente et capable d'avaler.", "Manipulez-la avec précaution et maintenez-la allongée sans bouger. L'hypothermie peut survenir après un sauvetage en cas d'inondation si la personne est mouillée et exposée au vent."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Directives de premiers secours par temps froid de la Croix-Rouge / du NHS",
+      "verified": false
+    },
+    {
+      "id": "snake-bite",
+      "title": "Morsure de serpent",
+      "tags": ["serpent", "morsure", "venin", "cobra", "kraït", "vipère"],
+      "steps": ["Éloignez-vous du serpent. N'essayez pas de l'attraper ou de le tuer.", "Maintenez la personne immobile et calme. Le mouvement propage le venin plus rapidement.", "Laissez reposer le membre mordu en le maintenant sous le niveau du cœur.", "Retirez les bagues, montres et vêtements serrés du membre avant que le gonflement ne commence.", "Ne taillez pas la plaie, ne sucez pas le venin et n'appliquez pas de garrot serré ni de glace. Appelez les services d'urgence et rendez-vous immédiatement à l'hôpital."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Directives de prise en charge des morsures de serpent de l'OMS / Conseil indien de la recherche médicale",
+      "verified": false
+    },
+    {
+      "id": "electric-shock",
+      "title": "Choc électrique",
+      "tags": ["électrique", "choc", "foudre", "courant", "fil sous tension", "courant"],
+      "steps": ["Ne touchez pas la personne tant qu'elle est en contact avec l'électricité ou de l'eau stagnante.", "Coupez d'abord l'alimentation au disjoncteur principal. Si vous ne le pouvez pas, éloignez la personne à l'aide d'un matériau sec et non conducteur tel que du bois ou du plastique.", "Une fois libéré du courant, vérifiez la respiration et commencez la RCR si la personne ne respire pas normalement.", "Tout choc électrique, même s'il semble mineur, nécessite une évaluation médicale — le rythme cardiaque peut être affecté ultérieurement.", "Considérez que tous les câbles à proximité sont sous tension jusqu'à ce que leur sécurité soit officiellement confirmée."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Directives de premiers secours de la Croix-Rouge / premiers secours en matière de sécurité électrique",
+      "verified": false
+    },
+    {
+      "id": "anaphylaxis",
+      "title": "Réaction allergique sévère (anaphylaxie)",
+      "tags": ["allergie", "allergique", "anaphylaxie", "stylo auto-injecteur", "adrénaline", "piqûre", "gonflement"],
+      "steps": ["Appelez les secours d'urgence immédiatement. Cela peut tuer en quelques minutes.", "Utilisez l'auto-injecteur d'adrénaline de la personne si elle en a un, dans la partie externe du milieu de la cuisse.", "Allongez-la à plat avec les jambes surélevées, sauf si elle a du mal à respirer, auquel cas laissez-la s'asseoir.", "En l'absence de respiration ou de pouls, commencez la RCR.", "Restez avec elle. Les symptômes pouvant réapparaître en 10 à 15 minutes, une deuxième dose peut être nécessaire si elle en possède une."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Organisation mondiale de l'allergie / Directives sur l'anaphylaxie du Resuscitation Council UK",
+      "verified": false
+    },
+    {
+      "id": "fainting",
+      "title": "Évanouissement",
+      "tags": ["évanouissement", "étourdi", "collapsus", "inconscient", "perte de connaissance", "syncope"],
+      "steps": ["Allongez la personne à plat sur le dos.", "Levez ses jambes à environ 30 cm au-dessus du corps.", "Desserrez les vêtements serrés et assurez-vous que la zone est ventilée.", "Elle devrait récupérer en une ou deux minutes. Donnez de l'eau une fois qu'elle est totalement réveillée.", "Si elle ne récupère pas en une minute, est blessée par la chute, ou si cela se reproduit, appelez les secours médicaux."],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "Directives de premiers secours de la Croix-Rouge",
+      "verified": false
+    },
+    {
+      "id": "choking",
+      "title": "Étouffement",
+      "tags": ["étouffement", "gorge", "bloqué", "avaler", "ne peut pas respirer", "silencieux"],
+      "steps": ["Demandez si la personne peut tousser. Si elle peut tousser vigoureusement, encouragez-la à continuer.", "Si elle ne peut ni parler, ni respirer, ni tousser, donnez 5 claques fermes entre les omoplates avec le talon de votre main.", "Donnez ensuite 5 compressions abdominales : poing au-dessus du nombril, saisissez avec l'autre main, tirez brusquement vers l'intérieur et vers le haut.", "Alternez 5 claques dans le dos et 5 compressions abdominales jusqu'à ce que l'objet soit expulsé ou que la personne devienne inconsciente.", "Si la personne perd connaissance, appelez les secours d'urgence et commencez la RCR. Ne balayez pas la bouche aveuglément avec un doigt."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Directives de premiers secours en cas d'étouffement de la Croix-Rouge / Resuscitation Council UK",
+      "verified": false
+    },
+    {
+      "id": "flood-safety",
+      "title": "Sécurité en cas d'inondation — ne marchez pas et ne conduisez pas dans l'eau de crues",
+      "tags": ["inondation", "eau", "traversée", "route", "conduire", "marcher", "eau de crue"],
+      "steps": ["Ne marchez jamais et ne conduisez jamais dans l'eau de crue, même si elle semble peu profonde. Une eau en mouvement de la hauteur des genoux peut faire tomber une personne ; 30 cm d'eau rapide peuvent emporter une voiture.", "Ne conduisez pas dans une eau dont vous ne connaissez pas la profondeur. Faites demi-tour et trouvez un autre itinéraire.", "Tenez-vous à l'écart des cours d'eau rapides, des buses, des ponts, des bouches d'égout et des passages souterrains.", "Si vous êtes coincé dans un véhicule au milieu d'une eau en mouvement, restez à l'intérieur. Sortez et gagnez un terrain plus élevé uniquement si l'eau ne monte pas.", "Surveillez les câbles électriques et considérez toute eau dont vous ne voyez pas le fond comme sous tension."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "FEMA / Autorité nationale de gestion des catastrophes de l'Inde - Conseils de sécurité publique en cas d'inondation",
+      "verified": false
+    },
+    {
+      "id": "cyclone-safety",
+      "title": "Sécurité en cas de cyclone et de tempête violente",
+      "tags": ["cyclone", "tempête", "ouragan", "typhon", "vent", "typhon"],
+      "steps": ["Mettez-vous à l'intérieur et tenez-vous à l'écart des fenêtres et des portes vitrées.", "Restez au rez-de-chaussée ou dans une pièce intérieure, pas sur un toit ou un balcon.", "Éloignez-vous de la côte, de la plage et de toute zone comportant des arbres ou des structures instables.", "Chargez votre téléphone, gardez une torche et une batterie externe prêtes, et repérez votre lieu d'abri dès maintenant — pas pendant l'événement.", "N'essayez pas de voyager pendant la tempête. Attendez le feu vert officiel."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Conseils de sécurité cyclonique de l'IMD / Conseils de préparation publique de la NDMA",
+      "verified": false
+    },
+    {
+      "id": "what-to-pack",
+      "title": "Quoi emporter pour une tempête ou une évacuation",
+      "tags": ["bagage", "fournitures", "sac", "évacuation", "kit", "préparer", "essentiels"],
+      "steps": ["Eau : au moins 1 litre par personne et par jour, plus une petite réserve supplémentaire.", "Énergie : une batterie externe chargée, une torche et des piles de rechange.", "Documents : passeport, assurance et détails de tout médicament, conservés dans un sac étanche.", "Santé : quelques jours de tout traitement médical régulier, ainsi que des articles de premiers secours de base.", "Vêtements et nourriture : un change de vêtements, des vêtements haute visibilité si vous en avez, de la nourriture sèche ne nécessitant pas de cuisson et un petit billet de banque."],
+      "severity": "routine",
+      "escalate": false,
+      "source": "Directives de préparation aux urgences NDMA / UNICEF",
+      "verified": false
+    },
+    {
+      "id": "find-shelter",
+      "title": "Trouver un abri sûr",
+      "tags": ["abri", "sûr", "refuge", "terrain surélevé", "protéger", "trouver"],
+      "steps": ["Gagnez un terrain plus élevé. Évitez les terres basses, les berges de rivières, les canaux, les passages souterrains et les sous-sols.", "Éloignez-vous de la côte, de la plage et de toute zone sujette aux inondations mentionnée dans une alerte.", "Choisissez un bâtiment solide sur un terrain surélevé, ou un abri désigné si vous en connaissez un.", "Prenez votre téléphone, de l'eau, vos médicaments et vos documents avec vous.", "Prévenez quelqu'un de l'endroit où vous allez et enregistrez-vous comme en sécurité auprès de votre hébergement ou de votre famille."],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "Directives de préparation publique aux inondations de la NDMA / Contenu pilote de Kavach",
+      "verified": false
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree-bleeding",
+      "question": "La personne saigne-t-elle abondamment et de manière continue ?",
+      "options": [
+        {
+          "label": "Oui, le sang coule ou s'infiltre dans le tissu",
+          "next": "bleeding-press"
+        },
+        {
+          "label": "Non, il s'agit seulement d'une éraflure ou d'une coupure mineure",
+          "next": "bleeding-clean"
+        }
+      ]
+    },
+    {
+      "id": "bleeding-press",
+      "question": "Vous avez appuyé fermement pendant 10 minutes. Le saignement a-t-il diminué ?",
+      "options": [
+        {
+          "label": "Oui, il a diminué ou s'est arrêté",
+          "next": "bleeding-clean"
+        },
+        {
+          "label": "Non, il est toujours abondant",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["C'est une urgence. Continuez à appuyer fermement et ne soulevez pas le tissu pour vérifier.", "Appelez les secours d'urgence dès maintenant et restez avec la personne jusqu'à l'arrivée des secours.", "Gardez-la au chaud et immobile. Ne lui donnez ni nourriture ni boisson."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "bleeding-clean",
+      "question": "Vous avez arrêté le saignement. Quelle est la prochaine étape ?",
+      "options": [
+        {
+          "label": "La plaie est petite et propre",
+          "next": null
+        },
+        {
+          "label": "La plaie est profonde, béante ou contient de la terre",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Rincez la plaie à l'eau propre et recouvrez-la d'un pansement propre.", "Consultez un médecin aujourd'hui si la plaie est profonde, béante, sale ou si la coupure a été causée par un objet rouillé ou sale."],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-cpr",
+      "question": "La personne réagit-elle lorsque vous lui tapez sur les épaules et l'appelez ?",
+      "options": [
+        {
+          "label": "Oui, elle réagit",
+          "next": "cpr-responsive"
+        },
+        {
+          "label": "Aucune réaction",
+          "next": "cpr-breathing"
+        }
+      ]
+    },
+    {
+      "id": "cpr-breathing",
+      "question": "Respire-t-elle normalement (regardez, écoutez et sentez pendant 10 secondes maximum) ?",
+      "options": [
+        {
+          "label": "Non, elle ne respire pas ou halète seulement",
+          "next": null
+        },
+        {
+          "label": "Oui, elle respire normalement",
+          "next": "cpr-recovery"
+        }
+      ],
+      "terminalSteps": ["Appelez les secours immédiatement et envoyez quelqu'un chercher un DEA.", "Commencez les compressions thoraciques : placez les mains au centre de la poitrine, appuyez fort et vite, environ deux fois par seconde.", "Continuez jusqu'à ce qu'elle respire normalement, que les secours arrivent ou que vous soyez trop épuisé pour continuer."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "cpr-recovery",
+      "question": "Elle respire. Que faire ensuite ?",
+      "options": [
+        {
+          "label": "Continuer",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Mettez-la sur le côté en position latérale de sécurité.", "Surveillez sa respiration jusqu'à l'arrivée des secours.", "Si elle arrête de respirer normalement, recommencez les compressions thoraciques."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "cpr-responsive",
+      "question": "Elle est réveillée. Sur quoi devez-vous vous concentrer ?",
+      "options": [
+        {
+          "label": "Continuer",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Laissez-la assise ou allongée là où elle est et ne lui donnez rien à manger ni à boire.", "Surveillez-la de près. Si elle perd connaissance, vérifiez sa respiration et commencez la RCP.", "Obtenez une aide médicale dès que possible."],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-drowning",
+      "question": "Avez-vous sorti la personne de l'eau en toute sécurité ?",
+      "options": [
+        {
+          "label": "Oui, elle est hors de l'eau",
+          "next": "drowning-breathing"
+        },
+        {
+          "label": "Non, elle est toujours dans l'eau",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["N'entrez pas dans une eau agitée ou de profondeur inconnue pour tenter un sauvetage.", "Tendez ou lancez, n'allez jamais dans l'eau. Appelez à l'aide et apportez une bouée de sauvetage, une perche ou une corde.", "Attendez des secouristes formés. Votre propre sécurité passe avant tout."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "drowning-breathing",
+      "question": "Respire-t-elle normalement ?",
+      "options": [
+        {
+          "label": "Non, elle ne respire pas ou halète seulement",
+          "next": null
+        },
+        {
+          "label": "Oui, elle respire normalement",
+          "next": "drowning-seek"
+        }
+      ],
+      "terminalSteps": ["Commencez immédiatement les compressions thoraciques, de la même manière que pour la RCP.", "Envoyez quelqu'un appeler les secours et chercher un DEA.", "Continuez jusqu'à ce qu'elle respire normalement ou que les secours arrivent."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "drowning-seek",
+      "question": "Elle respire après une submersion. Que faire ensuite ?",
+      "options": [
+        {
+          "label": "Continuer",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Maintenez-la au chaud, allongée sur le côté, et surveillez sa respiration.", "Toute submersion nécessite une évaluation médicale, même si elle semble aller bien maintenant. Rendez-vous à l'hôpital.", "Surveillez l'apparition de problèmes respiratoires pour le reste de la journée."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "tree-heat",
+      "question": "La personne est-elle confuse, effondrée ou sa peau est-elle très chaude au toucher ?",
+      "options": [
+        {
+          "label": "Oui, l'un de ces symptômes",
+          "next": null
+        },
+        {
+          "label": "Non, elle est alerte et transpire",
+          "next": "heat-exhaustion-step"
+        }
+      ],
+      "terminalSteps": ["Il s'agit d'un coup de chaleur, ce qui met la vie en danger. Mettez-la à l'ombre et refroidissez-la immédiatement.", "Retirez l'excès de vêtements, mouillez la peau avec de l'eau fraîche et ventilez vigoureusement. Utilisez des poches de glace sur le cou, les aisselles et l'aine.", "Appelez les secours maintenant."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "heat-exhaustion-step",
+      "question": "Elle est alerte et transpire. Que faites-vous ?",
+      "options": [
+        {
+          "label": "Continuer",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Déplacez-la dans un endroit frais et ombragé et desserrez les vêtements lourds.", "Donnez de l'eau fraîche à petites gorgées si elle est totalement consciente et ne vomit pas.", "Si son état ne s'améliore pas dans les 30 minutes ou si elle devient confuse, considérez cela comme un coup de chaleur et appelez les secours."],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-anaphylaxis",
+      "question": "Présentez-vous un gonflement du visage ou de la gorge, des difficultés respiratoires ou une éruption cutanée généralisée avec des vomissements ?",
+      "options": [
+        {
+          "label": "Oui, l'un de ces symptômes",
+          "next": null
+        },
+        {
+          "label": "Non, il s'agit d'une réaction locale bénigne",
+          "next": "anaphylaxis-mild"
+        }
+      ],
+      "terminalSteps": ["Il s'agit d'une anaphylaxie. Appelez immédiatement les secours — cela peut être fatal en quelques minutes.", "Utilisez son propre auto-injecteur d'adrénaline dans la partie externe mi-cuisse si elle en a un.", "Allongez-la à plat avec les jambes surélevées, ou laissez-la s'asseoir si la respiration est difficile. Restez avec elle."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "anaphylaxis-mild",
+      "question": "C'est une réaction locale bénigne. Que faire ensuite ?",
+      "options": [
+        {
+          "label": "Continuer",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Surveillez de près. Les symptômes peuvent s'aggraver rapidement.", "Si un gonflement, des difficultés respiratoires, des vomissements ou une éruption cutanée généralisée apparaissent, appelez les secours et utilisez son auto-injecteur d'adrénaline.", "Restez avec eux pendant au moins 15 minutes."],
+      "terminalEscalates": false
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Tiny endpoint used by the connectivity manager's health ping.
+#
+# It must stay tiny, unauthenticated and cache-free so a HEAD request answers
+# in a few bytes. `vite preview` and Cloudflare Pages both serve it as a static
+# file, so there is no server to run and nothing to break.

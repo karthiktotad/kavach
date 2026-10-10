@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:27:04Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "ar",
+  "categories": [
+    {
+      "id": "medical",
+      "label": "طبي"
+    },
+    {
+      "id": "shelter",
+      "label": "المأوى والسلامة"
+    },
+    {
+      "id": "transport",
+      "label": "النقل"
+    },
+    {
+      "id": "food_water",
+      "label": "الطعام والماء"
+    },
+    {
+      "id": "safety",
+      "label": "السلامة والمساعدة"
+    },
+    {
+      "id": "documents",
+      "label": "الوثائق والمال"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "أحتاج إلى مساعدة طبية.",
+      "intent": "اتصل بالإسعاف."
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "من فضلك، أيها الطبيب، بسرعة!",
+      "intent": "اطلب منهم الإسراع."
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "أين أقرب عيادة؟",
+      "intent": "اطلب أقرب عيادة."
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "أين أقرب مستشفى؟",
+      "intent": "اطلب أقرب مستشفى."
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "أنا مصاب هنا.",
+      "intent": "أشر إلى مكان الألم."
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "أنا أزنزف ولا يتوقف النزيف.",
+      "intent": "أرهم الجرح."
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "أعاني من ألم شديد في المعدة.",
+      "intent": "أرهم مكان الألم."
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "لا يمكنني التنفس جيداً.",
+      "intent": "هذا أمر عاجل."
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "أعاني من حمى ودوار.",
+      "intent": "أرهم أنك لست على ما يرام."
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "أعاني من حساسية شديدة.",
+      "intent": "أشر إلى بطاقتك الطبية."
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "أحتاج إلى دوائي.",
+      "intent": "أرهم الوصفة الطبية أو العلبة."
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "هل تتحدث الإنجليزية؟",
+      "intent": "اطلب شخصاً يتحدث الإنجليزية."
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "أين أقرب ملجأ؟",
+      "intent": "اطلب مكاناً آمناً."
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "هل هذا الملجأ مفتوح؟",
+      "intent": "تأكد قبل الذهاب."
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "نحن بحاجة إلى مكان آمن لننام فيه الليلة.",
+      "intent": "اطلب مكاناً للإقامة."
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "هل الذهاب إلى {place} آمن؟",
+      "intent": "أرهم المكان على الهاتف."
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "أين يمكننا الحصول على ماء للشرب؟",
+      "intent": "اطلب الماء."
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "هل يمكننا البقاء معاً؟",
+      "intent": "اسأل عما إذا كان بإمكان مجموعتك البقاء معاً."
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "كم أجرة سيارة الأجرة إلى {place}؟",
+      "intent": "اسأل عن السعر أولاً."
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "من فضلك توقف هنا.",
+      "intent": "أشر إلى المكان الذي تريد النزول فيه."
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "كيف أصل إلى المطار؟",
+      "intent": "اطلب الطريق."
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "أين أقرب محطة قطار أو حافلات؟",
+      "intent": "اطلب أقرب محطة."
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "هل الطريق المؤدي إلى {place} مفتوح؟",
+      "intent": "أرهم المكان على الهاتف."
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "كم تبعد مسافة السير على الأقدام؟",
+      "intent": "تحقق من المسافة قبل المشي."
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "أنا عطشان، من فضلك.",
+      "intent": "اطلب الماء."
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "هل هذا الطعام آمن للأكل؟",
+      "intent": "اسأل قبل الأكل."
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "هل لديك طعام نباتي؟",
+      "intent": "اسأل عن احتياجاتك الغذائية."
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "لا يمكنني تناول المكسرات. هل يحتوي هذا على مكسرات؟",
+      "intent": "أشر إلى الطعام."
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "هل لديكم مياه نظيفة للاغتسال بها؟",
+      "intent": "اطلب ماءً آمناً للغسيل."
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "أين يمكننا الحصول على طعام قريب؟",
+      "intent": "اسأل عن مكان قريب لتناول الطعام."
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "المياه قادمة. نحن بحاجة إلى مساعدة.",
+      "intent": "هذا أمر عاجل. احضر منقذاً."
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "الرجاء الاتصال بالشرطة.",
+      "intent": "أشر إلى الهاتف."
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "لقد فقدت مجموعتي. الرجاء مساعدتي في العثور عليهم.",
+      "intent": "اشرح موقفك."
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "لقد سرقت حقيبتي.",
+      "intent": "أخبر ضابط شرطة."
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "أنا سياح ولا أحدث التاميلية.",
+      "intent": "اسأل عن شخص يتحدث الإنجليزية."
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "نحن بأمان، شكراً لك.",
+      "intent": "أخبر المنقذ أنك بأمان."
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "إليك جواز السفر الخاص بي.",
+      "intent": "سلم جواز سفرك."
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "لقد فقدت جواز السفر الخاص بي.",
+      "intent": "اطلب المساعدة من الشرطة."
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "أين يمكنني تغيير العملة؟",
+      "intent": "اسأل عن مكان للصرافة."
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "أين أقرب جهاز صراف آلي؟",
+      "intent": "اسأل عن مكان للحصول على النقد."
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "بطاقة SIM الخاص بي لا تعمل.",
+      "intent": "اطلب المساعدة من متجر."
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "الرجاء كتابة هذا لي.",
+      "intent": "اطلب منهم كتابته."
+    }
+  ]
+}

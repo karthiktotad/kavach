@@ -1,37 +1,91 @@
 /**
- * Service-worker registration (M1: install only, no update prompt yet).
+ * Service-worker registration and the update flow.
  *
  * `injectRegister: null` in vite.config.ts means we own this file. That is
- * deliberate: offline behaviour is core to the product, so SW lifecycle must be
- * app code we can reason about, not a silent side effect of a build plugin.
+ * deliberate: offline behaviour is the product, so the SW lifecycle must be
+ * app code we can reason about rather than a build-plugin side effect.
  *
- * In development vite-plugin-pwa's devOptions are disabled, so this is a no-op
- * and the app runs as a plain Vite app.
+ * Policy: a waiting worker is NEVER activated automatically. During a flood a
+ * surprise reload destroys whatever the user was reading. The user is offered
+ * an explicit, non-blocking banner instead.
  */
 import { registerSW } from 'virtual:pwa-register'
 
-export interface ServiceWorkerHandle {
-  /** Prompt the user to activate a waiting worker (M11 wires this to the UI). */
-  readonly needRefresh: () => void
-  /** Currently installed offline-capable build. */
-  readonly offlineReady: () => void
+interface SwUpdateState {
+  /** A new service worker is downloaded and waiting. */
+  needRefresh: boolean
+  /** The app shell is cached and the app works offline. */
+  offlineReady: boolean
+  /** Activate the waiting worker. */
+  applyUpdate: () => void
 }
 
-export function setupServiceWorker(): ServiceWorkerHandle {
-  const updateSW = registerSW({
-    immediate: true,
-    onNeedRefresh() {
-      // M11: show "A new version of Kavach is ready" with an explicit button.
-      // Never auto-swap mid-crisis — an unexpected reload loses user context.
-      console.info('[kavach] update waiting; M11 will surface an explicit prompt')
-    },
-    onOfflineReady() {
-      console.info('[kavach] content cached — Kavach now works without a network')
-    },
-  })
+type Listener = (state: SwUpdateState) => void
 
-  return {
-    needRefresh: () => void updateSW(true),
-    offlineReady: () => undefined,
+const listeners = new Set<Listener>()
+
+const state: SwUpdateState = {
+  needRefresh: false,
+  offlineReady: false,
+  applyUpdate: () => void updateSW(true),
+}
+
+function emit(): void {
+  for (const listener of listeners) listener(state)
+}
+
+function subscribe(listener: Listener): () => void {
+  listeners.add(listener)
+  listener(state)
+  return () => {
+    listeners.delete(listener)
   }
 }
+
+let started = false
+
+/**
+ * Start watching for updates.
+ *
+ * Returns an unsubscribe. In development vite-plugin-pwa's devOptions are
+ * disabled, so this registers nothing and the app runs as a plain Vite app.
+ */
+export function setupServiceWorker(): void {
+  if (started) return
+  started = true
+
+  // In development vite-plugin-pwa's devOptions are disabled: no worker, and
+  // the app behaves as a plain Vite app.
+  if (!import.meta.env.PROD) return
+
+  updateSW = registerSW({
+    // Register after load so a slow worker download never delays first paint.
+    immediate: false,
+    onNeedRefresh() {
+      state.needRefresh = true
+      emit()
+    },
+    onOfflineReady() {
+      state.offlineReady = true
+      emit()
+    },
+    onRegisterError(error: unknown) {
+      // A failed SW registration means no offline shell. Loud, but not fatal:
+      // the app still works online.
+      console.warn('[kavach] service worker registration failed', error)
+    },
+  })
+}
+
+/** Subscribe to update state (for the non-blocking banner). */
+export function onServiceWorkerUpdate(listener: Listener): () => void {
+  return subscribe(listener)
+}
+
+/** Current update state, for a first render before any event fires. */
+export function getServiceWorkerState(): SwUpdateState {
+  return state
+}
+
+/* Placeholder until registerSW() assigns the real updater. */
+let updateSW: (reloadPage?: boolean) => Promise<void> = () => Promise.resolve()

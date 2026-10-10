@@ -1,0 +1,184 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:24:29Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "fr",
+  "templates": [
+    {
+      "id": "FL-1",
+      "hazard": "FL",
+      "level": 1,
+      "headline": "Inondations mineures signalées dans {zone}.",
+      "steps": ["Éloignez-vous des bouches d'égout et des rues inondées de {zone}.", "Surveillez la présence d'eau plus profonde ou plus rapide avant de partir."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "FL-2",
+      "hazard": "FL",
+      "level": 2,
+      "headline": "Les inondations augmentent dans {zone}.",
+      "steps": ["Quittez les zones basses de {zone} maintenant et gagnez les hauts.", "Ne marchez pas et ne conduisez pas dans l'eau de inondation.", "Prenez de l'eau, votre téléphone et vos médicaments avec vous."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "FL-3",
+      "hazard": "FL",
+      "level": 3,
+      "headline": "Inondations graves dans {zone}. Évacuation immédiate recommandée.",
+      "steps": ["Évacuez {zone} dès maintenant vers les hauteurs. N'attendez pas que l'eau monte.", "Déplacez-vous à pied. Ne conduisez jamais dans l'eau d'inondation.", "Rendez-vous à {shelter}, à environ {distance}, si accessible."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "FL-4",
+      "hazard": "FL",
+      "level": 4,
+      "headline": "Inondations extrêmes mettant la vie en danger dans {zone}.",
+      "steps": ["Quittez {zone} immédiatement et rejoignez les hauteurs ou {shelter}.", "Restez à l'écart des eaux en mouvement. N'essayez pas de traverser des routes inondées.", "Restez en sécurité jusqu'à la levée de l'alerte. Gardez votre téléphone chargé."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "CY-1",
+      "hazard": "CY",
+      "level": 1,
+      "headline": "Alerte cyclonique pour {zone}. Les vents pourraient se renforcer.",
+      "steps": ["Fixez les objets non fixés à l'extérieur et restez à proximité d'un abri.", "Gardez votre téléphone chargé au cas où le réseau tomberait."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "CY-2",
+      "hazard": "CY",
+      "level": 2,
+      "headline": "Avis de cyclone pour {zone}. Attendez-vous à de fortes pluies et des vents violents.",
+      "steps": ["Restez à l'intérieur et loin des fenêtres.", "Rendez-vous dans une pièce intérieure au rez-de-chaussée.", "Ne voyagez pas sauf en cas de nécessité absolue."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "CY-3",
+      "hazard": "CY",
+      "level": 3,
+      "headline": "Cyclone violent s'approchant de {zone}. Abritez-vous maintenant.",
+      "steps": ["Mettez-vous à l'abri immédiatement dans un bâtiment solide sur les hauteurs, loin de la côte.", "Restez au rez-de-chaussée, loin des fenêtres.", "Gardez votre téléphone chargé et suivez les consignes officielles."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "CY-4",
+      "hazard": "CY",
+      "level": 4,
+      "headline": "Risque d'impact de cyclone pour {zone}. Danger de mort.",
+      "steps": ["Abritez-vous maintenant. Restez à l'intérieur jusqu'à l'avis de fin d'alerte officiel.", "Éloignez-vous de la côte et des fenêtres.", "Ne sortez pas pour vérifier les conditions."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "HT-1",
+      "hazard": "HT",
+      "level": 1,
+      "headline": "Température élevée prévue dans {zone}.",
+      "steps": ["Buvez de l'eau régulièrement et restez à l'ombre.", "Reposez-vous pendant la partie la plus chaude de la journée."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "HT-2",
+      "hazard": "HT",
+      "level": 2,
+      "headline": "Chaleur très intense dans {zone}. Risque de problèmes de santé liés à la chaleur.",
+      "steps": ["Buvez de l'eau fréquemment. Évitez l'alcool et les repas lourds.", "Emportez de l'eau et reposez-vous à l'ombre.", "Prenez des nouvelles des personnes âgées et des enfants."],
+      "drillNote": "EXERCICE. Ceci est une alerte de simulation."
+    },
+    {
+      "id": "HT-3",
+      "hazard": "HT",
+      "level": 3,
+      "headline": "Alerte canicule extrême pour {zone}. Risque de coup de chaleur.",
+      "steps": ["Évitez de sortir entre midi et la fin de l'après-midi.", "Buvez de l'eau régulièrement et restez dans des endroits climatisés ou ombragés.", "Connaissez les signes du coup de chaleur : confusion, effondrement, peau très chaude."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "HT-4",
+      "hazard": "HT",
+      "level": 4,
+      "headline": "Chaleur dangereuse dans {zone}. Le coup de chaleur peut être mortel.",
+      "steps": ["Restez à l'intérieur avec la climatisation ou des ventilateurs pendant les heures les plus chaudes.", "Buvez de l'eau régulièrement, même si vous n'avez pas soif.", "Refroidissez immédiatement toute personne qui présente des signes de confusion ou qui s'effondre, et appelez les secours."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "WN-1",
+      "hazard": "WN",
+      "level": 1,
+      "headline": "Vents forts dans {zone}. Faites attention à l'extérieur.",
+      "steps": ["Surveillez les chutes de branches et les objets non fixés.", "Fixez tout ce qui est léger et qui pourrait s'envoler."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "WN-2",
+      "hazard": "WN",
+      "level": 2,
+      "headline": "Vents destructeurs dans {zone}. Restez à l'intérieur si possible.",
+      "steps": ["Restez à l'intérieur et loin des fenêtres et des portes.", "Tenez-vous à l'écart des arbres et des chantiers de construction."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "WN-3",
+      "hazard": "WN",
+      "level": 3,
+      "headline": "Avertissement de vent violent pour {zone}. Ne voyagez pas.",
+      "steps": ["Restez à l'intérieur et abritez-vous loin des fenêtres.", "Ne conduisez pas et ne marchez pas à l'extérieur.", "Gardez votre téléphone chargé pour recevoir les mises à jour officielles."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "WN-4",
+      "hazard": "WN",
+      "level": 4,
+      "headline": "Vents extrêmes dans {zone}. Danger de mort à l'extérieur.",
+      "steps": ["Abritez-vous à l'intérieur au rez-de-chaussée, loin des fenêtres.", "Ne sortez pas tant que la levée officielle de l'alerte n'a pas été prononcée.", "Tenez-vous à l'écart des arbres, des lignes électriques et des structures instables."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "LS-1",
+      "hazard": "LS",
+      "level": 1,
+      "headline": "Risque de glissement de terrain signalé dans {zone} après la pluie.",
+      "steps": ["Surveillez les mouvements de pente ou les fissures près des collines.", "Évitez de marcher près des pentes escarpées après de fortes pluies."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "LS-2",
+      "hazard": "LS",
+      "level": 2,
+      "headline": "Risque croissant de glissement de terrain dans {zone}.",
+      "steps": ["Éloignez-vous des pentes, des talus et des parois rocheuses.", "Éloignez-vous si vous observez des mouvements de terrain, des fissures ou des chutes de terre.", "Ne voyagez pas dans les zones collinaires de {zone}."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "LS-3",
+      "hazard": "LS",
+      "level": 3,
+      "headline": "Risque élevé de glissement de terrain dans {zone}. Quittez la zone.",
+      "steps": ["Quittez les pentes et les zones basses situées en contrebas dès maintenant.", "Rejoignez un terrain plat et stable, à l'écart de {zone}.", "Ne retournez pas sur place avant la levée de l'alerte."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "LS-4",
+      "hazard": "LS",
+      "level": 4,
+      "headline": "Risque extrême de glissement de terrain dans {zone}. Danger immédiat.",
+      "steps": ["Quittez {zone} immédiatement et rejoignez un terrain plat et dégagé.", "Tenez-vous à l'écart des pentes, des ravines et des vallées fluviales.", "Suivez les instructions officielles et ne rentrez pas dans la zone."],
+      "drillNote": "EXERCICE. Ceci est une alerte d'entraînement."
+    },
+    {
+      "id": "AC",
+      "hazard": "AC",
+      "level": null,
+      "headline": "Fin d'alerte pour {zone}. Le danger est écarté.",
+      "steps": ["La fin d'alerte pour {zone} a été émise.", "Vous pouvez revenir, mais restez vigilant et surveillez les nouvelles alertes.", "Gardez votre téléphone chargé au cas où les conditions changeraient."],
+      "drillNote": "EXERCICE. Ceci est une fin d'alerte fictive, pas une vraie."
+    }
+  ],
+  "drill": {
+    "banner": "EXERCICE",
+    "bannerLong": "EXERCICE — alerte d'entraînement, pas une vraie urgence",
+    "disclaimer": "Cette alerte est un exercice émis à des fins de formation et de test. Ne réagissez pas comme s'il s'agissait d'une vraie urgence."
+  }
+}

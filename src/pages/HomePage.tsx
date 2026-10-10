@@ -1,5 +1,5 @@
 import { Page } from '../components/Page'
-import { StatusChip } from '../components/StatusChip'
+import { ConnectionSummary } from '../components/StatusChip'
 import { useLanguage } from '../store/language'
 import { IconAlerts, IconCellular, IconGlobe, IconMe, IconRelay } from '../components/icons'
 
@@ -27,7 +27,11 @@ function HomePage() {
           </p>
         </header>
 
-        {/* Always-visible ladder chip, with its explanation. */}
+        {/*
+          The header already shows the compact chip. Home explains the current
+          level in words instead — a second identical button would duplicate its
+          accessible name and add nothing for the user.
+        */}
         <section
           aria-labelledby="status-heading"
           className="bg-surface ring-ink-subtle/25 rounded-2xl p-4 ring-1"
@@ -35,7 +39,7 @@ function HomePage() {
           <h2 id="status-heading" className="text-ink-muted mb-2 text-sm font-semibold">
             {t('status.label')}
           </h2>
-          <StatusChip showDetail />
+          <ConnectionSummary />
         </section>
 
         {/* The three offline promises — the actual differentiators. */}

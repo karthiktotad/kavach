@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:25:50Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "de",
+  "categories": [
+    {
+      "id": "medical",
+      "label": "Medizinisch"
+    },
+    {
+      "id": "shelter",
+      "label": "Unterkunft und Sicherheit"
+    },
+    {
+      "id": "transport",
+      "label": "Transport"
+    },
+    {
+      "id": "food_water",
+      "label": "Essen und Wasser"
+    },
+    {
+      "id": "safety",
+      "label": "Sicherheit und Hilfe"
+    },
+    {
+      "id": "documents",
+      "label": "Dokumente und Geld"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "Ich brauche medizinische Hilfe.",
+      "intent": "Einen Rettungswagen rufen."
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "Bitte, Herr Doktor, schnell!",
+      "intent": "Bitten Sie sie, sich zu beeilen."
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "Wo ist die nächste Klinik?",
+      "intent": "Nach der nächstgelegenen Klinik fragen."
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "Wo ist das nächste Krankenhaus?",
+      "intent": "Nach dem nächstgelegenen Krankenhaus fragen."
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "Ich bin hier verletzt.",
+      "intent": "Zeigen Sie auf die schmerzende Stelle."
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "Ich blute und es hört nicht auf.",
+      "intent": "Zeigen Sie ihnen die Wunde."
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "Ich habe starke Bauchschmerzen.",
+      "intent": "Zeigen Sie, wo der Schmerz ist."
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "Ich kann nicht gut atmen.",
+      "intent": "Dies ist dringend."
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "Ich habe Fieber und Schwindel.",
+      "intent": "Zeigen Sie ihnen, dass Sie sich unwohl fühlen."
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "Ich habe eine schwere Allergie.",
+      "intent": "Zeigen Sie auf Ihren Notfallausweis."
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "Ich brauche meine Medikamente.",
+      "intent": "Zeigen Sie das Rezept oder die Packung."
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "Sprechen Sie Englisch?",
+      "intent": "Nach jemandem fragen, der Englisch spricht."
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "Wo ist die nächste Notunterkunft?",
+      "intent": "Nach einem sicheren Ort fragen."
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "Ist diese Unterkunft geöffnet?",
+      "intent": "Vor dem Aufbruch bestätigen."
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "Wir brauchen heute Nacht einen sicheren Schlafplatz.",
+      "intent": "Nach einer Unterkunft fragen."
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "Ist es sicher, nach {place} zu gehen?",
+      "intent": "Den Ort auf dem Telefon zeigen."
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "Wo bekommen wir Trinkwasser?",
+      "intent": "Nach Wasser fragen."
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "Können wir alle zusammenbleiben?",
+      "intent": "Fragen, ob Ihre Gruppe zusammenbleiben kann."
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "Wie hoch ist der Taxifahrpreis nach {place}?",
+      "intent": "Den Preis zuerst erfragen."
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "Bitte hier anhalten.",
+      "intent": "Zeigen Sie, wo Sie aussteigen möchten."
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "Wie komme ich zum Flughafen?",
+      "intent": "Nach dem Weg fragen."
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "Wo ist der nächste Bahnhof oder Busbahnhof?",
+      "intent": "Nach der nächstgelegenen Haltestelle fragen."
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "Ist die Straße nach {place} geöffnet?",
+      "intent": "Den Ort auf dem Telefon zeigen."
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "Wie weit ist es zu Fuß?",
+      "intent": "Prüfen Sie die Entfernung, bevor Sie losgehen."
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "Ich habe Durst, bitte.",
+      "intent": "Nach Wasser fragen."
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "Kann man dieses Essen bedenkenlos essen?",
+      "intent": "Vor dem Essen fragen."
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "Haben Sie vegetarisches Essen?",
+      "intent": "Fragen Sie nach Ihren Ernährungsbedürfnissen."
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "Ich kann keine Nüsse essen. Enthält das Nüsse?",
+      "intent": "Zeigen Sie auf das Essen."
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "Haben Sie sauberes Wasser zum Waschen?",
+      "intent": "Fragen Sie nach sicherem Waschwasser."
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "Wo gibt es hier in der Nähe Essen?",
+      "intent": "Fragen Sie nach einem Ort zum Essen in der Nähe."
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "Das Wasser kommt. Wir brauchen Hilfe.",
+      "intent": "Das ist dringend. Holen Sie einen Einsatzkraft."
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "Bitte rufen Sie die Polizei.",
+      "intent": "Zeigen Sie auf das Telefon."
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "Ich habe meine Gruppe verloren. Bitte helfen Sie mir, sie zu finden.",
+      "intent": "Erklären Sie Ihre Situation."
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "Meine Tasche wurde gestohlen.",
+      "intent": "Sagen Sie es einem Polizeibeamten."
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "Ich bin Tourist und spreche kein Tamil.",
+      "intent": "Fragen Sie nach jemandem, der Englisch spricht."
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "Wir sind in Sicherheit, danke.",
+      "intent": "Sagen Sie einer Einsatzkraft, dass Sie in Sicherheit sind."
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "Hier ist mein Reisepass.",
+      "intent": "Geben Sie Ihren Reisepass ab."
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "Ich habe meinen Reisepass verloren.",
+      "intent": "Bitten Sie die Polizei um Hilfe."
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "Wo kann ich Geld wechseln?",
+      "intent": "Fragen Sie nach einer Wechselstube."
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "Wo ist der nächste Geldautomat?",
+      "intent": "Fragen Sie nach Bargeldzugang."
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "Meine SIM-Karte funktioniert nicht.",
+      "intent": "Bitten Sie ein Geschäft um Hilfe."
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "Bitte schreiben Sie das für mich auf.",
+      "intent": "Bitten Sie sie, es aufzuschreiben."
+    }
+  ]
+}

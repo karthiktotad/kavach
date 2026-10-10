@@ -45,7 +45,26 @@ export default defineConfig([
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
+      // Test doubles satisfy async interfaces (e.g. an outbox sender must return
+      // a Promise) without containing an await, which require-await misreads.
+      '@typescript-eslint/require-await': 'off',
       'no-console': 'off',
+    },
+  },
+
+  {
+    // Playwright e2e runs in Node, not the browser. This block must come AFTER
+    // the main rules, since later config wins in flat config.
+    files: ['e2e/**/*.ts'],
+    languageOptions: { globals: globals.node },
+    rules: {
+      // page.evaluate() bodies are serialised into the browser and come back
+      // typed as `any`, so the strict promise/idb rules misfire there.
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/prefer-promise-reject-errors': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 

@@ -147,3 +147,36 @@ export const IconChevronDown = (p: IconProps) => (
     <path d="m6 9 6 6 6-6" />
   </Base>
 )
+
+export const IconClose = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M18 6 6 18M6 6l12 12" />
+  </Base>
+)
+
+export const IconArrowLeft = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M19 12H5M12 19l-7-7 7-7" />
+  </Base>
+)
+
+export const IconDownload = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3v12" />
+    <path d="m7 10 5 5 5-5" />
+    <path d="M4 19h16" />
+  </Base>
+)
+
+export const IconCheck = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m4 12 5 5L20 6" />
+  </Base>
+)
+
+export const IconShield = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3 20 6v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6Z" />
+    <path d="m9 12 2 2 4-4" />
+  </Base>
+)

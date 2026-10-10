@@ -1,9 +1,13 @@
-import { Suspense, lazy, useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Suspense, lazy, useEffect, useState, type ReactNode } from 'react'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AppHeader } from '../components/AppHeader'
 import { BottomNav } from '../components/BottomNav'
+import { UpdateBanner } from '../components/UpdateBanner'
 import { useLanguage } from '../store/language'
 import { applyLocaleToDocument } from '../store/language'
+import { getSetting, SETTING } from '../lib/db'
+import { getServiceWorkerState, onServiceWorkerUpdate } from './pwa'
+import { packManager } from '../lib/pack'
 
 import HomePage from '../pages/HomePage'
 
@@ -15,9 +19,10 @@ const AssistPage = lazy(() => import('../pages/AssistPage'))
 const AidPage = lazy(() => import('../pages/AidPage'))
 const PhrasesPage = lazy(() => import('../pages/PhrasesPage'))
 const MePage = lazy(() => import('../pages/MePage'))
-const ReportPage = lazy(() => import('../pages/ReportPage'))
+const ReportsPage = lazy(() => import('../pages/ReportsPage'))
 const AuthorityPage = lazy(() => import('../pages/AuthorityPage'))
 const PacketPage = lazy(() => import('../pages/PacketPage'))
+const ReadyPage = lazy(() => import('../pages/ReadyPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 /** Scroll to top on navigation — hash routing does not do it for us. */
@@ -51,6 +56,74 @@ function RouteFallback() {
   )
 }
 
+/**
+ * Send first-time users to Get Ready before anything else.
+ *
+ * The pack download is the whole point of the app, so it happens once, up
+ * front, while the tourist still has hotel wi-Fi. Deliberately not a hard gate:
+ * a user who skips it must still reach every screen, because being trapped in
+ * onboarding would be the worst possible time to hit a dead end.
+ */
+function OnboardingGate({ children }: { children: ReactNode }) {
+  const location = useLocation()
+  const [onboarded, setOnboarded] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    void getSetting<boolean>(SETTING.ONBOARDED, false).then((value) => {
+      if (!cancelled) setOnboarded(value)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // While we read storage, render nothing rather than flashing the wrong screen.
+  if (onboarded === null) return null
+
+  // `/a/<packet>` is always exempt: a signed packet handed over by SMS must
+  // render even for someone who never completed onboarding.
+  const exempt = location.pathname === '/ready' || location.pathname.startsWith('/a/')
+  if (!onboarded && !exempt) return <Navigate to="/ready" replace />
+
+  return <>{children}</>
+}
+
+/**
+ * Non-blocking update banner.
+ *
+ * Never auto-reloads: an unexpected reload during a flood destroys whatever the
+ * user was reading. Both the service worker and the content pack offer an
+ * explicit "update when you are ready".
+ */
+function Updates() {
+  const [sw, setSw] = useState(getServiceWorkerState)
+  // Wrapped in an arrow: a bare method reference would lose `this` when React
+  // invokes the initialiser.
+  const [pack, setPack] = useState(() => packManager.getState())
+  const [dismissed, setDismissed] = useState(false)
+
+  useEffect(() => onServiceWorkerUpdate(setSw), [])
+  useEffect(() => packManager.subscribe(setPack), [])
+
+  // Ask whether a newer pack exists, but never block the app on the answer.
+  useEffect(() => {
+    void packManager.checkForUpdate().then(() => undefined)
+  }, [])
+
+  if (dismissed) return null
+
+  return (
+    <UpdateBanner
+      serviceWorkerReady={sw.needRefresh}
+      packUpdateReady={pack.status === 'update-available'}
+      onApplyServiceWorker={sw.applyUpdate}
+      onApplyPack={() => void packManager.ensureInstalled()}
+      onDismiss={() => setDismissed(true)}
+    />
+  )
+}
+
 export function AppRoutes() {
   const { t } = useLanguage()
 
@@ -67,22 +140,26 @@ export function AppRoutes() {
       </a>
 
       <AppHeader />
+      <Updates />
 
       <Suspense fallback={<RouteFallback />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/alerts" element={<AlertsPage />} />
-          <Route path="/map" element={<MapPage />} />
-          <Route path="/assist" element={<AssistPage />} />
-          <Route path="/aid" element={<AidPage />} />
-          <Route path="/phrases" element={<PhrasesPage />} />
-          <Route path="/me" element={<MePage />} />
-          <Route path="/report" element={<ReportPage />} />
-          <Route path="/authority" element={<AuthorityPage />} />
-          {/* Signed-packet deep link: /#/a/<packet> — must work fully offline. */}
-          <Route path="/a/:packet" element={<PacketPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <OnboardingGate>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/alerts" element={<AlertsPage />} />
+            <Route path="/map" element={<MapPage />} />
+            <Route path="/assist" element={<AssistPage />} />
+            <Route path="/aid" element={<AidPage />} />
+            <Route path="/phrases" element={<PhrasesPage />} />
+            <Route path="/me" element={<MePage />} />
+            <Route path="/report" element={<ReportsPage />} />
+            <Route path="/ready" element={<ReadyPage />} />
+            <Route path="/authority" element={<AuthorityPage />} />
+            {/* Signed-packet deep link: /#/a/<packet> — must work fully offline. */}
+            <Route path="/a/:packet" element={<PacketPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </OnboardingGate>
       </Suspense>
 
       <BottomNav />

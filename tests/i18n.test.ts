@@ -29,20 +29,23 @@ describe('i18n', () => {
     expect(MESSAGES.en['nav.alerts']).toBeTruthy()
   })
 
-  it('falls back to English for a locale with no bundle yet', () => {
-    // Tamil is translated by scripts/translate-pack.ts, not yet at build time.
-    expect(translate('ta', 'nav.alerts')).toBe(MESSAGES.en['nav.alerts'])
-    expect(translate('ta', 'nav.alerts')).toBe('Alerts')
+  it('returns each locale own strings when a bundle exists', () => {
+    // All 8 locales were machine-translated by scripts/translate-pack.ts, so a
+    // translated locale must differ from English rather than silently falling
+    // back. Tamil uses a different script, so it must clearly differ.
+    for (const locale of SUPPORTED_LOCALES) {
+      expect(hasTranslation(locale), `${locale} has no bundle`).toBe(true)
+      expect(Object.keys(MESSAGES[locale]).length).toBeGreaterThan(50)
+    }
+    expect(translate('ta', 'nav.alerts')).not.toBe(translate('en', 'nav.alerts'))
   })
 
-  it('reports which locales actually have a bundle', () => {
-    expect(hasTranslation('en')).toBe(true)
-    // Untranslated locales resolve to an empty catalogue and fall back cleanly.
-    const untranslated = SUPPORTED_LOCALES.filter((l) => !hasTranslation(l))
-    for (const locale of untranslated) {
-      expect(Object.keys(MESSAGES[locale])).toHaveLength(0)
-      expect(translate(locale, 'nav.alerts')).toBe(MESSAGES.en['nav.alerts'])
-    }
+  it('falls back to English for a key a locale is missing', () => {
+    // Simulates a partially-translated bundle.
+    const saved = MESSAGES.fr['nav.alerts'] as string
+    delete MESSAGES.fr['nav.alerts']
+    expect(translate('fr', 'nav.alerts')).toBe(MESSAGES.en['nav.alerts'])
+    MESSAGES.fr['nav.alerts'] = saved
   })
 
   it('interpolates {placeholder} tokens', () => {

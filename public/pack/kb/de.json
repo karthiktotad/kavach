@@ -1,0 +1,383 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:26:29Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "de",
+  "chunks": [
+    {
+      "id": "bleeding-severe",
+      "title": "Starke Blutung",
+      "tags": ["Blutung", "Blut", "Wunde", "Schnitt", "Hämorrhagie", "Blutung"],
+      "steps": ["Drücken Sie mit einem sauberen Tuch oder Ihrer Handfläche fest direkt auf die Wunde.", "Drücken Sie ohne Unterbrechung weiter, um nachzusehen. Entfernen Sie das erste Tuch nicht, wenn Blut durchsickert — legen Sie ein weiteres darauf.", "Heben Sie die verletzte Gliedmaße über Herzhöhe an, wenn kein Verdacht auf einen Knochenbruch besteht.", "Halten Sie die Person warm und ruhig liegend.", "Rufen Sie jetzt medizinische Hilfe. Wenn die Blutung nach 10 Minuten festem Druck nicht nachlässt, ist dies ein Notfall."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO / Internationale Föderation der Rotkreuz- und Rothalbmond-Gesellschaften – Leitfaden für Erste Hilfe",
+      "verified": false
+    },
+    {
+      "id": "burns",
+      "title": "Verbrennungen",
+      "tags": ["Verbrennung", "Feuer", "Flamme", "Verbrühung", "heiß", "kochen", "Dampf", "Sonnenbrand"],
+      "steps": ["Stoppen Sie den Brand. Wenn die Kleidung der Person brennt, bedecken Sie sie mit einer Decke oder einem schweren Tuch, um die Flammen zu ersticken.", "Kühlen Sie die Verbrennung mindestens 20 Minuten lang unter kühlem, fließendem Wasser. Verwenden Sie kein Eis.", "Nehmen Sie Ringe, Uhren und enge Kleidung ab, bevor eine Schwellung einsetzt, es sei denn, sie kleben an der Haut.", "Locker mit Frischhaltefolie oder einem sauberen, fusselfreien Tuch abdecken.", "Blasen nicht aufstechen, keine Zahnpasta, kein Öl, keine Butter oder Eis auftragen und an der Verbrennung festgeklebten Stoff nicht abziehen."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "WHO-Leitfaden zur Verbrennungspflege / Rotes Kreuz Erste Hilfe",
+      "verified": false
+    },
+    {
+      "id": "fractures",
+      "title": "Knochenbrüche und Verdacht auf Brüche",
+      "tags": ["Fraktur", "Bruch", "Knochen", "Verstauchung", "Verrenkung", "Verletzung"],
+      "steps": ["Versuchen Sie nicht, die Gliedmaße geradezurichten.", "Stützen Sie den verletzten Teil in der vorgefundenen Position ab. Polstern Sie ihn rundherum mit weichem Material ab.", "Fixieren Sie die Gliedmaße nach Möglichkeit mit einem breiten Tuch am unverletzten Körperteil.", "Legen Sie eine in ein Tuch gewickelte Kältekomppackung für bis zu 20 Minuten auf, um die Schwellung zu reduzieren.", "Holen Sie medizinische Hilfe. Lassen Sie die Person nichts essen oder trinken, falls sie operiert werden muss."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Leitfaden für Erste Hilfe des Roten Kreuzes",
+      "verified": false
+    },
+    {
+      "id": "cpr-adult",
+      "title": "Reanimation — Erwachsene (Grundlagen)",
+      "tags": ["Reanimation", "Herz", "kardial", "atmet nicht", "Wiederbelebung", "nicht ansprechbar"],
+      "steps": ["Prüfen Sie, ob die Person reagiert. Klopfen Sie ihr auf die Schultern und rufen Sie sie an.", "Prüfen Sie, ob sie normal atmet. Sehen, hören und fühlen Sie bis zu 10 Sekunden lang.", "Wenn sie nicht normal atmet, schicken Sie jemanden los, um Hilfe zu holen, und besorgen Sie einen AED, falls einer in der Nähe ist.", "Legen Sie beide Hände in die Mitte der Brust, zwischen die Brustwarzen. Drücken Sie etwa 5 cm tief, schnell und fest, etwa zweimal pro Sekunde nach unten.", "Machen Sie so lange weiter, bis die Person normal atmet, Hilfe eintrifft oder Sie zu erschöpft zum Fortfahren sind."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO-Grundlagen zur Ersten Hilfe / Resuscitation Council UK (Laien-Leitfaden). HINWEIS: Genaue Kompressionstiefe und -frequenz variieren je nach nationaler Organisation – vor Veröffentlichung bestätigen.",
+      "verified": false
+    },
+    {
+      "id": "drowning",
+      "title": "Ertrinken und Hochwasserrettung",
+      "tags": ["Ertrinken", "Hochwasser", "Wasser", "Eintauchen", "Rettung", "im Wasser", "unter Wasser"],
+      "steps": ["Begehen Sie kein fließendes oder tiefes Wasser, um eine Rettung zu versuchen. Nutzen Sie Hilfsmittel zum Greifen oder Werfen, gehen Sie niemals selbst hinein.", "Rufen Sie sofort um Hilfe und besorgen Sie einen Rettungsring, eine lange Stange oder ein Seil, falls verfügbar.", "Prüfen Sie nach der Rettung aus dem Wasser die Atmung und beginnen Sie mit der Wiederbelebung, falls die Person nicht normal atmet.", "Halten Sie die Person warm und bei Atmung in der Seitenlage, für den Fall, dass sie erbricht.", "Jedes Untertauchen erfordert eine medizinische Untersuchung, selbst wenn die Person danach gesund zu sein scheint."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO-Leitlinien zur Ertrinkungsprävention / Rotes Kreuz Wasserrettung",
+      "verified": false
+    },
+    {
+      "id": "heat-exhaustion",
+      "title": "Hitzekrschöpfung",
+      "tags": ["Hitze", "heiß", "Hitzschlag", "Dehydration", "Schwitzen", "schwindelig"],
+      "steps": ["Bringen Sie die Person an einen kühlen, schattigen Ort.", "Lockern Sie enge Kleidung.", "Geben Sie kühles Wasser zum Trinken, wenn die Person voll bei Bewusstsein und nicht am Erbrechen ist.", "Kühlen Sie die Haut mit einem feuchten Tuch oder kühlen Sie die Person mit einem Fächer.", "Wenn sich der Zustand innerhalb von 30 Minuten nicht verbessert, behandeln Sie es als Hitzschlag."],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "WHO-Leitlinien zu Hitze und Gesundheit / Indischer Rat für medizinische Forschung",
+      "verified": false
+    },
+    {
+      "id": "heat-stroke",
+      "title": "Hitzschlag",
+      "tags": ["Hitze", "Schlaganfall", "heiß", "Verwirrtheit", "heiße Haut", "Kollaps", "Fieber"],
+      "steps": ["Dies ist ein lebensbedrohlicher Notfall. Bringen Sie die Person in den Schatten und kühlen Sie sie sofort.", "Entfernen Sie überschüssige Kleidung, benetzen Sie die Haut mit kühlen Wasser und kühlen Sie stark mit einem Fächer.", "Legen Sie Kühlpacks auf Nacken, Achselhöhlen und Leistengegend.", "Geben Sie nur kühles Wasser, wenn die Person voll bei Bewusstsein ist und normal schlucken kann.", "Rufen Sie jetzt medizinische Notfallhilfe. Verwirrtheit, Kollaps oder sehr heiße Haut bedeuten Hitzschlag, nicht Hitzeerschöpfung."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "WHO-Leitlinien zu Hitze und Gesundheit / Indischer Rat für medizinische Forschung",
+      "verified": false
+    },
+    {
+      "id": "hypothermia",
+      "title": "Unterkühlung (zu kalt)",
+      "tags": ["kalt", "Unterkühlung", "nass", "Zittern", "frieren", "Kälte"],
+      "steps": ["Bringen Sie die Person an einen warmen Ort, geschützt vor Wind und Regen.", "Entfernen Sie nassen Kleidung und ersetzen Sie diese durch trockene Kleidung, Decken oder Mäntel.", "Wärmen Sie die Person langsam auf. Reiben Sie nicht die Gliedmaßen und verwenden Sie keine direkte Hitze oder sehr heißes Wasser.", "Geben Sie ein warmes, süßes Getränk, wenn die Person wach ist und schlucken kann.", "Behandeln Sie die Person vorsichtig und halten Sie sie ruhig liegend. Unterkühlung kann nach einer Flutrettung auftreten, wenn die Person nass und windausgesetzt ist."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "Rotes Kreuz / NHS Leitlinien zur Ersten Hilfe bei Kälte",
+      "verified": false
+    },
+    {
+      "id": "snake-bite",
+      "title": "Schlangenbiss",
+      "tags": ["Schlange", "Biss", "Gift", "Kobra", "Krait", "Viper"],
+      "steps": ["Entfernen Sie sich von der Schlange. Versuchen Sie nicht, sie zu fangen oder zu töten.", "Halten Sie die Person ruhig und still. Bewegung verbreitet Gift schneller.", "Rstellen Sie die gebissene Gliedmaße ruhig und halten Sie sie unter Herzhöhe.", "Entfernen Sie Ringe, Uhren und enge Kleidung von der Gliedmaße, bevor die Schwellung einsetzt.", "Schneiden Sie die Wunde nicht auf, saugen Sie kein Gift aus und legen Sie kein strammes Tourniquet oder Eis an. Rufen Sie den Notruf und begeben Sie sich sofort in ein Krankenhaus."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Leitlinien der WHO zum Schlangenbiss-Management / Indischer Rat für medizinische Forschung",
+      "verified": false
+    },
+    {
+      "id": "electric-shock",
+      "title": "Elektrischer Schlag",
+      "tags": ["elektrisch", "Schlag", "Blitz", "Strom", "stromführendes Kabel", "Strom"],
+      "steps": ["Berühren Sie die Person nicht, während sie in Kontakt mit Elektrizität oder stehendem Wasser ist.", "Schalten Sie zuerst den Strom am Hauptschalter ab. Drücken Sie die Person nur dann frei, wenn es nicht anders geht, mit einem trockenen, nicht leitenden Material wie Holz oder Kunststoff.", "Sobald sie keinen Strom mehr abbekommt, prüfen Sie die Atmung und beginnen Sie mit der Wiederbelebung, wenn sie nicht normal atmet.", "Jeder elektrische Schlag, selbst wenn er geringfügig erscheint, muss medizinisch abgeklärt werden – der Herzrhythmus kann später beeinträchtigt werden.", "Gehen Sie davon aus, dass alle nahegelegenen Kabel unter Strom stehen, bis offiziell bestätigt ist, dass sie sicher sind."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Erste-Hilfe-Leitlinien des Roten Kreuzes / Erste Hilfe bei Elektrounfällen",
+      "verified": false
+    },
+    {
+      "id": "anaphylaxis",
+      "title": "Schwere allergische Reaktion (Anaphylaxie)",
+      "tags": ["Allergie", "allergisch", "Anaphylaxie", "Epipen", "Adrenalin", "Stich", "Schwellung"],
+      "steps": ["Rufen Sie sofort den Notruf. Dies kann innerhalb von Minuten tödlich sein.", "Verwenden Sie den eigenen Adrenalin-Autoinjektor der Person, falls sie einen hat, in die äußere Mitte des Oberschenkels.", "Legen Sie die Person flach hin mit erhobenen Beinen, es sei denn, sie hat Atembeschwerden; lassen Sie sie in diesem Fall aufrecht sitzen.", "Wenn keine Atmung oder kein Puls vorhanden ist, beginnen Sie mit der Wiederbelebung.", "Bleiben Sie bei der Person. Die Symptome können innerhalb von 10–15 Minuten zurückkehren, daher kann eine zweite Dosis erforderlich sein, wenn sie eine bei sich trägt."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Leitlinien der World Allergy Organization / des Resuscitation Council UK zur Anaphylaxie",
+      "verified": false
+    },
+    {
+      "id": "fainting",
+      "title": "Ohnmacht",
+      "tags": ["ohnmächtig", "schwindelig", "Kollaps", "bewusstlos", "in Ohnmacht gefallen", "Synkope"],
+      "steps": ["Legen Sie die Person flach auf den Rücken.", "Heben Sie ihre Beine etwa 30 cm über den Körper.", "Lockern Sie enge Kleidung und sorgen Sie dafür, dass der Bereich belüftet ist.", "Sie sollte sich innerhalb ein oder zwei Minuten erholen. Geben Sie Wasser, sobald sie völlig wach ist.", "Wenn sie sich nicht innerhalb einer Minute erholt, durch den Sturz verletzt wurde oder dies erneut auftritt, rufen Sie medizinische Hilfe."],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "Erste-Hilfe-Leitlinien des Roten Kreuzes",
+      "verified": false
+    },
+    {
+      "id": "choking",
+      "title": "Verschlucken",
+      "tags": ["Verschlucken", "Hals", "blockiert", "schlucken", "kann nicht atmen", "still"],
+      "steps": ["Fragen Sie, ob sie husten kann. Wenn sie kräftig husten kann, ermutigen Sie sie, weiter zu husten.", "Wenn sie nicht sprechen, atmen oder husten kann, geben Sie 5 feste Schläge zwischen die Schulterblätter mit dem Handballen.", "Geben Sie dann 5 Bauchkompressionen: Faust über dem Bauchnabel, mit der anderen Hand greifen, scharf nach innen und oben ziehen.", "Wechseln Sie zwischen 5 Rückenschlägen und 5 Bauchkompressionen ab, bis der Gegenstand herauskommt oder sie nicht mehr reagiert.", "Wenn sie nicht mehr reagiert, rufen Sie den Notruf und beginnen Sie mit der Wiederbelebung. Wischen Sie den Mund nicht blind mit einem Finger aus."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "Leitlinien des Roten Kreuzes zum Ersticken / Resuscitation Council UK",
+      "verified": false
+    },
+    {
+      "id": "flood-safety",
+      "title": "Hochwassersicherheit – gehen oder fahren Sie nicht durch Hochwasser",
+      "tags": ["Hochwasser", "Wasser", "Überquerung", "Straße", "fahren", "gehen", "Hochwasser"],
+      "steps": ["Gehen oder fahren Sie niemals durch Hochwasser, selbst wenn es flach erscheint. Kniehohes, fließendes Wasser kann eine Person umwerfen; 30 cm schnelles Wasser können ein Auto mitreißen.", "Fahren Sie nicht durch Wasser unbekannter Tiefe. Drehen Sie um und suchen Sie eine andere Route.", "Halten Sie sich von schnell fließendem Wasser, Durchlässen, Brücken, Abwasserkanälen und Unterführungen fern.", "Wenn Sie in einem Fahrzeug in fließendem Wasser eingeschlossen sind, bleiben Sie drinnen. Steigen Sie nur dann aus und begeben Sie sich auf höheres Gelände, wenn das Wasser nicht steigt.", "Achten Sie auf Elektrokabel und behandeln Sie Wasser, dessen Grund Sie nicht sehen können, als unter Strom stehend."],
+      "severity": "critical",
+      "escalate": true,
+      "source": "FEMA / Indische Nationale Katastrophenschutzbehörde (NDMA) – Öffentliche Sicherheitshinweise zu Hochwasser",
+      "verified": false
+    },
+    {
+      "id": "cyclone-safety",
+      "title": "Sicherheit bei Zyklonen und schweren Stürmen",
+      "tags": ["Zyklon", "Sturm", "Hurrikan", "Taifun", "Wind", "Taifun"],
+      "steps": ["Begeben Sie sich nach drinnen und halten Sie sich von Fenstern und Glastüren fern.", "Bleiben Sie im Erdgeschoss oder in einem innenliegenden Raum, nicht auf dem Dach oder Balkon.", "Halten Sie sich von der Küste, dem Strand und Bereichen mit Bäumen oder losen Strukturen fern.", "Laden Sie Ihr Telefon auf, halten Sie eine Taschenlampe und eine Powerbank bereit und notieren Sie sich jetzt Ihren Zufluchtsort – nicht erst während des Ereignisses.", "Versuchen Sie nicht, während des Sturms zu reisen. Warten Sie auf die offizielle Entwarnung."],
+      "severity": "urgent",
+      "escalate": true,
+      "source": "IMD-Sicherheitshinweise zu Zyklonen / NDMA-Vorbereitungshinweise für die Öffentlichkeit",
+      "verified": false
+    },
+    {
+      "id": "what-to-pack",
+      "title": "Was für einen Sturm oder eine Evakuierung einzupacken ist",
+      "tags": ["packen", "Vorräte", "Tasche", "Evakuierung", "Ausrüstung", "Vorbereitung", "Das Wichtigste"],
+      "steps": ["Wasser: mindestens 1 Liter pro Person und Tag, plus einen kleinen Vorrat extra.", "Strom: eine aufgeladene Powerbank, eine Taschenlampe und Ersatzbatterien.", "Dokumente: Reisepass, Versicherung und Angaben zu Medikamenten, aufbewahrt in einer wasserdichten Tasche.", "Gesundheit: einige Tage Ihrer regelmäßigen verschreibungspflichtigen Medikamente sowie grundlegende Erste-Hilfe-Artikel.", "Kleidung und Nahrung: ein Wechsel an Kleidung, hochsichtbare Kleidung (falls vorhanden), trockene Nahrung, die nicht gekocht werden muss, und eine kleine Bargeldnote."],
+      "severity": "routine",
+      "escalate": false,
+      "source": "NDMA / UNICEF-Notfallvorsorge-Leitfaden",
+      "verified": false
+    },
+    {
+      "id": "find-shelter",
+      "title": "Einen sicheren Zufluchtsort finden",
+      "tags": ["Zufluchtsort", "sicher", "Zuflucht", "höheres Gelände", "schützen", "finden"],
+      "steps": ["Begeben Sie sich auf höheres Gelände. Meiden Sie tiefliegendes Land, Flussufer, Kanäle, Unterführungen und Keller.", "Halten Sie sich von der Küste, dem Strand und allen in einer Warnung genannten hochwassergefährdeten Zonen fern.", "Wählen Sie ein stabiles Gebäude auf höherem Gelände oder einen ausgewiesenen Zufluchtsort, falls Ihnen einer bekannt ist.", "Nehmen Sie Ihr Telefon, Wasser, Medikamente und Dokumente mit.", "Sagen Sie jemandem, wohin Sie gehen, und melden Sie sich bei Ihrer Unterkunft oder Ihrer Familie als sicher zurück."],
+      "severity": "urgent",
+      "escalate": false,
+      "source": "NDMA – Öffentliche Vorsorgerichtlinien für Hochwasser / Kavach-Pilotinhalt",
+      "verified": false
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree-bleeding",
+      "question": "Blutet die Person stark und ununterbrochen?",
+      "options": [
+        {
+          "label": "Ja, Blut fließt oder durchnässt das Tuch",
+          "next": "bleeding-press"
+        },
+        {
+          "label": "Nein, es ist nur eine Schürfwunde oder ein kleiner Schnitt",
+          "next": "bleeding-clean"
+        }
+      ]
+    },
+    {
+      "id": "bleeding-press",
+      "question": "Sie haben 10 Minuten lang fest gedrückt. Hat die Blutung nachgelassen?",
+      "options": [
+        {
+          "label": "Ja, sie hat nachgelassen oder aufgehört",
+          "next": "bleeding-clean"
+        },
+        {
+          "label": "Nein, sie ist immer noch stark",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Dies ist ein Notfall. Drücken Sie weiterhin fest und heben Sie das Tuch nicht an, um nachzusehen.", "Rufen Sie jetzt medizinische Notfallhilfe und bleiben Sie bei der Person, bis Hilfe eintrifft.", "Halten Sie die Person warm und flach liegend. Verabreichen Sie keine Nahrung und keine Getränke."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "bleeding-clean",
+      "question": "Sie haben die Blutung gestoppt. Was ist der nächste Schritt?",
+      "options": [
+        {
+          "label": "Die Wunde ist klein und sauber",
+          "next": null
+        },
+        {
+          "label": "Die Wunde ist tief, klafft oder Schmutz steckt darin.",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Spülen Sie die Wunde mit sauberem Wasser aus und bedecken Sie sie mit einem sauberen Verband.", "Hol Sie heute medizinische Hilfe, wenn die Wunde tief, klaffend oder schmutzig ist oder der Schnitt durch einen rostigen oder schmutzigen Gegenstand verursacht wurde."],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-cpr",
+      "question": "Reagiert die Person, wenn Sie ihre Schultern berühren und rufen?",
+      "options": [
+        {
+          "label": "Ja, sie reagiert",
+          "next": "cpr-responsive"
+        },
+        {
+          "label": "Keine Reaktion",
+          "next": "cpr-breathing"
+        }
+      ]
+    },
+    {
+      "id": "cpr-breathing",
+      "question": "Atmet die Person normal (sehen, hören und fühlen Sie bis zu 10 Sekunden lang)?",
+      "options": [
+        {
+          "label": "Nein, atmet nicht oder schnappt nur nach Luft",
+          "next": null
+        },
+        {
+          "label": "Ja, atmet normal",
+          "next": "cpr-recovery"
+        }
+      ],
+      "terminalSteps": ["Rufen Sie jetzt den Notdienst und schicken Sie jemanden los, um einen AED zu holen.", "Beginnen Sie mit der Herzdruckmassage: Hände in die Mitte der Brust, etwa zweimal pro Sekunde fest und schnell drücken.", "Machen Sie weiter, bis die Person normal atmet, Hilfe eintrifft oder Sie zu erschöpft sind, um fortzufahren."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "cpr-recovery",
+      "question": "Die Person atmet. Was nun?",
+      "options": [
+        {
+          "label": "Weiter",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Rollen Sie die Person in die stabile Seitenlage.", "Beobachten Sie ihre Atmung, bis Hilfe eintrifft.", "Wenn sie aufhört, normal zu atmen, beginnen Sie erneut mit der Herzdruckmassage."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "cpr-responsive",
+      "question": "Die Person ist wach. Worauf sollten Sie sich konzentrieren?",
+      "options": [
+        {
+          "label": "Weiter",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Lassen Sie die Person dort sitzen oder liegen, wo sie ist, und geben Sie ihr nichts zu essen oder zu trinken.", "Beobachten Sie die Person genau. Wenn sie nicht mehr ansprechbar ist, prüfen Sie die Atmung und beginnen Sie mit der Wiederbelebung.", "Holen Sie so schnell wie möglich medizinische Hilfe."],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-drowning",
+      "question": "Haben Sie die Person sicher aus dem Wasser gezogen?",
+      "options": [
+        {
+          "label": "Ja, sie ist aus dem Wasser",
+          "next": "drowning-breathing"
+        },
+        {
+          "label": "Nein, sie ist noch im Wasser",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Betreten Sie kein fließendes oder tiefes Gewässer mit unbekannter Tiefe für einen Rettungsversuch.", "Reichen Sie etwas oder werfen Sie etwas zu, gehen Sie niemals selbst hine. Rufen Sie um Hilfe und bringen Sie einen Rettungsring, eine lange Stange oder ein Seil.", "Warten Sie auf ausgebildete Retter. Ihre eigene Sicherheit geht vor."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "drowning-breathing",
+      "question": "Atmet die Person normal?",
+      "options": [
+        {
+          "label": "Nein, atmet nicht oder schnappt nur nach Luft",
+          "next": null
+        },
+        {
+          "label": "Ja, atmet normal",
+          "next": "drowning-seek"
+        }
+      ],
+      "terminalSteps": ["Beginnen Sie sofort mit der Herzdruckmassage, genau wie bei der Wiederbelebung.", "Schicken Sie jemanden los, um den Notdienst zu rufen und einen AED zu holen.", "Machen Sie weiter, bis die Person normal atmet oder Hilfe eintrifft."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "drowning-seek",
+      "question": "Die Person atmet nach dem Untertauchen. Was nun?",
+      "options": [
+        {
+          "label": "Weiter",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Halten Sie die Person warm, lassen Sie sie auf der Seite liegen und beobachten Sie ihre Atmung.", "Jedes Untertauchen erfordert eine medizinische Untersuchung, auch wenn die Person jetzt wohlauf erscheint. Bringen Sie sie ins Krankenhaus.", "Achten Sie den Rest des Tages auf Atemprobleme."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "tree-heat",
+      "question": "Ist die Person verwirrt, kollabiert oder fühlt sich ihre Haut sehr heiß an?",
+      "options": [
+        {
+          "label": "Ja, eines davon",
+          "next": null
+        },
+        {
+          "label": "Nein, sie ist bei Bewusstsein und schwitzt",
+          "next": "heat-exhaustion-step"
+        }
+      ],
+      "terminalSteps": ["Dies ist ein Hitzschlag und lebensbedrohlich. Bringen Sie die Person in den Schatten und kühlen Sie sie sofort ab.", "Entfernen Sie überschüssige Kleidung, benetzen Sie die Haut mit kühlem Wasser und fächeln Sie kräftig Luft zu. Verwenden Sie Kühlpacks an Hals, Achseln und Leiste.", "Rufen Sie jetzt den Notdienst."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "heat-exhaustion-step",
+      "question": "Die Person ist bei Bewusstsein und schwitzt. Was tun Sie?",
+      "options": [
+        {
+          "label": "Weiter",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Bringen Sie sie an einen kühlen, schattigen Ort und lockern Sie schwerste Kleidung.", "Geben Sie kühles Wasser in kleinen Schlucken, wenn sie völlig wach ist und sich nicht erbricht.", "Wenn sich der Zustand innerhalb von 30 Minuten nicht bessert oder Verwirrung eintritt, behandeln Sie es als Hitzschlag und rufen Sie Hilfe."],
+      "terminalEscalates": false
+    },
+    {
+      "id": "tree-anaphylaxis",
+      "question": "Hat die Person Schwellungen im Gesicht oder Hals, Atembeschwerden oder einen großflächigen Hautausschlag mit Erbrechen?",
+      "options": [
+        {
+          "label": "Ja, eines davon",
+          "next": null
+        },
+        {
+          "label": "Nein, es ist eine milde lokale Reaktion",
+          "next": "anaphylaxis-mild"
+        }
+      ],
+      "terminalSteps": ["Dies ist eine Anaphylaxie. Rufen Sie sofort den Notdienst – sie kann innerhalb von Minuten tödlich sein.", "Verwenden Sie den eigenen Adrenalin-Autoinjektor der Person in die äußere Mitte des Oberschenkels, falls vorhanden.", "Legen Sie sie flach mit erhobenen Beinen hin oder lassen Sie sie aufsetzen, wenn das Atmen schwerfällt. Bleiben Sie bei ihr."],
+      "terminalEscalates": true
+    },
+    {
+      "id": "anaphylaxis-mild",
+      "question": "Es ist eine milde, lokale Reaktion. Was nun?",
+      "options": [
+        {
+          "label": "Weiter",
+          "next": null
+        }
+      ],
+      "terminalSteps": ["Beobachten Sie die Person genau. Die Symptome können sich schnell verschlimmern.", "Wenn Schwellungen, Atembeschwerden, Erbrechen oder ein großflächiger Hautausschlag auftreten, rufen Sie den Notdienst und verwenden Sie den Adrenalin-Autoinjektor der Person.", "Bleiben Sie mindestens 15 Minuten bei ihnen."],
+      "terminalEscalates": false
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:25:41Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "de",
+  "templates": [
+    {
+      "id": "FL-1",
+      "hazard": "FL",
+      "level": 1,
+      "headline": "Leichte Überschwemmungen in {zone} gemeldet.",
+      "steps": ["Halten Sie sich in {zone} von Abflüssen und tief liegenden Straßen fern.", "Achten Sie vor dem Aufbruch auf tieferes oder schneller fließendes Wasser."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "FL-2",
+      "hazard": "FL",
+      "level": 2,
+      "headline": "Das Hochwasser in {zone} steigt.",
+      "steps": ["Verlassen Sie tief liegende Bereiche von {zone} jetzt und begeben Sie sich auf höheres Gelände.", "Gehen oder fahren Sie nicht durch Hochwasser.", "Nehmen Sie Wasser, Telefon und Medikamente mit."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "FL-3",
+      "hazard": "FL",
+      "level": 3,
+      "headline": "Schwere Überschwemmung in {zone}. Menschen sollten jetzt evakuieren.",
+      "steps": ["Evakuieren Sie {zone} jetzt in höheres Gelände. Warten Sie nicht, bis das Wasser steigt.", "Gehen Sie zu Fuß. Fahren Sie niemals durch Hochwasser.", "Begeben Sie sich nach {shelter}, etwa {distance} entfernt, falls er erreichbar ist."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "FL-4",
+      "hazard": "FL",
+      "level": 4,
+      "headline": "Extreme lebensgefährliche Überschwemmung in {zone}.",
+      "steps": ["Verlassen Sie {zone} sofort und begeben Sie sich auf hohes Gelände oder nach {shelter}.", "Halten Sie sich von fließendem Wasser fern. Versuchen Sie nicht, überschwemmte Straßen zu überqueren.", "Bleiben Sie dort, wo Sie sicher sind, bis Entwarnung gegeben wird. Halten Sie Ihr Telefon aufgeladen."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "CY-1",
+      "hazard": "CY",
+      "level": 1,
+      "headline": "Zyklonbeobachtung für {zone}. Die Winde können später zunehmen.",
+      "steps": ["Sichern Sie lose Gegenstände im Freien und bleiben Sie in der Nähe von Schutzräumen.", "Halten Sie Ihr Telefon aufgeladen, falls das Netz ausfällt."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "CY-2",
+      "hazard": "CY",
+      "level": 2,
+      "headline": "Zyklonwarnung für {zone}. Starkregen und starker Wind zu erwarten.",
+      "steps": ["Bleiben Sie drinnen und fern von Fenstern.", "Begeben Sie sich in einen inneren Raum im Erdgeschoss.", "Reisen Sie nur, wenn es unbedingt notwendig ist."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "CY-3",
+      "hazard": "CY",
+      "level": 3,
+      "headline": "Schwerer Zyklon nähert sich {zone}. Suchen Sie jetzt Schutz.",
+      "steps": ["Suchen Sie jetzt Schutz in einem stabilen Gebäude auf höherem Gelände, fern von der Küste.", "Bleiben Sie im Erdgeschoss, fern von Fenstern.", "Halten Sie Ihr Telefon aufgeladen und befolgen Sie offizielle Aktualisierungen."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "CY-4",
+      "hazard": "CY",
+      "level": 4,
+      "headline": "Zyklon-Landungsrisiko für {zone}. Dies ist lebensgefährlich.",
+      "steps": ["Suchen Sie Schutz. Bleiben Sie drinnen, bis offizielle Entwarnung gegeben wird.", "Halten Sie sich von der Küste und von Fenstern fern.", "Gehen Sie nicht nach draußen, um die Bedingungen zu überprüfen."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "HT-1",
+      "hazard": "HT",
+      "level": 1,
+      "headline": "Hohe Temperatur in {zone} erwartet.",
+      "steps": ["Trinken Sie regelmäßig Wasser und bleiben Sie im Schatten.", "Ruhen Sie sich während des heißesten Teils des Tages aus."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "HT-2",
+      "hazard": "HT",
+      "level": 2,
+      "headline": "Sehr große Hitze in {zone}. Hitzekrankheiten sind möglich.",
+      "steps": ["Trinken Sie oft Wasser. Vermeiden Sie Alkohol und schwere Mahlzeiten.", "Nehmen Sie Wasser mit und ruhen Sie sich im Schatten aus.", "Sehen Sie nach älteren Menschen und Kindern."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "HT-3",
+      "hazard": "HT",
+      "level": 3,
+      "headline": "Extreme Hitze-Warnung für {zone}. Hitzschlaggefahr.",
+      "steps": ["Vermeiden Sie es, zwischen Mittag und dem späten Nachmittag nach draußen zu gehen.", "Trinken Sie regelmäßig Wasser und halten Sie sich in klimatisierten oder schattigen Bereichen auf.", "Kennen Sie die Anzeichen eines Hitzschlags: Verwirrung, Zusammenbruch, sehr heiße Haut."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "HT-4",
+      "hazard": "HT",
+      "level": 4,
+      "headline": "Gefährliche Hitze in {zone}. Ein Hitzschlag kann tödlich sein.",
+      "steps": ["Bleiben Sie in den heißesten Stunden drinnen mit Klimaanlage oder Ventilatoren.", "Trinken Sie regelmäßig Wasser, auch wenn Sie keinen Durst verspüren.", "Kühlen Sie jeden, der verwirrt ist oder zusammenbricht, sofort ab und holen Sie Hilfe."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "WN-1",
+      "hazard": "WN",
+      "level": 1,
+      "headline": "Starke Winde in {zone}. Seien Sie im Freien vorsichtig.",
+      "steps": ["Achten Sie auf herabfallende Äste und lose Gegenstände.", "Sichern Sie alles Leichte, das wegwehen könnte."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "WN-2",
+      "hazard": "WN",
+      "level": 2,
+      "headline": "Schädliche Winde in {zone}. Bleiben Sie nach Möglichkeit drinnen.",
+      "steps": ["Bleiben Sie drinnen und fern von Fenstern und Türen.", "Halten Sie sich von Bäumen und Baustellen fern."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "WN-3",
+      "hazard": "WN",
+      "level": 3,
+      "headline": "Schwere Windwarnung für {zone}. Reisen Sie nicht.",
+      "steps": ["Bleiben Sie drinnen und suchen Sie Schutz fern von Fenstern.", "Fahren Sie nicht und gehen Sie nicht nach draußen.", "Halten Sie Ihr Telefon für offizielle Aktualisierungen aufgeladen."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "WN-4",
+      "hazard": "WN",
+      "level": 4,
+      "headline": "Extreme Winde in {zone}. Lebensgefährlich im Freien.",
+      "steps": ["Suchen Sie Schutz in Innenräumen im untersten Stockwerk, fern von Fenstern.", "Gehen Sie erst nach draußen, wenn die offizielle Entwarnung erfolgt ist.", "Halten Sie sich fern von Bäumen, Stromleitungen und losen Strukturen."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "LS-1",
+      "hazard": "LS",
+      "level": 1,
+      "headline": "Erdrutschrisiko in {zone} nach Regen festgestellt.",
+      "steps": ["Achten Sie auf Hangbewegungen oder Risse in der Nähe von Hängen.", "Vermeiden Sie es, nach starkem Regen in der Nähe von steilen Hängen zu gehen."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "LS-2",
+      "hazard": "LS",
+      "level": 2,
+      "headline": "Erdrutschrisiko steigt in {zone}.",
+      "steps": ["Halten Sie sich fern von Hängen, Einschnitten und Felswänden.", "Entfernen Sie sich, wenn Sie Bodenbewegungen, Risse oder abrutschende Erde sehen.", "Reisen Sie nicht durch hügelige Gebiete in {zone}."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "LS-3",
+      "hazard": "LS",
+      "level": 3,
+      "headline": "Hohes Erdrutschrisiko in {zone}. Verlassen Sie das Gebiet.",
+      "steps": ["Verlassen Sie Hänge und tief liegendes Gelände unterhalb dieser jetzt.", "Begeben Sie sich auf stabiles, offenes Gelände fern von {zone}.", "Kehren Sie erst nach der Entwarnung zurück."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "LS-4",
+      "hazard": "LS",
+      "level": 4,
+      "headline": "Extremes Erdrutschrisiko in {zone}. Unmittelbare Gefahr.",
+      "steps": ["Verlassen Sie {zone} sofort und begeben Sie sich auf offenes, flaches Gelände.", "Halten Sie sich fern von Hängen, Schluchten und Flusstälern.", "Befolgen Sie die offiziellen Anweisungen und betreten Sie das Gebiet nicht erneut."],
+      "drillNote": "ÜBUNG. Dies ist ein Probealarm."
+    },
+    {
+      "id": "AC",
+      "hazard": "AC",
+      "level": null,
+      "headline": "Entwarnung für {zone}. Die Gefahr ist vorüber.",
+      "steps": ["Die Entwarnung für {zone} wurde herausgegeben.", "Sie können zurückkehren, aber bleiben Sie wachsam und achten Sie auf neue Warnungen.", "Halten Sie Ihr Telefon für den Fall von Wetteränderungen aufgeladen."],
+      "drillNote": "ÛBUNG. Dies ist eine Entwarnungsübung, keine echte."
+    }
+  ],
+  "drill": {
+    "banner": "ÛBUNG",
+    "bannerLong": "ÛBUNG – Testalarm, kein echter Notfall",
+    "disclaimer": "Diese Warnung ist eine Übung zu Trainings- und Testzwecken. Handeln Sie nicht so, als ob es sich um einen echten Notfall handelte."
+  }
+}

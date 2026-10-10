@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:28:18Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "zh",
+  "categories": [
+    {
+      "id": "medical",
+      "label": "医疗"
+    },
+    {
+      "id": "shelter",
+      "label": "庇护与安全"
+    },
+    {
+      "id": "transport",
+      "label": "交通"
+    },
+    {
+      "id": "food_water",
+      "label": "食品与水"
+    },
+    {
+      "id": "safety",
+      "label": "安全与帮助"
+    },
+    {
+      "id": "documents",
+      "label": "证件与金钱"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "我需要医疗帮助。",
+      "intent": "叫救护车。"
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "求求你，医生，快点！",
+      "intent": "请他们快一点。"
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "最近的诊所在哪里？",
+      "intent": "询问最近的诊所。"
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "最近的医院在哪里？",
+      "intent": "询问最近的医院。"
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "我这里受伤了。",
+      "intent": "指出哪里受伤了。"
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "我一直在流血，止不住。",
+      "intent": "向他们展示伤口。"
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "我胃痛得很厉害。",
+      "intent": "指出疼痛的位置。"
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "我呼吸困难。",
+      "intent": "情况紧急。"
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "我发烧头晕。",
+      "intent": "向他们表明你身体不舒服。"
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "我有严重的过敏。",
+      "intent": "指给你的医疗身份证明看。"
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "我需要我的药物。",
+      "intent": "出示处方或药盒。"
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "你会说英语吗？",
+      "intent": "寻找会说英语的人。"
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "最近的庇护所在哪里？",
+      "intent": "寻找安全的地方。"
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "这个庇护所开放吗？",
+      "intent": "出发前确认。"
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "今晚我们需要一个安全的地方睡觉。",
+      "intent": "询问住宿。"
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "去 {place} 安全吗？",
+      "intent": "在手机上显示该地点。"
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "我们去哪里能弄到饮用水？",
+      "intent": "索要水。"
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "我们能待在一起吗？",
+      "intent": "询问你们的小组是否可以待在一起。"
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "去 {place} 的出租车费是多少？",
+      "intent": "先问价格。"
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "请在这里停下。",
+      "intent": "指出你想下车的地方。"
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "我怎么去机场？",
+      "intent": "询问路线。"
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "最近的火车站或汽车站在哪里？",
+      "intent": "询问最近的车站。"
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "通往 {place} 的路通畅吗？",
+      "intent": "在手机上显示该地点。"
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "步行有多远？",
+      "intent": "步行前检查距离。"
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "我很口渴，拜托了。",
+      "intent": "索要水。"
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "这食物可以安全食用吗？",
+      "intent": "吃之前先询问。"
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "你们有素食吗？",
+      "intent": "询问您的饮食需求。"
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "我不能吃坚果。这里面含坚果吗？",
+      "intent": "指向食物。"
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "你们有干净的水可以清洗吗？",
+      "intent": "请求安全的清洗用水。"
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "附近哪里可以买到食物？",
+      "intent": "询问附近可以吃东西的地方。"
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "水快漫上来了。我们需要帮助。",
+      "intent": "情况紧急。找救援人员。"
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "请报警。",
+      "intent": "指向电话。"
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "我和同行的人走散了。请帮我找到他们。",
+      "intent": "说明您的情况。"
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "我的包被偷了。",
+      "intent": "告诉警员。"
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "我是游客，我不会说泰米尔语。",
+      "intent": "寻找会说英语的人。"
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "我们很安全，谢谢。",
+      "intent": "告诉救援人员您很安全。"
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "这是我的护照。",
+      "intent": "交出您的护照。"
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "我的护照丢了。",
+      "intent": "向警方寻求帮助。"
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "在哪里可以兑换货币？",
+      "intent": "询问兑换点。"
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "最近的自动取款机在哪里？",
+      "intent": "询问获取现金的地方。"
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "我的SIM卡无法使用。",
+      "intent": "向商店寻求帮助。"
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "请帮我写下来。",
+      "intent": "请他们写下来。"
+    }
+  ]
+}

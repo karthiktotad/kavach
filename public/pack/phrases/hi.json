@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:23:20Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "hi",
+  "categories": [
+    {
+      "id": "medical",
+      "label": "चिकित्सा"
+    },
+    {
+      "id": "shelter",
+      "label": "आश्रय और सुरक्षा"
+    },
+    {
+      "id": "transport",
+      "label": "परिवहन"
+    },
+    {
+      "id": "food_water",
+      "label": "भोजन और पानी"
+    },
+    {
+      "id": "safety",
+      "label": "सुरक्षा और सहायता"
+    },
+    {
+      "id": "documents",
+      "label": "दस्तावेज़ और पैसे"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "मुझे चिकित्सीय सहायता चाहिए।",
+      "intent": "एम्बुलेंस बुलाएँ।"
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "कृपया, डॉक्टर, जल्दी!",
+      "intent": "जल्द करने के लिए कहें।"
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "निकटतम क्लिनिक कहाँ है?",
+      "intent": "सबसे पास के क्लिनिक के बारे में पूछें।"
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "निकटतम अस्पताल कहाँ है?",
+      "intent": "सबसे पास के अस्पताल के बारे में पूछें।"
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "मुझे यहाँ चोट लगी है।",
+      "intent": "बताएँ कि कहाँ दर्द है।"
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "मुझे खून बह रहा है और यह बंद नहीं हो रहा है।",
+      "intent": "उन्हें घाव दिखाएँ।"
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "मेरे पेट में तेज दर्द है।",
+      "intent": "बताएँ कि दर्द कहाँ है।"
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "मुझसे ठीक से साँस नहीं ली जा रही है।",
+      "intent": "यह ज़रूरी है।"
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "मुझे बुख़ार और चक्कर आ रहे हैं।",
+      "intent": "उन्हें दिखाएँ कि आप अस्वस्थ महसूस कर रहे हैं।"
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "मुझे गंभीर एलर्जी है।",
+      "intent": "अपनी मेडिकल आईडी दिखाएँ।"
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "मुझे मेरी दवा चाहिए।",
+      "intent": "नुस्खा या डिब्बा दिखाएँ।"
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "क्या आप अंग्रेजी बोलते हैं?",
+      "intent": "अंग्रेजी बोलने वाले व्यक्ति के बारे में पूछें।"
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "निकटतम आश्रय स्थल कहाँ है?",
+      "intent": "सुरक्षित जगह के बारे में पूछें।"
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "क्या यह आश्रय स्थल खुला है?",
+      "intent": "जाने से पहले पुष्टि करें।"
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "हमें आज रात सोने के लिए सुरक्षित जगह चाहिए।",
+      "intent": "रहने की जगह के लिए पूछें।"
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "क्या {place} जाना सुरक्षित है?",
+      "intent": "फ़ोन पर जगह दिखाएँ।"
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "हम पीने का पानी कहाँ से ले सकते हैं?",
+      "intent": "पानी के लिए पूछें।"
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "क्या हम सब एक साथ रह सकते हैं?",
+      "intent": "पूछें कि क्या आपका समूह एक साथ रह सकता है।"
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "के लिए टैक्सी का किराया कितना है {place}?",
+      "intent": "पहले कीमत पूछें।"
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "कृपया यहाँ रुकें।",
+      "intent": "बताएँ कि आप कहाँ उतरना चाहते हैं।"
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "मैं हवाई अड्डे कैसे पहुँचूँ?",
+      "intent": "रास्ते के बारे में पूछें।"
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "निकटतम रेलवे या बस स्टेशन कहाँ है?",
+      "intent": "निकटतम स्टॉप के बारे में पूछें।"
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "क्या {place} का रास्ता खुला है?",
+      "intent": "फ़ोन पर जगह दिखाएँ।"
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "पैदल जाने में कितना समय लगता है?",
+      "intent": "चलने से पहले दूरी की जाँच करें।"
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "मुझे प्यास लगी है, कृपया।",
+      "intent": "पानी के लिए पूछें।"
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "क्या यह खाना खाने के लिए सुरक्षित है?",
+      "intent": "खाने से पहले पूछें।"
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "क्या आपके पास शाकाहारी भोजन है?",
+      "intent": "अपनी आहार संबंधी आवश्यकताओं के बारे में पूछें।"
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "मैं नट्स नहीं खा सकता। क्या इसमें नट्स हैं?",
+      "intent": "भोजन की ओर इशारा करें।"
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "क्या आपके पास धोने के लिए साफ पानी है?",
+      "intent": "धोने के लिए सुरक्षित पानी मांगें।"
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "आसपास खाना कहां मिल सकता है?",
+      "intent": "आसपास खाने की जगह के बारे में पूछें।"
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "पानी आ रहा है। हमें मदद चाहिए।",
+      "intent": "यह जरूरी है। किसी सहायताकर्मी को बुलाएं।"
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "कृपया पुलिस को फोन करें।",
+      "intent": "फोन की ओर इशारा करें।"
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "मेरा समूह बिछड़ गया है। कृपया उन्हें ढूंढने में मेरी मदद करें।",
+      "intent": "अपनी स्थिति समझाएं।"
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "मेरा बैग चोरी हो गया है।",
+      "intent": "पुलिस अधिकारी को बताएं।"
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "मैं एक पर्यटक हूं और तमिल नहीं बोलता।",
+      "intent": "अंग्रेजी बोलने वाले व्यक्ति को ढूंढें।"
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "हम सुरक्षित हैं, धन्यवाद।",
+      "intent": "सहायताकर्मी को बताएं कि आप सुरक्षित हैं।"
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "यह रहा मेरा पासपोर्ट।",
+      "intent": "अपना पासपोर्ट दें।"
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "मेरा पासपोर्ट खो गया है।",
+      "intent": "पुलिस से मदद मांगें।"
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "मैं पैसे कहां बदल सकता हूं?",
+      "intent": "मुद्रा परिवर्तन केंद्र के बारे में पूछें।"
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "निकटतम एटीएम कहां है?",
+      "intent": "नकद निकालने की जगह के बारे में पूछें।"
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "मेरा सिम कार्ड काम नहीं कर रहा है।",
+      "intent": "किसी दुकान से मदद मांगें।"
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "कृपया इसे मेरे लिए लिख दें।",
+      "intent": "उनसे इसे लिखने के लिए कहें।"
+    }
+  ]
+}

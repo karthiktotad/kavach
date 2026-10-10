@@ -74,14 +74,19 @@ npm run pack:build -- --offline → sample fallback works, flagged sample:true
 ---
 
 ## M3 — Offline core (connectivity ladder, storage, i18n)
-- [ ] **Dexie** schema: alerts, packets, reports, outbox, checkins, prefs, content cache
-- [ ] Connectivity detector + `navigator.onLine`, latency probe, effective-type → ladder level
-- [ ] `StatusChip` real implementation with the 5 levels + accessible labels
-- [ ] **i18n layer**: 8 languages, interpolation, number/relative-time formatting, **RTL** (`ar`) — *JSON catalogue, `t()`, localStorage and `dir` done in M2; Dexie persistence + pluralisation still open*
-- [~] Language selector — *functional now (native `<select>` + endonyms); M3 upgrades it to the searchable sheet with flags*
-- [ ] `<html lang dir>` wiring, font stacks per script
-- [ ] Offline banner/behaviour switch driven by ladder level
-- [ ] Unit tests: ladder state machine, i18n interpolation/RTL
+- [x] **Dexie** schema: `packFiles`, `packets`, `alerts`, `riskSnapshot`, `outbox`, `reports`, `checkins`, `settings`, `medicalId` — append-only schema versioning + documented migration pattern
+- [x] Connectivity detector: `navigator.onLine` **plus** an active health ping (3 s timeout), paused while the tab is hidden; `live | degraded | offline` measured, `cellular | relay` declared by other features
+- [x] `useConnectivity()` hook, `lastLiveAt`, event emission on change
+- [x] Real `StatusChip`: colour **and** icon **and** text; "Delayed — last updated X ago" / "Offline — using data from X ago"; bottom sheet explaining what works at that level
+- [x] **PackManager** (`src/lib/pack.ts`): manifest compare, resume, per-file SHA-256 via WebCrypto, `navigator.storage.persist()`, typed getters, on-demand locale download (English always)
+- [x] `src/lib/outbox.ts`: generic queue, client UUIDs, per-type handler registry, ordered drain, exponential backoff, Background Sync where supported, `queued | sending | sent | failed`, "Queued items" indicator
+- [x] `src/lib/freshness.ts` — `formatAge`, `formatClock`, `formatBytes`, freshness bands
+- [x] Global `ErrorBoundary` that keeps alerts and SOS reachable and never auto-reloads
+- [x] **Get Ready** at `/ready`: what is stored, size, download with real progress, success state, install-to-home-screen (`beforeinstallprompt` captured; iOS instructions otherwise)
+- [x] SW: app-shell precache, `NetworkOnly` health probe, stale-while-revalidate pack, network-first snapshot, **assistant + write endpoints deliberately never cached**
+- [x] Non-blocking "Update available" banner — user-triggered only, never auto-reload
+- [~] i18n: JSON catalogue, `t(key, vars)`, localStorage, `dir="rtl"` for Arabic — *done in M2*; Dexie-backed persistence and pluralisation still open
+- [x] Unit tests: outbox ordering/idempotency/backoff, connectivity transitions, pack hash-mismatch + resume
 
 ---
 

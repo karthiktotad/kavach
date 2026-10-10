@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:29:30Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "ja",
+  "categories": [
+    {
+      "id": "medical",
+      "label": "医療"
+    },
+    {
+      "id": "shelter",
+      "label": "避難所と安全"
+    },
+    {
+      "id": "transport",
+      "label": "交通"
+    },
+    {
+      "id": "food_water",
+      "label": "食料と水"
+    },
+    {
+      "id": "safety",
+      "label": "安全と支援"
+    },
+    {
+      "id": "documents",
+      "label": "書類とお金"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "医療助けが必要です。",
+      "intent": "救急車を呼んでください。"
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "医師をお願いします、急いでください！",
+      "intent": "急ぐよう伝えてください。"
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "最寄りの診療所はどこですか？",
+      "intent": "一番近い診療所を尋ねる。"
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "最寄りの病院はどこですか？",
+      "intent": "一番近い病院を尋ねる。"
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "ここに怪我をしています。",
+      "intent": "痛む場所を指し示す。"
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "出血していて止まりません。",
+      "intent": "傷口を見せる。"
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "お腹が激しく痛みます。",
+      "intent": "痛む場所を示す。"
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "息苦しいです。",
+      "intent": "これは緊急です。"
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "熱とめまいがあります。",
+      "intent": "体調が悪いことを示す。"
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "重度のアレルギーがあります。",
+      "intent": "医療用IDを見せる。"
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "薬が必要です。",
+      "intent": "処方箋または薬のパッケージを見せる。"
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "英語を話せますか？",
+      "intent": "英語を話す人を求める。"
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "最寄りの避難所はどこですか？",
+      "intent": "安全な場所を尋ねる。"
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "この避難所は開いていますか？",
+      "intent": "行く前に確認する。"
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "今夜眠る安全な場所が必要です。",
+      "intent": "宿泊場所を尋ねる。"
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "{place}に行くのは安全ですか？",
+      "intent": "携帯電話で場所を示す。"
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "飲み水はどこで手に入りますか？",
+      "intent": "水を求める。"
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "全員一緒に滞在できますか？",
+      "intent": "グループで一緒に滞在できるか尋ねる。"
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "{place}までのタクシー料金はいくらですか？",
+      "intent": "最初に料金を尋ねる。"
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "ここで止めてください。",
+      "intent": "降りたい場所を指し示す。"
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "空港にはどう行けばいいですか？",
+      "intent": "経路を尋ねる。"
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "最寄りの駅やバス停はどこですか？",
+      "intent": "最寄りの停留所を尋ねる。"
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "{place}へ続く道路は通行可能ですか？",
+      "intent": "携帯電話で場所を示す。"
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "歩いてどのくらいかかりますか？",
+      "intent": "歩く前に距離を確認する。"
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "喉が渇いています、お願いします。",
+      "intent": "水を求める。"
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "この食べ物は安全に食べられますか？",
+      "intent": "食べる前に確認する。"
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "ベジタリアン向けの食べ物はありますか？",
+      "intent": "食事の好みや制限について尋ねます。"
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "私はナッツが食べられません。これにはナッツが含まれていますか？",
+      "intent": "食べ物を指し示します。"
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "洗浄用のきれいな水はありますか？",
+      "intent": "安全な洗う水を求めます。"
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "この近くで食料を手に入れられる場所はどこですか？",
+      "intent": "近くの食事場所を尋ねます。"
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "水が迫っています。助けが必要です。",
+      "intent": "緊急事態です。救助者を呼んでください。"
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "警察を呼んでください。",
+      "intent": "電話を指し示します。"
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "グループからはぐれてしまいました。探すのを手伝ってください。",
+      "intent": "状況を説明します。"
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "鞄が盗まれました。",
+      "intent": "警察官に伝えます。"
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "私は観光客で、タミル語を話せません。",
+      "intent": "英語を話せる人を求めます。"
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "私たちは無事です。ありがとうございます。",
+      "intent": "無事であることを救助者に伝えます。"
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "これが私のパスポートです。",
+      "intent": "パスポートを渡します。"
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "パスポートを紛失しました。",
+      "intent": "警察に助けを求めます。"
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "どこで両替ができますか？",
+      "intent": "両替所を尋ねます。"
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "最寄りのATMはどこですか？",
+      "intent": "現金の引き出し場所を尋ねます。"
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "SIMカードが機能していません。",
+      "intent": "お店の人に助けを求めます。"
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "これをメモに書いてください。",
+      "intent": "書いてもらうよう頼みます。"
+    }
+  ]
+}

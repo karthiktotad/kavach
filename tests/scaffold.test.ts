@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { PILOT_REGION, SUPPORTED_LOCALES, isInsideRegion } from '../src/config/region'
 import { MESSAGES } from '../src/i18n'
-import { CONNECTIVITY_LADDER } from '../src/store/connectivity'
+import { LADDER } from '../src/lib/connectivity'
 
 const enMessages = MESSAGES.en
 
@@ -52,7 +52,7 @@ describe('scaffold', () => {
   })
 
   it('has a key for every rung of the connectivity ladder', () => {
-    for (const level of CONNECTIVITY_LADDER) {
+    for (const level of LADDER) {
       expect(enMessages[`status.${level}`], `missing status.${level}`).toBeTruthy()
       expect(enMessages[`status.${level}.desc`], `missing status.${level}.desc`).toBeTruthy()
     }

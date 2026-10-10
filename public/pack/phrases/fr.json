@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "packVersion": "0.2.0",
+    "builtAt": "2026-10-10T03:24:37Z",
+    "machineTranslated": true,
+    "reviewed": false
+  },
+  "locale": "fr",
+  "categories": [
+    {
+      "id": "medical",
+      "label": "Médical"
+    },
+    {
+      "id": "shelter",
+      "label": "Abri et sécurité"
+    },
+    {
+      "id": "transport",
+      "label": "Transport"
+    },
+    {
+      "id": "food_water",
+      "label": "Nourriture et eau"
+    },
+    {
+      "id": "safety",
+      "label": "Sécurité et aide"
+    },
+    {
+      "id": "documents",
+      "label": "Documents et argent"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "med-help",
+      "category": "medical",
+      "text": "J'ai besoin d'aide médicale.",
+      "intent": "Appeler une ambulance."
+    },
+    {
+      "id": "med-please",
+      "category": "medical",
+      "text": "S'il vous plaît, docteur, vite !",
+      "intent": "Demander de se dépêcher."
+    },
+    {
+      "id": "med-where-clinic",
+      "category": "medical",
+      "text": "Où se trouve la clinique la plus proche ?",
+      "intent": "Demander la clinique la plus proche."
+    },
+    {
+      "id": "med-where-hospital",
+      "category": "medical",
+      "text": "Où se trouve l'hôpital le plus proche ?",
+      "intent": "Demander l'hôpital le plus proche."
+    },
+    {
+      "id": "med-hurt",
+      "category": "medical",
+      "text": "Je suis blessé ici.",
+      "intent": "Indiquer l'endroit de la douleur."
+    },
+    {
+      "id": "med-bleeding",
+      "category": "medical",
+      "text": "Je saigne et l'hémorragie ne s'arrête pas.",
+      "intent": "Montrer la blessure."
+    },
+    {
+      "id": "med-stomach",
+      "category": "medical",
+      "text": "J'ai de fortes douleurs à l'estomac.",
+      "intent": "Montrer où se situe la douleur."
+    },
+    {
+      "id": "med-breath",
+      "category": "medical",
+      "text": "Je respire mal.",
+      "intent": "C'est urgent."
+    },
+    {
+      "id": "med-fever",
+      "category": "medical",
+      "text": "J'ai de la fièvre et des vertiges.",
+      "intent": "Montrer que vous ne vous sentez pas bien."
+    },
+    {
+      "id": "med-allergy",
+      "category": "medical",
+      "text": "J'ai une allergie grave.",
+      "intent": "Montrer votre carte d'urgence médicale."
+    },
+    {
+      "id": "med-medication",
+      "category": "medical",
+      "text": "J'ai besoin de mes médicaments.",
+      "intent": "Montrer l'ordonnance ou la boîte."
+    },
+    {
+      "id": "med-english",
+      "category": "medical",
+      "text": "Parlez-vous anglais ?",
+      "intent": "Demander un anglophone."
+    },
+    {
+      "id": "shelter-where",
+      "category": "shelter",
+      "text": "Où se trouve l'abri le plus proche ?",
+      "intent": "Demander un endroit sûr."
+    },
+    {
+      "id": "shelter-open",
+      "category": "shelter",
+      "text": "Cet abri est-il ouvert ?",
+      "intent": "Confirmer avant d'y aller."
+    },
+    {
+      "id": "shelter-sleep",
+      "category": "shelter",
+      "text": "Nous avons besoin d'un endroit sûr pour dormir ce soir.",
+      "intent": "Demander un hébergement."
+    },
+    {
+      "id": "shelter-safe",
+      "category": "shelter",
+      "text": "Est-il sûr d'aller à {place} ?",
+      "intent": "Montrer l'endroit sur le téléphone."
+    },
+    {
+      "id": "shelter-water",
+      "category": "shelter",
+      "text": "Où pouvons-nous trouver de l'eau potable ?",
+      "intent": "Demander de l'eau."
+    },
+    {
+      "id": "shelter-together",
+      "category": "shelter",
+      "text": "Pouvons-nous rester tous ensemble ?",
+      "intent": "Demander si votre groupe peut rester ensemble."
+    },
+    {
+      "id": "trans-taxi",
+      "category": "transport",
+      "text": "Combien coûte la course en taxi jusqu'à {place} ?",
+      "intent": "Demander le prix d'abord."
+    },
+    {
+      "id": "trans-stop",
+      "category": "transport",
+      "text": "Veuillez vous arrêter ici.",
+      "intent": "Indiquer l'endroit où vous voulez descendre."
+    },
+    {
+      "id": "trans-airport",
+      "category": "transport",
+      "text": "Comment aller à l'aéroport ?",
+      "intent": "Demander l'itinéraire."
+    },
+    {
+      "id": "trans-station",
+      "category": "transport",
+      "text": "Où se trouve la gare ou l'arrêt de bus le plus proche ?",
+      "intent": "Demander l'arrêt le plus proche."
+    },
+    {
+      "id": "trans-flood-road",
+      "category": "transport",
+      "text": "La route menant à {place} est-elle ouverte ?",
+      "intent": "Montrer l'endroit sur le téléphone."
+    },
+    {
+      "id": "trans-walk",
+      "category": "transport",
+      "text": "Quelle est la distance à pied ?",
+      "intent": "Vérifier la distance avant de marcher."
+    },
+    {
+      "id": "food-thirsty",
+      "category": "food_water",
+      "text": "J'ai soif, s'il vous plaît.",
+      "intent": "Demander de l'eau."
+    },
+    {
+      "id": "food-eat",
+      "category": "food_water",
+      "text": "Cet aliment est-il propre à la consommation ?",
+      "intent": "Demander avant de manger."
+    },
+    {
+      "id": "food-vegetarian",
+      "category": "food_water",
+      "text": "Avez-vous de la nourriture végétarienne ?",
+      "intent": "Demandez quels sont vos besoins alimentaires."
+    },
+    {
+      "id": "food-allergy-food",
+      "category": "food_water",
+      "text": "Je ne peux pas manger de noix. Est-ce que cela en contient ?",
+      "intent": "Montrez la nourriture."
+    },
+    {
+      "id": "food-clean",
+      "category": "food_water",
+      "text": "Avez-vous de l'eau propre pour vous laver ?",
+      "intent": "Demandez de l'eau propre pour vous laver."
+    },
+    {
+      "id": "food-where-eat",
+      "category": "food_water",
+      "text": "Où pouvons-nous trouver de la nourriture à proximité ?",
+      "intent": "Demandez un endroit où manger à proximité."
+    },
+    {
+      "id": "safe-flood",
+      "category": "safety",
+      "text": "L'eau arrive. Nous avons besoin d'aide.",
+      "intent": "C'est urgent. Appelez un secouriste."
+    },
+    {
+      "id": "safe-police",
+      "category": "safety",
+      "text": "Veuillez appeler la police.",
+      "intent": "Montrez le téléphone."
+    },
+    {
+      "id": "safe-lost",
+      "category": "safety",
+      "text": "J'ai perdu mon groupe. Aidez-moi à les retrouver, s'il vous plaît.",
+      "intent": "Expliquez votre situation."
+    },
+    {
+      "id": "safe-thief",
+      "category": "safety",
+      "text": "Mon sac a été volé.",
+      "intent": "Prévenez un agent de police."
+    },
+    {
+      "id": "safe-tourist",
+      "category": "safety",
+      "text": "Je suis touriste et je ne parle pas tamoul.",
+      "intent": "Demandez une personne qui parle anglais."
+    },
+    {
+      "id": "safe-ok",
+      "category": "safety",
+      "text": "Nous sommes en sécurité, merci.",
+      "intent": "Dites à un secouriste que vous êtes en sécurité."
+    },
+    {
+      "id": "doc-passport",
+      "category": "documents",
+      "text": "Voici mon passeport.",
+      "intent": "Présentez votre passeport."
+    },
+    {
+      "id": "doc-lost-passport",
+      "category": "documents",
+      "text": "J'ai perdu mon passeport.",
+      "intent": "Demandez de l'aide à la police."
+    },
+    {
+      "id": "doc-cash",
+      "category": "documents",
+      "text": "Où puis-je changer de l'argent ?",
+      "intent": "Demandez un bureau de change."
+    },
+    {
+      "id": "doc-atm",
+      "category": "documents",
+      "text": "Où se trouve le distributeur automatique le plus proche ?",
+      "intent": "Demandez où retirer de l'argent."
+    },
+    {
+      "id": "doc-sim",
+      "category": "documents",
+      "text": "Ma carte SIM ne fonctionne pas.",
+      "intent": "Demandez de l'aide à un commerçant."
+    },
+    {
+      "id": "doc-please-note",
+      "category": "documents",
+      "text": "Veuillez m'écrire ceci.",
+      "intent": "Demandez-leur de l'écrire."
+    }
+  ]
+}

@@ -23,31 +23,41 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.svg', 'robots.txt'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        // Offline first: everything the app needs to boot must be in the precache.
+        // The app shell only. The content pack is large and versioned, so it is
+        // handled by PackManager in IndexedDB (M3), not by the SW precache.
         navigateFallback: 'index.html',
-        navigateFallbackDenylist: [/^\/api\//],
+        navigateFallbackDenylist: [/^\/api\//, /^\/functions\//],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
+        // Never swap the worker mid-session: an unexpected reload during a
+        // flood would lose the user's context. Updates are user-triggered.
         skipWaiting: false,
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         runtimeCaching: [
           {
-            // The preloaded content pack (map data, shelters, KB, templates).
-            // Stale-while-revalidate: always answer from cache, refresh in background.
+            // Connectivity probe. Never cached — a cached 200 would report a
+            // dead uplink as healthy.
+            urlPattern: ({ url }) => url.pathname.endsWith('/health.txt'),
+            handler: 'NetworkOnly',
+          },
+          {
+            // The preloaded content pack. Stale-while-revalidate so the app
+            // answers from cache instantly and refreshes quietly.
             urlPattern: ({ url }) => url.pathname.startsWith('/pack/'),
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'kavach-content-pack',
-              expiration: { maxEntries: 24, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              expiration: { maxEntries: 40, maxAgeSeconds: 60 * 60 * 24 * 30 },
             },
           },
           {
-            // Computed risk snapshot from the Edge Function.
-            urlPattern: ({ url }) => url.pathname.includes('/functions/v1/snapshot'),
+            // Computed risk snapshot: network-first with a short timeout, so a
+            // slow link falls back to the cached copy rather than hanging.
+            urlPattern: ({ url }) => url.pathname.includes('/snapshot'),
             handler: 'NetworkFirst',
             options: {
               cacheName: 'kavach-snapshot',
-              networkTimeoutSeconds: 6,
+              networkTimeoutSeconds: 5,
               expiration: { maxEntries: 8, maxAgeSeconds: 60 * 60 },
             },
           },
@@ -62,6 +72,11 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          // NOTE: the assistant (`ai-proxy`) and every write endpoint are
+          // deliberately absent. Caching an LLM answer would show a stale
+          // medical answer as current, and caching a write would replay a
+          // report the server already rejected. Writes go through the outbox
+          // (IndexedDB), which is idempotent by design.
         ],
       },
       manifest: {

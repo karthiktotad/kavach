@@ -1,8 +1,8 @@
 {
-  "version": "0.2.0+20261010T031135Z",
-  "builtAt": "2026-10-10T03:11:35Z",
+  "version": "0.2.0+20261010T033049Z",
+  "builtAt": "2026-10-10T03:30:49Z",
   "regionId": "in-tn-mamallapuram",
-  "totalBytes": 903135,
+  "totalBytes": 1243349,
   "files": [
     {
       "path": "contacts.json",
@@ -10,9 +10,54 @@
       "sha256": "bea5ab57ac7dd0b0361ca20f9c4ba147dccb18dfa0d490977f7d5da6fee48328"
     },
     {
+      "path": "kb/ar.json",
+      "bytes": 30283,
+      "sha256": "ee4dd707cddcd7147b65e9c12e8b5831543cee8ab9e3ec747bbedd65109b3a07"
+    },
+    {
+      "path": "kb/de.json",
+      "bytes": 25030,
+      "sha256": "a1252a01e4e5157932e30aeea742f4b2cf6c6ed051f100d147ecd65605543697"
+    },
+    {
       "path": "kb/en.json",
       "bytes": 22133,
       "sha256": "01c52c176c0015c9683263968446353b28a53a96dbe94e78084aa4f023717e47"
+    },
+    {
+      "path": "kb/fr.json",
+      "bytes": 25104,
+      "sha256": "381f3141da64f8ff42905a5432f336827ff6b5e6cc949266979b589bc68dfd2b"
+    },
+    {
+      "path": "kb/hi.json",
+      "bytes": 43986,
+      "sha256": "716ce3a900f0b8a23dee325b76c6f73e1d5beac15b48467ec48c9e8bb44d6632"
+    },
+    {
+      "path": "kb/ja.json",
+      "bytes": 26255,
+      "sha256": "c98c085bdd09cc354d211ba82814377118a4ed7f9582e7ac7abdd3f96c6d00c2"
+    },
+    {
+      "path": "kb/ta.json",
+      "bytes": 53571,
+      "sha256": "a912103955e5ac4df1f72d820c59d3ac7805286fdfe7e37135714335341dd216"
+    },
+    {
+      "path": "kb/zh.json",
+      "bytes": 20518,
+      "sha256": "d93ec94b2142402ccbd862308af5406887f92b4f972407787c6b15d6caaed435"
+    },
+    {
+      "path": "phrases/ar.json",
+      "bytes": 8658,
+      "sha256": "3dba3ed664f9240788fca447e03f3d1b9efef60cfad7d34a95db3d08ba0cb47a"
+    },
+    {
+      "path": "phrases/de.json",
+      "bytes": 7983,
+      "sha256": "ccf58989a2ef51046fc487990121d912424847d5aadca0dde7221f9ae3d081c8"
     },
     {
       "path": "phrases/en.json",
@@ -20,9 +65,29 @@
       "sha256": "dca33001b3d8dff06ec9921826dc0e25e738043855bb58f19575e83f0de43794"
     },
     {
+      "path": "phrases/fr.json",
+      "bytes": 7998,
+      "sha256": "5c01ef59a65005f36aef7c3cfe64b5113e5a450cbbeb2f7c5232409c616c803e"
+    },
+    {
+      "path": "phrases/hi.json",
+      "bytes": 11606,
+      "sha256": "8bd68f20b16b4f38e29aa08e3921492fc4246d71e3a887d892575e696fb1ddcb"
+    },
+    {
+      "path": "phrases/ja.json",
+      "bytes": 8405,
+      "sha256": "c5df88702782d42c292f48fd8faf62615c2ba636993404fd0dab1c436bf60335"
+    },
+    {
       "path": "phrases/ta.json",
       "bytes": 14348,
       "sha256": "fac61d917e55b56044ae44714a05ac6aaf770ce7c095eb155d64cade5fa9efbb"
+    },
+    {
+      "path": "phrases/zh.json",
+      "bytes": 7329,
+      "sha256": "803bc6694e79945bc3cd0863982b0ec55c4e147932bbab65a63434edc80de2c6"
     },
     {
       "path": "places.json",
@@ -35,14 +100,44 @@
       "sha256": "4ed476bd57588758babde5e14764f49a0f32dce43db327d1aabac1dbac231929"
     },
     {
+      "path": "templates/ar.json",
+      "bytes": 10963,
+      "sha256": "bc409fbb9a87fec847ed779213035e95c4f16db7539725e338a3ce8d57453fb8"
+    },
+    {
+      "path": "templates/de.json",
+      "bytes": 9226,
+      "sha256": "951f2254b2bc30cf06c0bdd6831bc4319b3ca75708dd41f8dd7ca0c7b3301d82"
+    },
+    {
       "path": "templates/en.json",
       "bytes": 8601,
       "sha256": "fa6aff79d1ecb87e881ba94130d4313d0256c382e4d3eb7fe65763943d39a06a"
     },
     {
+      "path": "templates/fr.json",
+      "bytes": 9635,
+      "sha256": "2e9c97a4e53fbdeb4ad1c2d6a8f9739b9e63a5f19f4f0b04fa0295c31afd7c08"
+    },
+    {
+      "path": "templates/hi.json",
+      "bytes": 15279,
+      "sha256": "408984c66e67648de59f01ae40ccf10b7f8890b81297108497fe85bed45c87b7"
+    },
+    {
+      "path": "templates/ja.json",
+      "bytes": 10573,
+      "sha256": "689867dae6e9929153b1d353d8a1d2f637ecd95866f5ec9eef29f261881667d6"
+    },
+    {
       "path": "templates/ta.json",
       "bytes": 20778,
       "sha256": "59aee93a13233166856c07eb08ff48906768fa65d165f32f0f5d6170d10046cc"
+    },
+    {
+      "path": "templates/zh.json",
+      "bytes": 7812,
+      "sha256": "64c34880763415428b6ce1f069c2ad5f363ad0a42edf99c5c0b85e3fdef627dd"
     },
     {
       "path": "zones.geojson",
