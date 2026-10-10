@@ -1,27 +1,35 @@
 /* Kavach Design Tokens — do not hardcode hex values in components */
 :root {
   /* Font */
-  --font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
-  --font-size-base: 1rem;    /* 17px */
+  --font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-size-base: 1.0625rem; /* 17px at default 16px root */
   --line-height-base: 1.35;
 
   /* Colours (semantic, never colour-alone) */
-  --ink: #0B1F33;
-  --ground: #F4F6F8;
-  --surface: #FFFFFF;
-  --line: #D5DCE3;
-  --muted: #4A5B6C;
-  --text-2: #2A3B4C;
-  --verified: #0B57A4;
-  --verified-tint: #E6F0FA;
-  --drill: #B45309;
-  --drill-tint: #FFF1E0;
-  --danger: #9B1C1C;
-  --danger-dark: #7A1212;
-  --live: #0F6B4F;
-  --live-text: #0A4D38;
-  --live-tint: #DDF3EA;
-  --offline: #2B3A4C;
+  --ink: #0b1f33;
+  --ground: #f4f6f8;
+  --surface: #ffffff;
+  --surface-raised: #eef2f5;
+  --line: #d5dce3;
+  --muted: #4a5b6c;
+  --text-2: #2a3b4c;
+  --verified: #0b57a4;
+  --verified-tint: #e6f0fa;
+  --drill: #b45309;
+  --drill-tint: #fff1e0;
+  --danger: #9b1c1c;
+  --danger-dark: #7a1212;
+  --live: #0f6b4f;
+  --live-text: #0a4d38;
+  --live-tint: #ddf3ea;
+  --offline: #2b3a4c;
+
+  /* Risk ramp (NONE → EXTREME). Lightness still rises with severity. */
+  --risk-0: #0f6b4f;
+  --risk-1: #9a6b12;
+  --risk-2: #b45309;
+  --risk-3: #9b1c1c;
+  --risk-4: #7a1212;
 
   /* Radii */
   --radius-10: 10px;
@@ -31,10 +39,21 @@
 
   /* Touch targets */
   --touch-min: 44px;
-  --touch-main: 52px;   /* md */
+  --touch-main: 52px;
   --touch-sos: 72px;
 
   /* Focus ring */
   --focus-width: 3px;
   --focus-offset: 2px;
+}
+
+/* Unverified / flagged fills: hatch so they never rely on colour alone. */
+.bg-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    rgb(11 31 51 / 0.14) 3px,
+    rgb(11 31 51 / 0.14) 6px
+  );
 }

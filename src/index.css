@@ -1,61 +1,63 @@
+@import './styles/tokens.css';
+@import '@fontsource/atkinson-hyperlegible/400.css';
+@import '@fontsource/atkinson-hyperlegible/700.css';
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Kavach design tokens
-   Safety-first palette: deep navy base (readable outdoors, low battery),
-   high-contrast severity ramp that stays distinguishable for the most common
-   forms of colour-vision deficiency (blue/orange/green separated in lightness
-   as well as hue). Severity is ALWAYS paired with an icon + text label in the
-   UI, never colour alone (engineering rule 6).
+   Kavach design tokens → Tailwind v4 theme
+   One high-contrast LIGHT theme only (docs/DESIGN_SPEC.md).
+   Severity is ALWAYS paired with an icon + text, never colour alone.
    ========================================================================== */
 
 @theme {
-  /* Surfaces — dark by default: a phone in a dark shelter or at night. */
-  --color-surface: oklch(16% 0.03 255);
-  --color-surface-raised: oklch(21% 0.035 255);
-  --color-surface-sunken: oklch(12% 0.025 255);
-  --color-surface-hover: oklch(26% 0.04 255);
+  --font-sans: var(--font-family);
 
-  /* Text — high contrast on the surfaces above (>= 7:1 for body). */
-  --color-ink: oklch(97% 0.01 255);
-  --color-ink-muted: oklch(76% 0.02 255);
-  --color-ink-subtle: oklch(60% 0.02 255);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--muted);
+  --color-ink-subtle: var(--muted);
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--ground);
+  --color-surface-hover: #e8eef3;
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-text-2: var(--text-2);
+  --color-verified: var(--verified);
+  --color-verified-tint: var(--verified-tint);
+  --color-drill: var(--drill);
+  --color-drill-tint: var(--drill-tint);
+  --color-danger: var(--danger);
+  --color-danger-dark: var(--danger-dark);
+  --color-live: var(--live);
+  --color-live-text: var(--live-text);
+  --color-live-tint: var(--live-tint);
+  --color-offline: var(--offline);
 
-  /* Brand */
-  --color-brand: oklch(72% 0.16 195);
-  --color-brand-strong: oklch(82% 0.15 195);
-  --color-brand-dim: oklch(45% 0.09 195);
+  --color-brand: var(--verified);
+  --color-brand-strong: var(--verified);
+  --color-brand-dim: var(--verified-tint);
+  --color-warn: var(--drill);
+  --color-safe: var(--live);
+  --color-info: var(--verified);
 
-  /* Severity ramp: risk 0..4 plus trust states.
-     Lightness increases with severity so it survives greyscale printing and
-     sunlight glare. */
-  --color-risk-0: oklch(62% 0.06 150); /* low      */
-  --color-risk-1: oklch(78% 0.13 90); /* moderate */
-  --color-risk-2: oklch(80% 0.16 55); /* high     */
-  --color-risk-3: oklch(72% 0.19 25); /* severe   */
-  --color-risk-4: oklch(58% 0.21 15); /* extreme  */
+  --color-risk-0: var(--risk-0);
+  --color-risk-1: var(--risk-1);
+  --color-risk-2: var(--risk-2);
+  --color-risk-3: var(--risk-3);
+  --color-risk-4: var(--risk-4);
 
-  --color-danger: oklch(66% 0.21 22);
-  --color-warn: oklch(80% 0.16 80);
-  --color-safe: oklch(70% 0.14 155);
-  --color-info: oklch(70% 0.12 240);
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-16: 16px;
 
-  /* Drill banner — deliberately garish, never mistaken for a real alert. */
-  --color-drill: oklch(85% 0.19 95);
-
-  /* Touch targets: 48px is the minimum for a stressed, gloved, one-handed user. */
-  --spacing-touch: 3rem;
-
-  --font-sans:
-    system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Devanagari',
-    'Noto Sans Tamil', 'Noto Sans Arabic', 'Noto Sans Hebrew', sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', 'Roboto Mono', Menlo, monospace;
+  --spacing-touch: 3.25rem;
 }
 
 @layer base {
   :root {
-    color-scheme: dark;
-    /* Safe-area insets for notched phones — the bottom nav must clear the home bar. */
+    color-scheme: light;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --nav-height: 4.25rem;
@@ -66,22 +68,29 @@
   }
 
   html {
-    /* Never let the OS text-size setting be ignored: offline readability wins. */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    font-size: 17px;
   }
 
   body {
     margin: 0;
-    background-color: var(--color-surface-sunken);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    /* RTL support: logical properties everywhere, so dir=rtl just works. */
+    background-color: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-family);
+    line-height: var(--line-height-base);
     min-height: 100dvh;
     overscroll-behavior-y: none;
   }
 
-  /* Respect users who ask for less motion. */
+  html[lang='ta'] body {
+    font-family: 'Noto Sans Tamil', var(--font-family), sans-serif;
+  }
+
+  html[lang='hi'] body {
+    font-family: 'Noto Sans Devanagari', var(--font-family), sans-serif;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -93,10 +102,9 @@
     }
   }
 
-  /* Visible focus for keyboard users on every interactive element. */
   :focus-visible {
-    outline: 3px solid var(--color-brand-strong);
-    outline-offset: 2px;
+    outline: var(--focus-width) solid var(--verified);
+    outline-offset: var(--focus-offset);
     border-radius: 0.25rem;
   }
 
@@ -106,7 +114,6 @@
     touch-action: manipulation;
   }
 
-  /* Screen-reader-only utility for labels that icons already convey. */
   .sr-only-focusable:not(:focus):not(:focus-within) {
     position: absolute;
     width: 1px;
@@ -120,10 +127,9 @@
 }
 
 @layer components {
-  /* Minimum 48px target, enforced centrally (engineering rule 6). */
   .touch-target {
-    min-height: var(--spacing-touch);
-    min-width: var(--spacing-touch);
+    min-height: var(--touch-min);
+    min-width: var(--touch-min);
     display: inline-flex;
     align-items: center;
     justify-content: center;

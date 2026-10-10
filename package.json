@@ -29,6 +29,9 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/noto-sans-devanagari": "^5.3.0",
+    "@fontsource/noto-sans-tamil": "^5.3.0",
     "@supabase/supabase-js": "^2.117.3",
     "dexie": "^4.4.6",
     "maplibre-gl": "^6.13.0",

@@ -18,13 +18,14 @@
  */
 import { useCallback, useEffect, useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { Icon } from './Icon'
 
 export interface SheetProps {
   open: boolean
   onClose: () => void
-  /** i18n key or already-translated string. */
+  /** Already-translated title. */
   title: string
+  /** Already-translated accessible name for the close control. */
+  closeLabel: string
   children: ReactNode
 }
 
@@ -32,7 +33,7 @@ export interface SheetProps {
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
-export function Sheet({ open, onClose, title, children }: SheetProps) {
+export function Sheet({ open, onClose, title, closeLabel, children }: SheetProps) {
   const panelRef = useRef<HTMLDivElement>(null)
   const titleId = useId()
   // Where focus was when the sheet opened. Restoring it on close is what makes
@@ -115,7 +116,7 @@ export function Sheet({ open, onClose, title, children }: SheetProps) {
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="relative w-full max-w-[480px] rounded-t-16 bg-surface p-6 pb-10 shadow-[0_-8px_30px_rgba(11,31,51,0.18)] focus:outline-none"
+        className="relative w-full max-w-[480px] rounded-t-16 bg-surface p-6 pb-[calc(1.5rem+var(--safe-bottom))] shadow-[0_-8px_30px_rgb(11_31_51_/_0.18)] focus:outline-none"
       >
         <div className="mb-4 flex items-center justify-between gap-4">
           <h2 id={titleId} className="text-xl font-bold text-ink">
@@ -124,10 +125,12 @@ export function Sheet({ open, onClose, title, children }: SheetProps) {
           <button
             type="button"
             onClick={close}
-            className="ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-10 border border-line text-ink focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-verified focus-visible:outline-offset-2"
+            aria-label={closeLabel}
+            className="ms-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-10 border border-line text-ink focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-verified focus-visible:outline-offset-2"
           >
-            <Icon name="chevron-left" className="h-6 w-6" />
-            <span className="sr-only">{title}</span>
+            <span aria-hidden="true" className="text-2xl leading-none">
+              ×
+            </span>
           </button>
         </div>
 

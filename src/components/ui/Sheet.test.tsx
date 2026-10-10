@@ -10,7 +10,7 @@ import { Sheet } from './Sheet'
 function renderSheet(props: Partial<React.ComponentProps<typeof Sheet>> = {}) {
   const onClose = vi.fn()
   const utils = render(
-    <Sheet open onClose={onClose} title="What works right now" {...props}>
+    <Sheet open onClose={onClose} title="What works right now" closeLabel="Close" {...props}>
       <button type="button">First</button>
       <button type="button">Second</button>
     </Sheet>,
@@ -67,7 +67,7 @@ describe('Sheet', () => {
     // for a fixed-position child, clipping the sheet to the header's box.
     const { container } = render(
       <div style={{ backdropFilter: 'blur(4px)', height: 93, overflow: 'hidden' }}>
-        <Sheet open onClose={() => {}} title="Trapped?">
+        <Sheet open onClose={() => {}} title="Trapped?" closeLabel="Close">
           <p>content</p>
         </Sheet>
       </div>,
@@ -78,7 +78,11 @@ describe('Sheet', () => {
   })
 
   it('renders nothing when closed', () => {
-    render(<Sheet open={false} onClose={() => {}} title="x"><p>nope</p></Sheet>)
+    render(
+      <Sheet open={false} onClose={() => {}} title="x" closeLabel="Close">
+        <p>nope</p>
+      </Sheet>,
+    )
     expect(screen.queryByRole('dialog')).toBeNull()
   })
 })

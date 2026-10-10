@@ -43,7 +43,7 @@ export function Page({ children }: { children: ReactNode }) {
       id="main-content"
       aria-label={t('a11y.mainContent')}
       tabIndex={-1}
-      className="mx-auto w-full max-w-3xl px-4 pt-4 pb-[calc(var(--nav-height)+var(--safe-bottom)+1.5rem)] sm:pt-8"
+      className="w-full flex-1 px-4 pt-4 pb-6"
     >
       {children}
     </main>

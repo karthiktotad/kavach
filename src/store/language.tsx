@@ -9,6 +9,7 @@
  */
 import { createContext, use } from 'react'
 import { DEFAULT_LOCALE, isRtl, resolveLocale, translate, type Locale } from '../i18n'
+import { loadScriptFont } from '../lib/scriptFonts'
 
 export const LANGUAGE_STORAGE_KEY = 'kavach.locale'
 
@@ -45,6 +46,7 @@ export function applyLocaleToDocument(locale: Locale): void {
   if (typeof document === 'undefined') return
   document.documentElement.lang = locale
   document.documentElement.dir = isRtl(locale) ? 'rtl' : 'ltr'
+  loadScriptFont(locale)
 }
 
 export function useLanguage(): LanguageContextValue {
