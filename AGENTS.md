@@ -153,3 +153,9 @@ tests/        – Vitest unit tests
 - **Drills always say DRILL / 演習** in every language, in the header *and* in the packet detail.
 - Safety-critical values (phone numbers, shelter coords, medical facts) come from the **content pack or the signed packet**, never from the LLM.
 - Any content with `verified: false` must show an unverified badge and be listed in `TODO_VERIFY.md`.
+
+---
+
+## 10. Parallel-work rules
+
+> **Required reading:** [`PARALLEL_A.md`](PARALLEL_A.md) — ownership boundaries and coordination rules for Device A (`fe-a` branch).
