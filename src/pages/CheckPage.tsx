@@ -4,6 +4,8 @@ import { Page, PageHeader } from '../components/Page'
 import { Button, Card, Icon, type IconName } from '../components/ui'
 import { useLanguage } from '../store/language'
 import { outbox } from '../lib/outbox'
+import { useConnectivity } from '../lib/connectivity'
+import { assistant, buildAssistantContext } from '../lib/assistant'
 import { loadScriptFont } from '../lib/scriptFonts'
 import { analyzeRumor, parseSharedText } from '@shared/rumor'
 
@@ -32,12 +34,14 @@ export default function CheckPage() {
   const { t } = useLanguage()
   const navigate = useNavigate()
   const location = useLocation()
+  const { level: connectivityLevel } = useConnectivity()
   const [searchParams] = useSearchParams()
   const [value, setValue] = useState(() => {
     const direct = searchParams.get('text') ?? searchParams.get('title') ?? ''
     return parseSharedText(direct || location.search || '')
   })
   const [analysis, setAnalysis] = useState(() => analyzeRumor(parseSharedText(location.search || '')))
+  const [translation, setTranslation] = useState<string>('')
   const [status, setStatus] = useState('')
 
   useEffect(() => {
@@ -45,6 +49,38 @@ export default function CheckPage() {
       loadScriptFont(analysis.detectedScript)
     }
   }, [analysis.detectedScript])
+
+  useEffect(() => {
+    const text = parseSharedText(value)
+    if (!text) return
+
+    let cancelled = false
+
+    const run = async () => {
+      try {
+        const answer = await assistant.ask(
+          `Translate this warning into plain English for a tourist. Keep only facts stated in the message, list any hazard, action, and location, and do not invent medical or shelter details.\n\nMessage:\n${text}`,
+          buildAssistantContext({
+            language: 'en',
+            connectivity: connectivityLevel === 'cellular' ? 'cellular-only' : connectivityLevel,
+          }),
+        )
+
+        if (!cancelled) {
+          setTranslation(answer.answer)
+        }
+      } catch {
+        if (!cancelled) {
+          setTranslation('Plain-language summary unavailable offline. The key words below are the safest local guide.')
+        }
+      }
+    }
+
+    void run()
+    return () => {
+      cancelled = true
+    }
+  }, [value, connectivityLevel])
 
   const verdict = useMemo(() => {
     switch (analysis.verdict) {
@@ -92,6 +128,21 @@ export default function CheckPage() {
     }
     const result = analyzeRumor(toAnalyze)
     setAnalysis(result)
+    setTranslation('')
+    void (async () => {
+      try {
+        const answer = await assistant.ask(
+          `Translate this warning into plain English for a tourist. Keep only facts stated in the message, list any hazard, action, and location, and do not invent medical or shelter details.\n\nMessage:\n${toAnalyze}`,
+          buildAssistantContext({
+            language: 'en',
+            connectivity: connectivityLevel === 'cellular' ? 'cellular-only' : connectivityLevel,
+          }),
+        )
+        setTranslation(answer.answer)
+      } catch {
+        setTranslation('Plain-language summary unavailable offline. The key words below are the safest local guide.')
+      }
+    })()
   }
 
   const handlePaste = async () => {
@@ -99,6 +150,7 @@ export default function CheckPage() {
       const text = await navigator.clipboard.readText()
       const nextValue = parseSharedText(text)
       setValue(nextValue)
+      setTranslation('')
       setAnalysis(analyzeRumor(nextValue))
     } catch {
       setStatus(t('check.pasteFailed'))
@@ -142,7 +194,11 @@ export default function CheckPage() {
           <textarea
             id="rumour-input"
             value={value}
-            onChange={(event) => setValue(event.target.value)}
+            onChange={(event) => {
+              const next = event.target.value
+              setValue(next)
+              if (!next.trim()) setTranslation('')
+            }}
             rows={5}
             lang={script}
             style={{ fontFamily: scriptFont(script) }}
@@ -181,7 +237,7 @@ export default function CheckPage() {
             <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-muted">{t('check.machine')}</span>
           </div>
           <p className="text-sm leading-relaxed text-ink" style={{ fontFamily: scriptFont(script) }}>
-            {analysis.translation}
+            {translation || analysis.translation || 'No plain-language summary yet.'}
           </p>
         </Card>
 

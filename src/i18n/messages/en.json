@@ -166,7 +166,7 @@
   "home.packNotReady": "Offline pack is not downloaded yet — open Get Ready.",
   "home.risk.empty": "No risk data yet. Connect once to get it.",
   "home.alert.none": "No active alerts. Last checked {age}.",
-  "packet.alert.title": "Alert",
+  "packet.alert.title": "Alert packet",
   "packet.verified": "Verified Official Alert",
   "packet.verified.byAuthority": "Verified by Authority",
   "packet.verified.summary": "Checked on this phone. No internet needed.",
