@@ -39,8 +39,14 @@ const loadLocalEnvFiles = loadLocalEnv()
  */
 const MODEL = process.env['GEMINI_MODEL']?.trim() || 'gemini-3.8-flash'
 const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models'
-/** Strings per request. Large enough to be efficient, small enough to retry. */
-const BATCH_SIZE = 20
+/**
+ * Strings per request.
+ *
+ * The free tier allows only ~20 generate_content requests PER DAY, so the
+ * request count is the scarce resource — not latency. 60 keeps the whole
+ * knowledge base (~360 strings) to 6 requests instead of 18.
+ */
+const BATCH_SIZE = 60
 /** Max retries per batch before the run is declared failed. */
 const MAX_BATCH_RETRIES = 5
 /**
@@ -124,9 +130,7 @@ function applyUnits(source: unknown, translations: Map<string, string>, path = '
     const out: Json = {}
     for (const [key, value] of Object.entries(source as Json)) {
       const childPath = path ? `${path}.${key}` : key
-      out[key] = NON_TRANSLATABLE_KEYS.has(key)
-        ? value
-        : applyUnits(value, translations, childPath)
+      out[key] = NON_TRANSLATABLE_KEYS.has(key) ? value : applyUnits(value, translations, childPath)
     }
     return out
   }
@@ -164,9 +168,12 @@ class GeminiError extends Error {
  * produces an actionable message instead of a raw NOT_FOUND.
  */
 async function listAvailableModels(): Promise<string[]> {
-  const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', {
-    headers: GEMINI_API_KEY ? { 'x-goog-api-key': GEMINI_API_KEY } : {},
-  })
+  const response = await fetch(
+    'https://generativelanguage.googleapis.com/v1beta/models?pageSize=200',
+    {
+      headers: GEMINI_API_KEY ? { 'x-goog-api-key': GEMINI_API_KEY } : {},
+    },
+  )
   if (!response.ok) throw new GeminiError(`Could not list models (HTTP ${response.status}).`)
   const body = (await response.json()) as { models?: Array<{ name: string }> }
   return (body.models ?? []).map((m) => m.name.replace(/^models\//, ''))
@@ -216,11 +223,26 @@ async function callGemini(prompt: string, count: number): Promise<string[]> {
       )
     }
     if (response.status === 429) {
+      // Distinguish a daily allowance from a per-minute one: they need very
+      // different advice, and the daily one cannot be waited out.
+      const daily = /free_tier_requests|_per_day|per day/i.test(detail)
+      const limit = detail.match(/limit:\s*(\d+)/)?.[1]
+
       throw new GeminiError(
-        'Gemini rate limit hit (429).',
-        'The free tier allows only a few requests per minute. This is a pace problem, not a wrong key.',
-        // Retried with backoff rather than failing the run.
-        true,
+        'Gemini quota exhausted (429).',
+        daily
+          ? `This is the DAILY free-tier allowance (limit: ${limit ?? '20'} requests/day), not a ` +
+              `temporary spike — waiting will not help; the allowance resets at midnight Pacific.\n` +
+              `  Already-translated files are kept, so simply re-run tomorrow:\n` +
+              `    npm run pack:translate -- --locale=ta\n` +
+              `  Each locale needs roughly ${
+                Math.ceil(359 / BATCH_SIZE) + 4
+              } requests. Translating all 8 locales therefore takes several days on one free key.\n` +
+              `  To finish sooner: use fewer locales, or raise the quota on a paid/AI Studio tier.`
+          : `Per-minute rate limit. The script already paces requests; re-run in a minute.\n` +
+              `  Completed files are skipped, so no work is lost.`,
+        // A daily allowance will not refill within this run.
+        !daily,
       )
     }
     throw new GeminiError(`Gemini HTTP ${response.status}.`, detail)
@@ -287,21 +309,23 @@ async function translateBatch(units: Unit[], locale: Locale, attempt = 0): Promi
       }
     }
     return out
-  } catch (error) {
-    // A retired model name or a rejected key cannot be fixed by waiting.
+  } catch (err) {
+    // Only genuinely transient problems are worth another attempt. A daily
+    // quota will not refill mid-run, a retired model name will not be fixed by
+    // waiting, and a rejected key cannot be retried at all.
+    const error = err instanceof GeminiError ? err : null
     const fatal =
-      error instanceof GeminiError && !error.retryable && error.message.includes('not found')
-    const rejected = error instanceof GeminiError && error.message.includes('rejected the request')
-    if (fatal || rejected || attempt + 1 >= MAX_BATCH_RETRIES) throw error
+      error === null || error.retryable === false || error.message.includes('rejected the request')
+    if (fatal || attempt + 1 >= MAX_BATCH_RETRIES) throw err
 
     const waitMs =
-      error instanceof GeminiError && error.message.includes('rate limit')
+      error?.message.includes('rate limit') || error?.message.includes('quota')
         ? (RATE_LIMIT_BACKOFF_MS[Math.min(attempt, RATE_LIMIT_BACKOFF_MS.length - 1)] ?? 60_000)
         : 2000
 
     warn(
       `retry ${attempt + 1}/${MAX_BATCH_RETRIES - 1} in ${Math.round(waitMs / 1000)}s: ` +
-        `${error instanceof Error ? error.message : String(error)}`,
+        `${err instanceof Error ? err.message : String(err)}`,
     )
     await sleep(waitMs)
     return translateBatch(units, locale, attempt + 1)
@@ -418,18 +442,19 @@ async function main(): Promise<void> {
   if (listModels) {
     step('translate-pack — models reachable with this key')
     const names = await listAvailableModels()
-    // Narrow to the text models that suit batch translation.
     const useful = names.filter(
       (n) => /flash/i.test(n) && !/tts|image|live|audio|omni|preview/i.test(n),
     )
-    info(`total models available: ${names.length}`)
+    info(`total models listed for this key: ${names.length}`)
     info('')
-    info('suitable for translation (flash, non-preview):')
+    info('flash models (availability varies — listing a model does not guarantee you can use it):')
     for (const n of useful) info(`  ${n}${n === MODEL ? '   ← currently configured' : ''}`)
     info('')
     info(`currently using: ${MODEL}`)
-    info('Change it with GEMINI_MODEL in .env, or per run:')
-    info(`  GEMINI_MODEL=${useful[0] ?? 'gemini-3.8-flash'} npm run pack:translate`)
+    info('')
+    info('Note: newer Google accounts are refused the older 2.x models ("no longer available to')
+    info('new users"), so prefer the newest gemini-N-flash. If a model 404s on first use, run this')
+    info('again and pick another.')
     return
   }
 

@@ -1,8 +1,8 @@
 {
-  "version": "0.2.0+20261010T023252Z",
-  "builtAt": "2026-10-10T02:32:52Z",
+  "version": "0.2.0+20261010T031135Z",
+  "builtAt": "2026-10-10T03:11:35Z",
   "regionId": "in-tn-mamallapuram",
-  "totalBytes": 868009,
+  "totalBytes": 903135,
   "files": [
     {
       "path": "contacts.json",
@@ -20,6 +20,11 @@
       "sha256": "dca33001b3d8dff06ec9921826dc0e25e738043855bb58f19575e83f0de43794"
     },
     {
+      "path": "phrases/ta.json",
+      "bytes": 14348,
+      "sha256": "fac61d917e55b56044ae44714a05ac6aaf770ce7c095eb155d64cade5fa9efbb"
+    },
+    {
       "path": "places.json",
       "bytes": 16992,
       "sha256": "c6245debf43e4a2ca180d075db2cc2b5c41dfab55c95bc82659a47b406ffccdd"
@@ -33,6 +38,11 @@
       "path": "templates/en.json",
       "bytes": 8601,
       "sha256": "fa6aff79d1ecb87e881ba94130d4313d0256c382e4d3eb7fe65763943d39a06a"
+    },
+    {
+      "path": "templates/ta.json",
+      "bytes": 20778,
+      "sha256": "59aee93a13233166856c07eb08ff48906768fa65d165f32f0f5d6170d10046cc"
     },
     {
       "path": "zones.geojson",
