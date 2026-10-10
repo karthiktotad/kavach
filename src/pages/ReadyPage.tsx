@@ -166,16 +166,6 @@ export default function ReadyPage() {
               {t('ready.continue')}
             </button>
           ) : null}
-
-          {state.status === 'ready' && packed === 0 && state.error === null ? (
-            <button
-              type="button"
-              onClick={() => void start()}
-              className="touch-target bg-brand text-surface-sunken w-full rounded-xl font-semibold"
-            >
-              {t('ready.download')}
-            </button>
-          ) : null}
         </section>
 
         {/* 4. Install hint — real button where supported, instructions elsewhere. */}

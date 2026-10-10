@@ -132,7 +132,23 @@ npm run dev                    # http://localhost:5173
 | `npm run test:coverage` | Tests with V8 coverage |
 | `npm run pack:build` | Build the content pack (places + roads + manifest) |
 | `npm run pack:translate` | Translate the pack to the other 7 locales (needs `GEMINI_API_KEY`) |
+| `npm run e2e` | Playwright offline check (needs a production `preview` running) |
 | `npm run verify` | typecheck → lint → test → build, in one command |
+
+### Offline verification (M3)
+
+The claim "works with no internet" is tested, not asserted:
+
+```bash
+npm run build
+npm run preview -- --port 4173
+npm run e2e
+```
+
+Playwright completes Get Ready, flips the browser context to **offline**,
+reloads, and asserts that the shell boots from the service worker, that
+navigation still works, and that `zones.geojson` is still readable out of
+IndexedDB with the network down.
 
 ## Repository layout
 

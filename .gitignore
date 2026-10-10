@@ -72,3 +72,7 @@ scratch/
 # misc
 .cache/
 .eslintcache
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/

@@ -66,25 +66,29 @@ function RouteFallback() {
  */
 function OnboardingGate({ children }: { children: ReactNode }) {
   const location = useLocation()
-  const [onboarded, setOnboarded] = useState<boolean | null>(null)
+  // Keyed by the path the value was read for. A stale `false` must never drive a
+  // redirect: Get Ready sets the flag and then navigates home, and this gate
+  // stays mounted across that transition, so rendering the redirect from a
+  // value read for the previous path bounced the user straight back to /ready.
+  const [read, setRead] = useState<{ path: string; value: boolean } | null>(null)
 
   useEffect(() => {
     let cancelled = false
     void getSetting<boolean>(SETTING.ONBOARDED, false).then((value) => {
-      if (!cancelled) setOnboarded(value)
+      if (!cancelled) setRead({ path: location.pathname, value })
     })
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [location.pathname])
 
-  // While we read storage, render nothing rather than flashing the wrong screen.
-  if (onboarded === null) return null
+  // Render nothing until we know the flag for THIS path.
+  if (!read || read.path !== location.pathname) return null
 
-  // `/a/<packet>` is always exempt: a signed packet handed over by SMS must
-  // render even for someone who never completed onboarding.
+  // `/a/<packet>` is always exempt: a signed packet handed over by SMS must render
+  // even for someone who never completed onboarding.
   const exempt = location.pathname === '/ready' || location.pathname.startsWith('/a/')
-  if (!onboarded && !exempt) return <Navigate to="/ready" replace />
+  if (!read.value && !exempt) return <Navigate to="/ready" replace />
 
   return <>{children}</>
 }

@@ -87,6 +87,22 @@ npm run pack:build -- --offline → sample fallback works, flagged sample:true
 - [x] Non-blocking "Update available" banner — user-triggered only, never auto-reload
 - [~] i18n: JSON catalogue, `t(key, vars)`, localStorage, `dir="rtl"` for Arabic — *done in M2*; Dexie-backed persistence and pluralisation still open
 - [x] Unit tests: outbox ordering/idempotency/backoff, connectivity transitions, pack hash-mismatch + resume
+- [x] **Playwright e2e** (`e2e/offline.spec.ts`): install Get Ready, switch the browser context offline, reload, assert the shell boots, the chip reports offline, navigation works, and `zones.geojson` is still readable from IndexedDB
+
+### M3 verification record (real output)
+
+```
+npm run typecheck   → clean
+npm run lint        → 0 problems
+npm test            → 8 files, 87 tests passed
+npm run build       → 28 precache entries (486 KiB)
+npx playwright test → 2 passed (app shell + pack data work with the network off;
+                      offline deep link /#/a/<packet> renders)
+```
+
+E2E runs against the **production preview** via Playwright `channel: 'chrome'`
+(system Chrome), because a service worker does not exist in the dev server —
+testing offline there would prove nothing.
 
 ---
 

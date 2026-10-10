@@ -28,8 +28,15 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      // Uses the locally installed Google Chrome rather than downloading a
+      // 185 MiB Chromium build. Same engine, and it respects the user's real
+      // profile settings. Set PLAYWRIGHT_BROWSER=chromium to use the bundled
+      // download instead.
+      name: 'chrome',
+      use: {
+        ...devices['Desktop Chrome'],
+        ...(process.env['PLAYWRIGHT_BROWSER'] === 'chromium' ? {} : { channel: 'chrome' }),
+      },
     },
   ],
 })
